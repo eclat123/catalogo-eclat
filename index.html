@@ -101,7 +101,7 @@
             flex-direction: column; border: 1px solid rgba(212, 175, 55, 0.3); cursor: pointer; transition: transform 0.3s ease;
         }
         .card:hover { transform: translateY(-6px); }
-        .img-container { width: 100%; height: 250px; background: #fbfbfb; display: flex; align-items: center; justify-content: center; padding: 12px; box-sizing: border-box; position: relative; }
+        .img-container { width: 100%; height: 250px; background: #fbfbfb; display: flex; align-items: center; justify-content: center; padding: 12px; box-sizing: border-box; }
         .card img { width: 100%; height: 100%; object-fit: contain; }
         .sin-imagen { color: #7a7062; font-size: 11px; text-align: center; }
         .card-body { padding: 14px 18px 18px 18px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
@@ -111,24 +111,22 @@
         .brand { font-size: 10px; color: #9a7b0c; text-transform: uppercase; font-weight: 700; }
         .title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: #1f2937; margin-bottom: 4px; }
         
-        /* ESTILO PARA LA PRESENTACIÓN DEL PRODUCTO */
-        .presentation { font-size: 12px; color: #6b7280; margin-bottom: 10px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
-        .presentation i { color: var(--accent); font-size: 11px; }
+        .presentation { font-size: 12px; color: #6b7280; margin-bottom: 8px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 
         .footer-card { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f3f5; padding-top: 10px; margin-top: auto; }
         .price { font-size: 19px; font-weight: 700; color: #111827; }
 
-        /* MODAL DE IMAGEN AMPLIADA (ZOOM) */
+        /* MODAL DE AMPLIACIÓN (ZOOM) */
         .image-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(8px); z-index: 1000;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 1000;
             justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;
         }
         .image-modal.active { display: flex; }
         .modal-content {
             max-width: 90%; max-height: 85vh; border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8); background: #ffffff; padding: 15px;
-            position: relative; animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; animation: zoomIn 0.25s ease-out;
         }
         .modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; display: block; margin: 0 auto; border-radius: 8px; }
         .modal-title { text-align: center; color: #111; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-top: 10px; }
@@ -136,11 +134,10 @@
             position: absolute; top: -15px; right: -15px; background: var(--accent); color: #000;
             border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px;
             font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
+            display: flex; align-items: center; justify-content: center;
         }
-        .modal-close:hover { transform: scale(1.1); }
         @keyframes zoomIn {
-            from { transform: scale(0.7); opacity: 0; }
+            from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
     </style>
@@ -206,7 +203,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">PERFUME FLEUR</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
@@ -221,7 +218,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
                     <div class="title">PERFUME AZUL INFINITO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -236,7 +233,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 75GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 75GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$25.000</span>
@@ -251,7 +248,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS PITANGA PRETA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
@@ -266,7 +263,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS MARACUYA SUEÑOS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
@@ -281,7 +278,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS ISH PINK</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
@@ -296,7 +293,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL CUPUACU</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
@@ -311,7 +308,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">MANTEQUILLA CUPUACU</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 200GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 200GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
@@ -326,7 +323,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">COLONIA AGUAS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
@@ -341,7 +338,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PERFUME TOPAZE COLECCION ICONIC</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$75.000</span>
@@ -356,7 +353,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PERFUME SWEET HONESTY COLLECCION ICONIC</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$75.000</span>
@@ -371,7 +368,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">CYZONE</div>
                     <div class="title">PERFUME SWEET BLACK SEDUCTION</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$30.000</span>
@@ -386,7 +383,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
                     <div class="title">KIT BELLEZA EXPRESSION</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> KIT</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> KIT</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$84.000</span>
@@ -401,7 +398,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PERFUME SOFT MUSK</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -416,7 +413,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PULPA CACAU</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 75GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 75GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -431,7 +428,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PULPA MARACUYA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 75GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 75GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -446,7 +443,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA ALGODON</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -461,7 +458,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">COLONIA HORUS AZUL MARINE</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
@@ -476,7 +473,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PERFUME BLACK SUEDE CHARM</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -491,7 +488,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SPLASH VIOLETA Y LICHI</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 200ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 200ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
@@ -506,7 +503,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SPLASH LINOS LILAS Y ORQUIDEAS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 200ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 200ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$14.000</span>
@@ -521,7 +518,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">LEONISA</div>
                     <div class="title">SPLASH DELIRIO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 105ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 105ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -536,7 +533,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
                     <div class="title">PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$22.000</span>
@@ -551,7 +548,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$24.000</span>
@@ -566,7 +563,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PESTAÑINA FACES NEGRO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$28.000</span>
@@ -581,7 +578,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">RUBOR ULTRA COLOR RED ONE</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 5GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 5GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
@@ -596,7 +593,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SOMBRAS OCEAN VIBE</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 5 TONOS</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 5 TONOS</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
@@ -611,7 +608,7 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">AVON</div>
                     <div class="title">DELINEADOR PLUMON NEGRO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
@@ -626,7 +623,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">LAPIZ PARA OJOS AZUL MATE</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$10.000</span>
@@ -641,7 +638,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">DELINEADOR LIQUIDO ROJO PINCEL</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
@@ -656,7 +653,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">BALSAMO LABIAL ROSE CREME</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
@@ -671,7 +668,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">BALSAMO LABIAL RED</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
@@ -686,7 +683,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -701,7 +698,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -716,7 +713,7 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA FRUTOS ROJOS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -731,7 +728,7 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> CJ X 5</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 5</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -746,7 +743,7 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES ALGODÓN CAJAx5</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> CJ X 5</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 5</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -761,7 +758,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> CJ X 5</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 5</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -776,7 +773,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">PROTECTOR SOLAR DEFENSE TOTAL</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 30ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 30ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -791,7 +788,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 27ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 27ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
@@ -806,7 +803,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SKINCARE SERUM VITAMINA C</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 30ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 30ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -821,7 +818,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 40GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 40GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$80.000</span>
@@ -836,7 +833,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'OREAL</div>
                     <div class="title">CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
@@ -851,7 +848,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 250ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 250ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$36.000</span>
@@ -866,7 +863,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">POND'S</div>
                     <div class="title">SKINCARE CREMA HIDRATANTE</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100GR</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$25.000</span>
@@ -881,7 +878,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">LEONISA</div>
                     <div class="title">ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
@@ -896,7 +893,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> CJ X 4</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 4</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
@@ -911,7 +908,7 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">FARMASI</div>
                     <div class="title">SHAMPOO ANTICAIDA DR. C. TUNA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 225ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 225ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
@@ -926,7 +923,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">LABIAL FACES COBRE SUNSET</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$20.000</span>
@@ -941,7 +938,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 30ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 30ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
@@ -956,7 +953,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS CASTAÑA</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
@@ -971,7 +968,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS ACAI</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
@@ -986,7 +983,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
@@ -1001,7 +998,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
@@ -1016,7 +1013,7 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'OREAL</div>
                     <div class="title">CUIDADO DEL CABELLO SERUM SEIS OLEOS</div>
-                    <div class='presentation'><i class='fa-solid fa-box-open'></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
@@ -1026,7 +1023,6 @@
         
     </div>
 
-    <!-- MODAL DE AMPLIACIÓN DE IMAGEN -->
     <div class="image-modal" id="imageModal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModalDirect()">×</button>
@@ -1060,7 +1056,6 @@
             toggleSidebar();
         }
 
-        /* FUNCIONES DE ZOOM / AMPLIACIÓN DE IMAGEN */
         function openModal(imgUrl, title) {
             if(!imgUrl) return;
             document.getElementById('modalImg').src = imgUrl;
@@ -1076,6 +1071,6 @@
             }
         }
     </script>
-    <!-- v_1792117276 -->
+    <!-- v_1792117387 -->
 </body>
 </html>
