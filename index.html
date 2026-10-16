@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Éclat • Catálogo Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #1a1a1a;
@@ -20,7 +21,7 @@
             background-attachment: fixed;
             color: #ffffff;
             margin: 0;
-            padding: 20px 15px;
+            padding: 20px 15px 80px 15px;
             min-height: 100vh;
         }
         .logo-container { text-align: center; margin-bottom: 5px; }
@@ -74,6 +75,23 @@
         header { text-align: center; margin-bottom: 15px; }
         h1 { font-family: 'Playfair Display', serif; font-size: 40px; color: #ffffff; letter-spacing: 6px; margin: 5px 0 0 0; }
         .subtitle { color: var(--accent); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-top: 5px; font-weight: 700; }
+        
+        /* BANNER DE CONTACTO Y PAGOS */
+        .contact-banner {
+            max-width: 1200px; margin: 0 auto 25px auto; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color); border-radius: 16px; padding: 15px 20px;
+            display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;
+            backdrop-filter: blur(10px);
+        }
+        .contact-item {
+            display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #fff;
+            text-decoration: none; transition: transform 0.2s;
+        }
+        .contact-item:hover { transform: scale(1.05); }
+        .contact-item i { font-size: 20px; }
+        .wa-icon { color: #25d366; }
+        .nequi-icon { color: #ff3366; }
+
         .grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 24px; max-width: 1200px; margin: 0 auto;
@@ -138,6 +156,17 @@
         <h1>ÉCLAT</h1>
         <div class="subtitle">Catálogo Exclusivo de Belleza</div>
     </header>
+
+    <!-- INFORMACIÓN DE WHATSAPP Y NEQUI AÑADIDA -->
+    <div class="contact-banner">
+        <a href="https://wa.me/573118620589?text=Hola,%20quiero%20más%20información%20sobre%20el%20catálogo%20Éclat" target="_blank" class="contact-item">
+            <i class="fa-brands fa-whatsapp wa-icon"></i> WhatsApp: 311 862 0589
+        </a>
+        <div class="contact-item">
+            <i class="fa-solid fa-wallet nequi-icon"></i> Nequi: 311 862 0589
+        </div>
+    </div>
+
     <div class="grid" id="productGrid">
 
         <div class="card" data-search="perfume fleur l'bel" data-category="PERFUME">
@@ -936,5 +965,6 @@
             toggleSidebar();
         }
     </script>
+    <!-- v_1792115405 -->
 </body>
 </html>
