@@ -25,7 +25,7 @@
             letter-spacing: 0.02em;
         }
 
-        /* CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) */
+        /* CURSOR DE LUJO Y EFECTO LUPA (SÓLO ESCRITORIO) */
         @media (min-width: 769px) {
             *, *:hover, body, button, input, a, .card, .image-modal, .modal-content, img {
                 cursor: none !important;
@@ -41,6 +41,9 @@
                 transition: width 0.2s, height 0.2s, background-color 0.2s;
                 z-index: 10000;
                 background: rgba(197, 160, 89, 0.05);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .custom-cursor-dot {
                 position: fixed;
@@ -52,10 +55,21 @@
                 transform: translate(-50%, -50%);
                 z-index: 10001;
             }
+            /* Icono interno de lupa que aparece al pasar sobre las fotos */
+            .custom-cursor .lens-icon {
+                font-size: 12px;
+                color: var(--accent-gold);
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
             body:hover .custom-cursor.expanded {
-                width: 56px; height: 56px;
-                background: rgba(197, 160, 89, 0.12);
-                border-color: #ffffff;
+                width: 64px; height: 64px;
+                background: rgba(197, 160, 89, 0.15);
+                border-color: var(--accent-gold);
+                box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+            }
+            body:hover .custom-cursor.expanded .lens-icon {
+                opacity: 1;
             }
         }
 
@@ -544,8 +558,10 @@
     </style>
 </head>
 <body>
-    <!-- CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) -->
-    <div class="custom-cursor" id="customCursor"></div>
+    <!-- CURSOR DE LUJO CON EFECTO LUPA -->
+    <div class="custom-cursor" id="customCursor">
+        <i class="fa-solid fa-magnifying-glass lens-icon"></i>
+    </div>
     <div class="custom-cursor-dot" id="customCursorDot"></div>
 
     <!-- PANTALLA DE CARGA CINEMATOGRÁFICA -->
@@ -1585,7 +1601,7 @@
     </div>
 
     <script>
-        // Lógica del Cursor de Lujo con posicionamiento inicial fluido
+        // Lógica del Cursor con Efecto Lupa Óptica
         const cursor = document.getElementById('customCursor');
         const cursorDot = document.getElementById('customCursorDot');
         
@@ -1615,8 +1631,14 @@
             }
             renderCursor();
 
-            // Efecto expansión al pasar sobre elementos interactivos
-            document.querySelectorAll('button, a, input, .card').forEach(el => {
+            // Expandir lupa al pasar sobre las imágenes de los productos
+            document.querySelectorAll('.img-container, .card img').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+            });
+
+            // Comportamiento normal para botones y enlaces
+            document.querySelectorAll('button, a, input').forEach(el => {
                 el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
                 el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
             });
@@ -1710,6 +1732,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792813864 -->
+    <!-- v_1792814664 -->
 </body>
 </html>
