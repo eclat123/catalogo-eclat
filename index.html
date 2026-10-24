@@ -897,6 +897,31 @@
             .contact-banner { padding: 9px 12px; margin-bottom: 8px; }
         }
 
+        /* ESCRITORIO: recuperar aire visual sin perder los controles en la primera impresión */
+        @media (min-width: 769px) {
+            header { padding-top: 12px; padding-bottom: 14px; margin-bottom: 10px; }
+            .logo-container { margin-bottom: 10px; }
+            .logo-monogram { width: 58px; height: 58px; font-size: 26px; }
+            h1 { font-size: 42px; letter-spacing: 9px; }
+            .hero-intro { padding: 5px 20px 10px; margin-bottom: 10px; }
+            .hero-eyebrow { margin-bottom: 8px; }
+            .hero-intro h2 { font-size: clamp(27px, 3vw, 40px); margin-bottom: 8px; }
+            .hero-intro p { margin-bottom: 11px; line-height: 1.6; }
+            .hero-cta { padding: 10px 22px; }
+            .contact-banner { padding-top: 12px; padding-bottom: 12px; margin-bottom: 12px; }
+            .catalog-toolbar { margin-bottom: 14px; }
+        }
+        @media (max-height: 740px) and (min-width: 769px) {
+            header { padding-top: 8px; padding-bottom: 10px; margin-bottom: 7px; }
+            .logo-container { margin-bottom: 7px; }
+            .logo-monogram { width: 52px; height: 52px; font-size: 24px; }
+            h1 { font-size: 40px; }
+            .hero-intro { padding-top: 2px; padding-bottom: 7px; margin-bottom: 7px; }
+            .hero-intro p { margin-bottom: 8px; }
+            .contact-banner { padding: 10px 12px; margin-bottom: 9px; }
+            .catalog-toolbar { margin-bottom: 10px; }
+        }
+
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
@@ -2679,6 +2704,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792880378 -->
+    <!-- v_detail_zoom_hd_fixed_1792880547 -->
 </body>
 </html>
