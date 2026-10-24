@@ -350,6 +350,7 @@
             align-items: center;
             padding: 20px;
             box-sizing: border-box;
+            cursor: pointer;
         }
         .image-modal.active { display: flex; }
         .modal-content {
@@ -361,6 +362,7 @@
             padding: 30px;
             position: relative;
             animation: zoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: default;
         }
         .modal-content img {
             max-width: 100%;
@@ -368,6 +370,7 @@
             object-fit: contain;
             display: block;
             margin: 0 auto;
+            cursor: pointer;
         }
         .modal-title {
             text-align: center;
@@ -1420,10 +1423,11 @@
         
     </div>
 
-    <div class="image-modal" id="imageModal" onclick="closeModal(event)">
+    <!-- MODAL DE ZOOM: Cierra al dar clic en el fondo o en la imagen -->
+    <div class="image-modal" id="imageModal" onclick="closeModalDirect()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModalDirect()">×</button>
-            <img id="modalImg" src="" alt="Creación ampliada">
+            <img id="modalImg" src="" alt="Creación ampliada" onclick="closeModalDirect()">
             <div class="modal-title" id="modalTitle"></div>
         </div>
     </div>
@@ -1462,11 +1466,6 @@
         function closeModalDirect() {
             document.getElementById('imageModal').classList.remove('active');
         }
-        function closeModal(e) {
-            if(e.target.id === 'imageModal') {
-                closeModalDirect();
-            }
-        }
 
         function generatePDF() {
             const images = document.querySelectorAll('.card img');
@@ -1498,6 +1497,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792809570 -->
+    <!-- v_1792809964 -->
 </body>
 </html>
