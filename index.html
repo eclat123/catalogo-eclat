@@ -200,6 +200,10 @@
         .pdf-btn:hover {
             color: #000;
         }
+        .pdf-action-lower { display: none !important; }
+        .pdf-inline-row { max-width: 1300px; margin: 8px auto 14px; display: flex; justify-content: flex-end; }
+        .pdf-inline-row .action-btn { padding: 8px 15px; font-size: 10px; }
+        @media (max-width: 600px) { .pdf-inline-row { margin: 6px 10px 12px; } }
 
         .contact-banner {
             max-width: 900px;
@@ -963,8 +967,7 @@
         </div>
     </div>
 
-    <div class="top-actions">
-        <button class="action-btn" onclick="toggleSidebar()"><span>☰</span> Colecciones</button>
+    <div class="top-actions pdf-action-lower">
         <button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button>
     </div>
 
@@ -976,7 +979,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3 class="sidebar-title">Colecciones</h3>
+            <h3 class="sidebar-title">Filtros</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">×</button>
         </div>
         <input type="text" id="searchInput" class="sidebar-search" oninput="syncSearch(this.value)" placeholder="Buscar creación...">
@@ -999,7 +1002,7 @@
 
         <div class="sidebar-section-title">Categorías</div>
         <div class="sidebar-categories" id="catFilterContainer">
-            <button class="cat-btn-sidebar active" onclick="filterByCategory('TODOS', this)">Todas las colecciones</button>
+            <button class="cat-btn-sidebar active" onclick="filterByCategory('TODOS', this)">Todas las categorías</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('ACCESORIOS', this)">ACCESORIOS</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('BALSAMO LABIAL', this)">BALSAMO LABIAL</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('COLONIA', this)">COLONIA</button>
@@ -1050,9 +1053,10 @@
     </div>
 
     <div class="catalog-toolbar" id="catalogToolbar">
-        <span><i class="fa-solid fa-sparkles"></i> COLECCIÓN ÉCLAT</span>
+        <span><i class="fa-solid fa-sparkles"></i> CATÁLOGO ÉCLAT</span>
         <span id="resultsCount" aria-live="polite"><strong>Catálogo</strong></span>
     </div>
+    <div class="pdf-inline-row"><button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button></div>
     <div class="catalog-controls" aria-label="Buscar, filtrar y ordenar productos">
         <label class="quick-search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="quickSearchInput" class="quick-search" placeholder="Busca por producto o marca..." oninput="syncSearch(this.value)" aria-label="Buscar productos"></label>
         <button class="filter-trigger" onclick="toggleSidebar()"><i class="fa-solid fa-sliders"></i> Filtros <span class="filter-count" id="activeFilterCount">0</span></button>
@@ -2510,6 +2514,16 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             const quickSearch = document.getElementById('quickSearchInput');
             if (sidebarSearch && sidebarSearch.value !== value) sidebarSearch.value = value;
             if (quickSearch && quickSearch.value !== value) quickSearch.value = value;
+
+            // Si el usuario empieza a buscar desde la portada, acompáñalo al catálogo
+            // una sola vez; después la búsqueda se actualiza en vivo sin interrumpir el scroll.
+            const toolbar = document.getElementById('catalogToolbar');
+            if (value.trim() && toolbar) {
+                const rect = toolbar.getBoundingClientRect();
+                if (rect.top > window.innerHeight * 0.55) {
+                    toolbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
             filterCatalog();
         }
 
@@ -2718,6 +2732,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792881374 -->
+    <!-- v_detail_zoom_hd_fixed_1792881727 -->
 </body>
 </html>
