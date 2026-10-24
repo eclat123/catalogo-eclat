@@ -78,7 +78,7 @@
         .ticker-track {
             display: inline-block;
             white-space: nowrap;
-            animation: tickerScroll 25s linear infinite;
+            animation: tickerScroll 30s linear infinite;
         }
         .ticker-item {
             display: inline-block;
@@ -486,7 +486,7 @@
             border-color: var(--accent-gold);
         }
 
-        /* MODAL 1: ZOOM DE IMAGEN (CIERRA CON CLIC EN CUALQUIER PARTE) */
+        /* MODAL 1: ZOOM DE IMAGEN */
         .zoom-modal {
             display: none;
             position: fixed;
@@ -544,6 +544,7 @@
             align-items: center;
             padding: 30px;
             box-sizing: border-box;
+            cursor: pointer;
         }
         .detail-modal.active { display: flex; }
         .detail-box {
@@ -559,6 +560,7 @@
             position: relative;
             animation: zoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            cursor: default;
         }
         .detail-left {
             background: #111;
@@ -568,12 +570,14 @@
             justify-content: center;
             border-right: 1px solid var(--border-subtle);
             box-sizing: border-box;
+            cursor: pointer;
         }
         .detail-left img {
             max-width: 100%;
             max-height: 70vh;
             object-fit: contain;
             display: block;
+            cursor: pointer;
         }
         .detail-right {
             padding: 45px 40px;
@@ -674,12 +678,12 @@
         <div class="loader-text">ÉCLAT</div>
     </div>
 
-    <!-- TICKER DE PASARELA -->
+    <!-- TICKER DE PASARELA CON ENTREGA INMEDIATA BGA -->
     <div class="runway-ticker">
         <div class="ticker-track">
-            <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Envíos Seguros a Todo el País</span>
+            <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Entrega Inmediata • Bucaramanga y Área Metropolitana</span>
             <span class="ticker-item"><i class="fa-brands fa-whatsapp"></i> Atención Personalizada vía WhatsApp</span>
-            <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Envíos Seguros a Todo el País</span>
+            <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Entrega Inmediata • Bucaramanga y Área Metropolitana</span>
             <span class="ticker-item"><i class="fa-brands fa-whatsapp"></i> Atención Personalizada vía WhatsApp</span>
         </div>
     </div>
@@ -2063,7 +2067,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
         
     </div>
 
-    <!-- MODAL 1: ZOOM DE IMAGEN (CIERRA CON CLIC EN CUALQUIER PARTE) -->
+    <!-- MODAL 1: ZOOM DE IMAGEN -->
     <div class="zoom-modal" id="zoomModal" onclick="closeZoomModal()">
         <div class="zoom-content" onclick="closeZoomModal()">
             <button class="modal-close" onclick="closeZoomModal()">×</button>
@@ -2072,14 +2076,14 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
         </div>
     </div>
 
-    <!-- MODAL 2: VITRINA DE DETALLES A DOS COLUMNAS -->
+    <!-- MODAL 2: VITRINA DE DETALLES -->
     <div class="detail-modal" id="detailModal" onclick="closeDetailModal()">
-        <div class="detail-box" onclick="event.stopPropagation()">
+        <div class="detail-box" onclick="closeDetailModal()">
             <button class="modal-close" onclick="closeDetailModal()">×</button>
-            <div class="detail-left">
-                <img id="detailImg" src="" alt="Detalle de creación">
+            <div class="detail-left" onclick="closeDetailModal()">
+                <img id="detailImg" src="" alt="Detalle de creación" onclick="closeDetailModal()">
             </div>
-            <div class="detail-right">
+            <div class="detail-right" onclick="event.stopPropagation()">
                 <div class="detail-category-tag" id="detailBrand"></div>
                 <div class="detail-title-text" id="detailTitle"></div>
                 <div class="detail-text-box" id="detailDetails"></div>
@@ -2183,7 +2187,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             filterCatalog();
         }
 
-        // Funciones Modal Zoom Imagen (Cierra al hacer clic en cualquier parte)
+        // Funciones Modal Zoom Imagen
         function openZoomModal(imgUrl, title) {
             if(!imgUrl) return;
             document.getElementById('zoomImg').src = imgUrl;
@@ -2237,6 +2241,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_zoom_fix_1792871959 -->
+    <!-- v_entrega_inmediata_bga_1792872178 -->
 </body>
 </html>
