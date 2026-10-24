@@ -309,19 +309,38 @@
             margin-top: 15px;
         }
         
-        /* ESTILOS PARA LA BARRITA SLIDER DE PRECIOS */
+        /* BARRITA SLIDER DELGADA Y ELEGANTE */
         .price-slider-container {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-subtle);
-            padding: 14px;
+            padding: 12px 14px;
             border-radius: 6px;
             margin-bottom: 25px;
         }
         .price-slider {
+            -webkit-appearance: none;
+            appearance: none;
             width: 100%;
+            height: 3px; /* Línea súper delgada */
+            background: #333;
+            outline: none;
+            border-radius: 2px;
+            margin: 10px 0;
             accent-color: var(--accent-gold);
+        }
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-gold);
             cursor: pointer;
-            margin: 8px 0;
+            transition: transform 0.2s;
+        }
+        .price-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+            background: #ffffff;
         }
         .price-output-box {
             display: flex;
@@ -797,7 +816,7 @@
 
     <div class="grid" id="productGrid">
 
-        <div class="card" data-search="perfume fleur lbel 50ml la frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta¹ concentración." data-category="PERFUME" data-availability="DISPONIBLE" data-price="60000.0">
+        <div class="card" data-search="perfume fleur lbel 50ml la frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta concentración." data-category="PERFUME" data-availability="DISPONIBLE" data-price="60000.0">
             <div class="img-container" onclick="openZoomModal('https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ', 'PERFUME FLEUR')">
                 <img src="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" alt="FLEUR">
             </div>
@@ -810,7 +829,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" data-title="PERFUME FLEUR" data-brand="L'BEL" data-details="La frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta¹ concentración.">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" data-title="PERFUME FLEUR" data-brand="L'BEL" data-details="La frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta concentración.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -918,9 +937,9 @@
         </div>
         
         <div class="card" data-search="crema corporal cupuacu natura 400ml crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.
-• 3 veces más hidratación reafirmante para la piel*
-• mejora visible de la celulitis en 30 días**
-• 91% afirman que deja la piel más firme y tonificada***
+• 3 veces más hidratación reafirmante para la piel
+• mejora visible de la celulitis en 30 días
+• 91% afirman que deja la piel más firme y tonificada
 • crema hidratante que combate la sequedad profunda
 • 86% de mejora en el aspecto piel de naranja****
 • mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso
@@ -943,21 +962,21 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F" data-title="CREMA CORPORAL CUPUACU" data-brand="NATURA" data-details="Crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.<br>• 3 veces más hidratación reafirmante para la piel*<br>• mejora visible de la celulitis en 30 días**<br>• 91% afirman que deja la piel más firme y tonificada***<br>• crema hidratante que combate la sequedad profunda<br>• 86% de mejora en el aspecto piel de naranja****<br>• mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso<br>• 100% más firmeza y elasticidad*<br>• 72 horas de hidratación reafirmante<br>• resultados clínicamente comprobados<br>• crema con toque seco y rápida absorción<br>• no deja la piel oleosa ni pegajosa<br>• no deja residuo blanco en la piel<br>• enriquecido con cafeína natural vegetal para estimular la circulación de la piel.">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F" data-title="CREMA CORPORAL CUPUACU" data-brand="NATURA" data-details="Crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.<br>• 3 veces más hidratación reafirmante para la piel<br>• mejora visible de la celulitis en 30 días<br>• 91% afirman que deja la piel más firme y tonificada<br>• crema hidratante que combate la sequedad profunda<br>• 86% de mejora en el aspecto piel de naranja****<br>• mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso<br>• 100% más firmeza y elasticidad*<br>• 72 horas de hidratación reafirmante<br>• resultados clínicamente comprobados<br>• crema con toque seco y rápida absorción<br>• no deja la piel oleosa ni pegajosa<br>• no deja residuo blanco en la piel<br>• enriquecido con cafeína natural vegetal para estimular la circulación de la piel.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
             </div>
         </div>
         
-        <div class="card" data-search="mantequilla cupuacu natura 200gr mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas¹
+        <div class="card" data-search="mantequilla cupuacu natura 200gr mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas
 • efecto 2x más rápido y potente en 7 días
-• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días¹
-• hasta 3x más hidratación reafirmante²
-• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad*
-• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja**
+• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días
+• hasta 3x más hidratación reafirmante
+• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad
+• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja
 • efecto tensor: deja la piel visiblemente más firme y resistente
-• bioafirmante de la piel de los glúteos e hidratación reafirmante²
+• bioafirmante de la piel de los glúteos e hidratación reafirmante
 • enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal
 • mejora la sustentación y remodela la piel de adentro hacia afuera
 • el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días
@@ -974,7 +993,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
-                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo" data-title="MANTEQUILLA CUPUACU" data-brand="NATURA" data-details="Mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas¹<br>• efecto 2x más rápido y potente en 7 días&#39;<br>• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días¹<br>• hasta 3x más hidratación reafirmante²<br>• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad*<br>• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja**<br>• efecto tensor: deja la piel visiblemente más firme y resistente<br>• bioafirmante de la piel de los glúteos e hidratación reafirmante²<br>• enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal<br>• mejora la sustentación y remodela la piel de adentro hacia afuera<br>• el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días<br>• ayuda en la prevención de la flacidez y a inhibir la degradación de la elastina de la piel.">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo" data-title="MANTEQUILLA CUPUACU" data-brand="NATURA" data-details="Mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas<br>• efecto 2x más rápido y potente en 7 días<br>• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días<br>• hasta 3x más hidratación reafirmante<br>• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad<br>• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja<br>• efecto tensor: deja la piel visiblemente más firme y resistente<br>• bioafirmante de la piel de los glúteos e hidratación reafirmante<br>• enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal<br>• mejora la sustentación y remodela la piel de adentro hacia afuera<br>• el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días<br>• ayuda en la prevención de la flacidez y a inhibir la degradación de la elastina de la piel.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -2309,6 +2328,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_price_slider_1792875524 -->
+    <!-- v_price_slider_thin_1792876439 -->
 </body>
 </html>
