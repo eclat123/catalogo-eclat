@@ -13,7 +13,7 @@
             --accent-gold: #c5a059;
             --text-primary: #f5f5f5;
             --text-secondary: #9ca3af;
-            --border-subtle: rgba(197, 160, 89, 0.2);
+            --border-subtle: rgba(197, 160, 89, 0.25);
         }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -151,6 +151,8 @@
             margin: 0;
             text-transform: uppercase;
         }
+        
+        /* BOTONES SUPERIORES TRANSLÚCIDOS Y SUTILES */
         .top-actions {
             position: fixed;
             top: 50px;
@@ -165,34 +167,40 @@
         }
         .action-btn {
             pointer-events: auto;
-            background: rgba(20, 20, 20, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(12, 12, 12, 0.55);
+            backdrop-filter: blur(8px);
             color: var(--text-primary);
             border: 1px solid var(--border-subtle);
-            padding: 11px 22px;
+            padding: 10px 20px;
             border-radius: 30px;
             font-weight: 500;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            opacity: 0.85;
             transition: all 0.3s ease;
         }
         .action-btn:hover {
+            opacity: 1;
             background: var(--accent-gold);
             color: #000;
             border-color: var(--accent-gold);
             transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(197, 160, 89, 0.3);
         }
         .pdf-btn {
-            background: rgba(197, 160, 89, 0.9);
-            color: #000;
-            font-weight: 600;
+            color: var(--accent-gold);
+            border-color: var(--border-subtle);
         }
+        .pdf-btn:hover {
+            color: #000;
+        }
+
         .contact-banner {
             max-width: 900px;
             margin: 0 auto 40px auto;
@@ -384,7 +392,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         .back-to-top.show {
-            opacity: 0.85; /* Sutil en reposo */
+            opacity: 0.85;
             visibility: visible;
             transform: translateY(0);
         }
@@ -749,7 +757,7 @@
             .top-actions, .sidebar, .sidebar-overlay, .zoom-modal, .detail-modal, #page-loader, .runway-ticker, .custom-cursor, .custom-cursor-dot, .back-to-top { display: none !important; }
             header { border-bottom-color: #ddd !important; }
             header h1 { color: #000000 !important; font-size: 26px !important; }
-            .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
+            .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20mm !important; }
             .contact-item { color: #000000 !important; }
             .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
             .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; opacity: 1 !important; transform: none !important; }
@@ -2390,6 +2398,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_back_to_top_transparent_1792877370 -->
+    <!-- v_top_buttons_transparent_1792877604 -->
 </body>
 </html>
