@@ -25,6 +25,38 @@
             letter-spacing: 0.02em;
         }
 
+        /* CURSOR DE LUJO EXCLUSIVO PARA ESCRITORIO */
+        @media (min-width: 769px) {
+            body, button, input, a, .card { cursor: none !important; }
+            .custom-cursor {
+                position: fixed;
+                top: 0; left: 0;
+                width: 36px; height: 36px;
+                border: 1px solid var(--accent-gold);
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                transition: width 0.2s, height 0.2s, background-color 0.2s;
+                z-index: 10000;
+                background: rgba(197, 160, 89, 0.05);
+            }
+            .custom-cursor-dot {
+                position: fixed;
+                top: 0; left: 0;
+                width: 6px; height: 6px;
+                background: var(--accent-gold);
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                z-index: 10001;
+            }
+            body:hover .custom-cursor.expanded {
+                width: 56px; height: 56px;
+                background: rgba(197, 160, 89, 0.12);
+                border-color: #ffffff;
+            }
+        }
+
         /* RUNWAY TICKER (ENVÍOS Y WHATSAPP) */
         .runway-ticker {
             background: var(--accent-gold);
@@ -500,7 +532,7 @@
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
-            .top-actions, .sidebar, .sidebar-overlay, .image-modal, #page-loader, .runway-ticker { display: none !important; }
+            .top-actions, .sidebar, .sidebar-overlay, .image-modal, #page-loader, .runway-ticker, .custom-cursor, .custom-cursor-dot { display: none !important; }
             header { border-bottom-color: #ddd !important; }
             header h1 { color: #000000 !important; font-size: 26px !important; }
             .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
@@ -515,6 +547,10 @@
     </style>
 </head>
 <body>
+    <!-- CURSOR DE LUJO (SÓLO ESCRITORIO) -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-dot" id="customCursorDot"></div>
+
     <!-- PANTALLA DE CARGA CINEMATOGRÁFICA -->
     <div id="page-loader">
         <div class="loader-monogram">É</div>
@@ -1552,6 +1588,40 @@
     </div>
 
     <script>
+        // Lógica del Cursor de Lujo (Solo escritorio)
+        const cursor = document.getElementById('customCursor');
+        const cursorDot = document.getElementById('customCursorDot');
+        
+        if (window.innerWidth > 768) {
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = mouseX + 'px';
+                cursorDot.style.top = mouseY + 'px';
+            });
+
+            function renderCursor() {
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                requestAnimationFrame(renderCursor);
+            }
+            renderCursor();
+
+            // Efecto expansión al pasar sobre elementos interactivos
+            document.querySelectorAll('button, a, input, .card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+            });
+        } else {
+            if (cursor) cursor.style.display = 'none';
+            if (cursorDot) cursorDot.style.display = 'none';
+        }
+
         let currentCategory = 'TODOS';
         let currentAvailability = 'TODOS';
 
@@ -1637,6 +1707,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792812087 -->
+    <!-- v_1792812786 -->
 </body>
 </html>
