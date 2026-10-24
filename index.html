@@ -2252,14 +2252,14 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
     <div class="zoom-modal" id="zoomModal" onclick="closeZoomModal()">
         <div class="zoom-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeZoomModal()">×</button>
-            <img id="zoomImg" src="" alt="Creación ampliada">
+            <img id="zoomImg" src="" alt="Creación ampliada" onclick="closeZoomModal()" title="Haz clic para cerrar el zoom">
             <div class="zoom-title" id="zoomTitle"></div>
         </div>
     </div>
 
     <!-- MODAL 2: VITRINA DE DETALLES -->
     <div class="detail-modal" id="detailModal" onclick="closeDetailModal()">
-        <div class="detail-box" onclick="event.stopPropagation()">
+        <div class="detail-box" onclick="closeDetailModal()">
             <button class="modal-close" onclick="closeDetailModal()">×</button>
             <div class="detail-left" id="detailZoomContainer">
                 <img id="detailImg" src="" alt="Detalle de creación">
@@ -2268,7 +2268,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 <div class="detail-category-tag" id="detailBrand"></div>
                 <div class="detail-title-text" id="detailTitle"></div>
                 <div class="detail-text-box" id="detailDetails"></div>
-                <a href="https://wa.me/573118620589" target="_blank" rel="noopener noreferrer" class="detail-whatsapp" id="detailWhatsapp"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a>
+                <a href="https://wa.me/573118620589" target="_blank" rel="noopener noreferrer" class="detail-whatsapp" id="detailWhatsapp" onclick="event.stopPropagation()"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a>
             </div>
         </div>
     </div>
@@ -2509,6 +2509,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792879306 -->
+    <!-- v_detail_zoom_hd_fixed_1792879759 -->
 </body>
 </html>
