@@ -27,7 +27,7 @@
 
         /* CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) */
         @media (min-width: 769px) {
-            *, *:hover, body, button, input, a, .card, .image-modal, .modal-content, img {
+            *, *:hover, body, button, input, a, .card, .image-modal, .modal-box, img {
                 cursor: none !important;
             }
             .custom-cursor {
@@ -341,7 +341,7 @@
         }
         .sidebar-overlay.active { display: block; }
 
-        /* GRID CON ANIMACIÓN FADE & SLIDE DE ENTRADA */
+        /* GRID LIMPIO */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -357,7 +357,7 @@
             border: 1px solid var(--border-subtle);
             display: flex;
             flex-direction: column;
-            transition: transform 0.4s ease, border-color 0.4s ease, opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, opacity 0.5s ease;
             opacity: 1;
             transform: translateY(0);
             break-inside: avoid;
@@ -474,68 +474,122 @@
             align-items: center;
             gap: 5px;
         }
+
+        /* MODAL DE DOS COLUMNAS (VITRINA VIP) */
         .image-modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(8, 8, 8, 0.92);
             backdrop-filter: blur(15px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 30px;
             box-sizing: border-box;
         }
         .image-modal.active { display: flex; }
-        .modal-content {
-            max-width: 85%;
-            max-height: 85vh;
-            border-radius: 4px;
+        .modal-box {
+            width: 1000px;
+            max-width: 95vw;
+            max-height: 90vh;
             background: #141414;
             border: 1px solid var(--border-subtle);
-            padding: 30px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
             position: relative;
             animation: zoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
         }
-        .modal-content img {
+        .modal-left {
+            background: #111;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border-subtle);
+            box-sizing: border-box;
+        }
+        .modal-left img {
             max-width: 100%;
             max-height: 70vh;
             object-fit: contain;
             display: block;
-            margin: 0 auto;
         }
-        .modal-title {
-            text-align: center;
-            color: #ffffff;
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-top: 20px;
+        .modal-right {
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .modal-category-tag {
+            font-size: 10px;
+            color: var(--accent-gold);
             text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .modal-title-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+        .modal-details-box {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 20px 0;
+            margin-bottom: 25px;
+            white-space: pre-line;
         }
         .modal-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             background: transparent;
             color: var(--text-primary);
             border: 1px solid var(--border-subtle);
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
         }
+        .modal-close:hover {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+        }
+
         @keyframes zoomIn {
             from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
+
+        @media (max-width: 768px) {
+            .modal-box { grid-template-columns: 1fr; max-height: 95vh; overflow-y: auto; }
+            .modal-left { padding: 25px; height: 260px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+            .modal-right { padding: 25px; }
+        }
+
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
@@ -640,7 +694,7 @@
 
     <div class="grid" id="productGrid">
 
-        <div class="card" data-search="perfume fleur lbel 50ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ', 'PERFUME FLEUR')">
+        <div class="card" data-search="perfume fleur lbel 50ml la frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta¹ concentración." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ', 'PERFUME FLEUR', 'L&#39;BEL', 'La frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta¹ concentración.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" alt="FLEUR"></div>
             <div class="card-body">
                 <div>
@@ -656,23 +710,23 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume azul infinito esika 50ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q', 'PERFUME AZUL INFINITO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q" alt="AZUL INFINITO"></div>
+        <div class="card" data-search="perfume fantasia azul infinito esika 50ml eau de parfum para mujer de aroma frutal de alta concentración, con vibrantes notas frescas de bergamota y sándalo." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q', 'PERFUME FANTASIA AZUL INFINITO', 'ESIKA', 'Eau de Parfum para mujer de aroma frutal de alta concentración, con vibrantes notas frescas de bergamota y sándalo.')">
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q" alt="FANTASIA AZUL INFINITO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
-                    <div class="title">PERFUME AZUL INFINITO</div>
+                    <div class="title">PERFUME FANTASIA AZUL INFINITO</div>
                     <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
-                    <span class="price">$55.000</span>
+                    <span class="price">$50.000</span>
                     <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
         
-        <div class="card" data-search="gel hidratante humor meu primero escarchado natura 75gr" data-category="GEL HIDRATANTE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o', 'GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO')">
+        <div class="card" data-search="gel hidratante humor meu primero escarchado natura 75gr hidrata e ilumina la piel, fragancia irreverente que combina un cóctel de frutas vibrantes y notas cítricas, contiene activos: aceite de ajonjolí, pantenol y vitamina e, vegano" data-category="GEL HIDRATANTE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o', 'GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO', 'NATURA', 'Hidrata e ilumina la piel, fragancia irreverente que combina un cóctel de frutas vibrantes y notas cítricas, contiene activos: aceite de ajonjolí, pantenol y vitamina E, vegano')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o" alt="HUMOR MEU PRIMERO ESCARCHADO"></div>
             <div class="card-body">
                 <div>
@@ -688,7 +742,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="frescor ekos pitanga preta natura 150ml" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2', 'FRESCOR EKOS PITANGA PRETA')">
+        <div class="card" data-search="frescor ekos pitanga preta natura 150ml la fragancia vibrante y colorida de pitanga preta para tus días, notas de pitanga preta conviven con flores coloridas y reciben un toque de notas amaderadas, transmite una deliciosa sensación de calor y frescura, con ingrediente natural inédito, extraído de las hojas del pitanguero" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2', 'FRESCOR EKOS PITANGA PRETA', 'NATURA', 'La fragancia vibrante y colorida de Pitanga Preta para tus días, notas de pitanga preta conviven con flores coloridas y reciben un toque de notas amaderadas, transmite una deliciosa sensación de calor y frescura, con ingrediente natural inédito, extraído de las hojas del pitanguero')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2" alt="EKOS PITANGA PRETA"></div>
             <div class="card-body">
                 <div>
@@ -704,7 +758,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="frescor ekos maracuya sueños natura 150ml" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC', 'FRESCOR EKOS MARACUYA SUEÑOS')">
+        <div class="card" data-search="frescor ekos maracuya sueños natura 150ml fragancia encantadora y refrescante como un descanso en el vaivén de una hamaca, destaca el ácido dulce del maracuyá en contraste con el confort de las notas de musk y maderas, con ingrediente natural de la biodiversidad brasileña, extraído de la pulpa del maracuyá" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC', 'FRESCOR EKOS MARACUYA SUEÑOS', 'NATURA', 'Fragancia encantadora y refrescante como un descanso en el vaivén de una hamaca, destaca el ácido dulce del maracuyá en contraste con el confort de las notas de musk y maderas, con ingrediente natural de la biodiversidad brasileña, extraído de la pulpa del maracuyá')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC" alt="EKOS MARACUYA SUEÑOS"></div>
             <div class="card-body">
                 <div>
@@ -720,7 +774,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="frescor ekos ish pink natura 150ml" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9', 'FRESCOR EKOS ISH PINK')">
+        <div class="card" data-search="frescor ekos ish pink natura 150ml la fragancia multifacética, sensual y natural de ishpink para tus días, lo inesperado de una frescura especiada se revela por la nota cálida del ishpink, especia amazónica, además trae pimientas y azafrán en contraste con la feminidad de las flores y una frescura cítrica." data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9', 'FRESCOR EKOS ISH PINK', 'NATURA', 'La fragancia multifacética, sensual y natural de Ishpink para tus días, lo inesperado de una frescura especiada se revela por la nota cálida del ishpink, especia amazónica, además trae pimientas y azafrán en contraste con la feminidad de las flores y una frescura cítrica.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9" alt="EKOS ISH PINK"></div>
             <div class="card-body">
                 <div>
@@ -736,7 +790,20 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal cupuacu natura 400ml" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F', 'CREMA CORPORAL CUPUACU')">
+        <div class="card" data-search="crema corporal cupuacu natura 400ml crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.
+• 3 veces más hidratación reafirmante para la piel*
+• mejora visible de la celulitis en 30 días**
+• 91% afirman que deja la piel más firme y tonificada***
+• crema hidratante que combate la sequedad profunda
+• 86% de mejora en el aspecto piel de naranja****
+• mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso
+• 100% más firmeza y elasticidad*
+• 72 horas de hidratación reafirmante
+• resultados clínicamente comprobados
+• crema con toque seco y rápida absorción
+• no deja la piel oleosa ni pegajosa
+• no deja residuo blanco en la piel
+• enriquecido con cafeína natural vegetal para estimular la circulación de la piel." data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F', 'CREMA CORPORAL CUPUACU', 'NATURA', 'Crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.<br>• 3 veces más hidratación reafirmante para la piel*<br>• mejora visible de la celulitis en 30 días**<br>• 91% afirman que deja la piel más firme y tonificada***<br>• crema hidratante que combate la sequedad profunda<br>• 86% de mejora en el aspecto piel de naranja****<br>• mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso<br>• 100% más firmeza y elasticidad*<br>• 72 horas de hidratación reafirmante<br>• resultados clínicamente comprobados<br>• crema con toque seco y rápida absorción<br>• no deja la piel oleosa ni pegajosa<br>• no deja residuo blanco en la piel<br>• enriquecido con cafeína natural vegetal para estimular la circulación de la piel.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F" alt="CUPUACU"></div>
             <div class="card-body">
                 <div>
@@ -752,7 +819,18 @@
             </div>
         </div>
         
-        <div class="card" data-search="mantequilla cupuacu natura 200gr" data-category="MANTEQUILLA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo', 'MANTEQUILLA CUPUACU')">
+        <div class="card" data-search="mantequilla cupuacu natura 200gr mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas¹
+• efecto 2x más rápido y potente en 7 días
+• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días¹
+• hasta 3x más hidratación reafirmante²
+• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad*
+• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja**
+• efecto tensor: deja la piel visiblemente más firme y resistente
+• bioafirmante de la piel de los glúteos e hidratación reafirmante²
+• enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal
+• mejora la sustentación y remodela la piel de adentro hacia afuera
+• el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días
+• ayuda en la prevención de la flacidez y a inhibir la degradación de la elastina de la piel." data-category="MANTEQUILLA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo', 'MANTEQUILLA CUPUACU', 'NATURA', 'Mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas¹<br>• efecto 2x más rápido y potente en 7 días&#39;<br>• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días¹<br>• hasta 3x más hidratación reafirmante²<br>• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad*<br>• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja**<br>• efecto tensor: deja la piel visiblemente más firme y resistente<br>• bioafirmante de la piel de los glúteos e hidratación reafirmante²<br>• enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal<br>• mejora la sustentación y remodela la piel de adentro hacia afuera<br>• el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días<br>• ayuda en la prevención de la flacidez y a inhibir la degradación de la elastina de la piel.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo" alt="CUPUACU"></div>
             <div class="card-body">
                 <div>
@@ -768,7 +846,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="colonia aguas natura 150ml" data-category="COLONIA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS', 'COLONIA AGUAS')">
+        <div class="card" data-search="colonia aguas natura 150ml explosión colorida y vibrante de frescura, con un toque de priprioca, ingrediente de la biodiversidad brasileña." data-category="COLONIA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS', 'COLONIA AGUAS', 'NATURA', 'Explosión colorida y vibrante de frescura, con un toque de priprioca, ingrediente de la biodiversidad brasileña.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS" alt="AGUAS"></div>
             <div class="card-body">
                 <div>
@@ -784,7 +862,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume topaze coleccion iconic avon 100ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650', 'PERFUME TOPAZE COLECCION ICONIC')">
+        <div class="card" data-search="perfume topaze coleccion iconic avon 100ml para mujeres que exhalan elegancia, la pera fresca se fusiona con la sofisticada luminosidad del ylang ylang, mientras que la flor de azahar irradia una feminidad impactante." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650', 'PERFUME TOPAZE COLECCION ICONIC', 'AVON', 'Para mujeres que exhalan elegancia, la pera fresca se fusiona con la sofisticada luminosidad del ylang ylang, mientras que la flor de azahar irradia una feminidad impactante.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650" alt="TOPAZE COLECCION ICONIC"></div>
             <div class="card-body">
                 <div>
@@ -800,7 +878,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume sweet honesty colleccion iconic avon 100ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo', 'PERFUME SWEET HONESTY COLLECCION ICONIC')">
+        <div class="card" data-search="perfume sweet honesty colleccion iconic avon 100ml frescura limpia y suavidad duradera para tu día a día. revive la magia de los momentos más puros con sweet honesty, la fragancia clásica de avon que nunca pasa de moda. con una delicada mezcla de notas florales de jacinto y lirio de los valles, combinadas con un toque dulce de vainilla y almizcle, este perfume ofrece un aroma ligero y atalcado que prolonga la sensación de frescura después del baño" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo', 'PERFUME SWEET HONESTY COLLECCION ICONIC', 'AVON', 'Frescura limpia y suavidad duradera para tu día a día. Revive la magia de los momentos más puros con Sweet Honesty, la fragancia clásica de Avon que nunca pasa de moda. Con una delicada mezcla de notas florales de jacinto y lirio de los valles, combinadas con un toque dulce de vainilla y almizcle, este perfume ofrece un aroma ligero y atalcado que prolonga la sensación de frescura después del baño')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo" alt="SWEET HONESTY COLLECCION ICONIC"></div>
             <div class="card-body">
                 <div>
@@ -816,7 +894,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume sweet black seduction cyzone 50ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW', 'PERFUME SWEET BLACK SEDUCTION')">
+        <div class="card" data-search="perfume sweet black seduction cyzone 50ml experimenta la frescura y dulzura exótica con una composición intrigante de notas orientales. este perfume fresco para mujer combina las vibrantes esencias de frambuesa con la delicadeza de las notas florales de rosa, logrando una armonía perfecta que es tan irresistible como envolvente." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW', 'PERFUME SWEET BLACK SEDUCTION', 'CYZONE', 'Experimenta la frescura y dulzura exótica con una composición intrigante de notas orientales. Este perfume fresco para mujer combina las vibrantes esencias de frambuesa con la delicadeza de las notas florales de rosa, logrando una armonía perfecta que es tan irresistible como envolvente.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW" alt="SWEET BLACK SEDUCTION"></div>
             <div class="card-body">
                 <div>
@@ -832,7 +910,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="kit belleza expression esika kit" data-category="KIT BELLEZA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG', 'KIT BELLEZA EXPRESSION')">
+        <div class="card" data-search="kit belleza expression esika kit el set ésika expression spirit es la combinación perfecta para resaltar tu belleza natural y cautivar a donde vaya, ofreciendo una experiencia completa de cuidado y estilo en tres sencillos pasos. este kit reúne la exquisita loción perfumada expression spirit para hidratar y envolver tu piel en su vibrante aroma, un labial o producto para labios de la línea ésika ideal para darle intensidad a tu sonrisa, y un brillo/hidratante glow en tubo para aportar un toque jugoso y radiante. presentado en una elegante caja de edición especial, es la opción perfecta tanto para regalar un detalle sofisticado como para complementar tu rutina diaria con el inconfundible sello y la calidad de ésika." data-category="KIT BELLEZA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG', 'KIT BELLEZA EXPRESSION', 'ESIKA', 'El Set Ésika Expression Spirit es la combinación perfecta para resaltar tu belleza natural y cautivar a donde vaya, ofreciendo una experiencia completa de cuidado y estilo en tres sencillos pasos. Este kit reúne la exquisita loción perfumada Expression Spirit para hidratar y envolver tu piel en su vibrante aroma, un labial o producto para labios de la línea Ésika ideal para darle intensidad a tu sonrisa, y un brillo/hidratante Glow en tubo para aportar un toque jugoso y radiante. Presentado en una elegante caja de edición especial, es la opción perfecta tanto para regalar un detalle sofisticado como para complementar tu rutina diaria con el inconfundible sello y la calidad de Ésika.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG" alt="EXPRESSION"></div>
             <div class="card-body">
                 <div>
@@ -848,7 +926,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume soft musk avon 50ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_', 'PERFUME SOFT MUSK')">
+        <div class="card" data-search="perfume soft musk avon 50ml fragancia de vainilla oriental amaderada. la fragrancia contiene flores blancas, frambuesa, vainilla y almizcle. exquisitas notas que te harán sentir la dulce y suave vainilla, resaltando tu lado más femenino y sensual" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_', 'PERFUME SOFT MUSK', 'AVON', 'Fragancia de vainilla oriental amaderada. La fragrancia contiene flores blancas, frambuesa, vainilla y almizcle. Exquisitas notas que te harán sentir la dulce y suave vainilla, resaltando tu lado más femenino y sensual')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_" alt="SOFT MUSK"></div>
             <div class="card-body">
                 <div>
@@ -864,7 +942,16 @@
             </div>
         </div>
         
-        <div class="card" data-search="pulpa cacau natura 75gr" data-category="PULPA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2', 'PULPA CACAU')">
+        <div class="card" data-search="pulpa cacau natura 75gr hidratación que fortalece manos y uñas
+• contiene bioactivo: manteca bruta de cacao
+• perfuma con una fragancia cítrica y dulce
+• combate la resequedad
+• hidrata por hasta 72 horas
+• estimula hasta 2 veces más la producción de colágeno
+• dermatológicamente probado
+• libre de crueldad animal
+• vegano
+• para todo tipo de piel" data-category="PULPA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2', 'PULPA CACAU', 'NATURA', 'Hidratación que fortalece manos y uñas<br>• contiene bioactivo: manteca bruta de cacao<br>• perfuma con una fragancia cítrica y dulce<br>• combate la resequedad<br>• hidrata por hasta 72 horas<br>• estimula hasta 2 veces más la producción de colágeno<br>• dermatológicamente probado<br>• libre de crueldad animal<br>• vegano<br>• para todo tipo de piel')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2" alt="CACAU"></div>
             <div class="card-body">
                 <div>
@@ -880,7 +967,12 @@
             </div>
         </div>
         
-        <div class="card" data-search="pulpa maracuya natura 75gr" data-category="PULPA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7', 'PULPA MARACUYA')">
+        <div class="card" data-search="pulpa maracuya natura 75gr 48 horas de hidratación para las manos con la potencia antiestrés del maracuyá.
+• crema de manos hecha con aceite bruto de maracuyá, rico en ácidos grasos esenciales
+• promueve hidratación prolongada
+• textura ligera de rápida absorción
+• hidratante que ayuda a calmar la piel
+• forma una película protectora sobre las manos" data-category="PULPA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7', 'PULPA MARACUYA', 'NATURA', '48 horas de hidratación para las manos con la potencia antiestrés del maracuyá.<br>• crema de manos hecha con aceite bruto de maracuyá, rico en ácidos grasos esenciales<br>• promueve hidratación prolongada<br>• textura ligera de rápida absorción<br>• hidratante que ayuda a calmar la piel<br>• forma una película protectora sobre las manos')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7" alt="MARACUYA"></div>
             <div class="card-body">
                 <div>
@@ -896,7 +988,13 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal todo dia algodon natura 400ml" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h', 'CREMA CORPORAL TODO DIA ALGODON')">
+        <div class="card" data-search="crema corporal todo dia algodon natura 400ml hidratación inteligente para todo tipo de piel
+• contiene activo prebiótico, se adapta a los cambios de tu piel
+• probado dermatológicamente
+• con repuesto disponible
+• cruelty free
+• vegano
+• indicado para todo tipo de piel" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h', 'CREMA CORPORAL TODO DIA ALGODON', 'NATURA', 'Hidratación inteligente para todo tipo de piel<br>• contiene activo prebiótico, se adapta a los cambios de tu piel<br>• probado dermatológicamente<br>• con repuesto disponible<br>• cruelty free<br>• vegano<br>• indicado para todo tipo de piel')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h" alt="TODO DIA ALGODON"></div>
             <div class="card-body">
                 <div>
@@ -912,7 +1010,9 @@
             </div>
         </div>
         
-        <div class="card" data-search="colonia horus azul marine natura 100ml" data-category="COLONIA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3', 'COLONIA HORUS AZUL MARINE')">
+        <div class="card" data-search="colonia horus azul marine natura 100ml frescura y vitalidad para todos los días
+• fragancia cítrica moderada
+• combina la envolvente lavanda y geranio con un toque fresco de cítricos, como el limón siciliano" data-category="COLONIA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3', 'COLONIA HORUS AZUL MARINE', 'NATURA', 'Frescura y vitalidad para todos los días<br>• fragancia cítrica moderada<br>• combina la envolvente lavanda y geranio con un toque fresco de cítricos, como el limón siciliano')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3" alt="HORUS AZUL MARINE"></div>
             <div class="card-body">
                 <div>
@@ -928,12 +1028,12 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume black suede charm natura 100ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO', 'PERFUME BLACK SUEDE CHARM')">
+        <div class="card" data-search="perfume black suede charm avon 100ml fragancia diseñada para el hombre moderno que aprecia la elegancia y el carácter. con notas de cardamomo, pimienta negra y haba tonka, este perfume ofrece una experiencia olfativa intensa y cautivadora, ideal para cualquier ocasión." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO', 'PERFUME BLACK SUEDE CHARM', 'AVON', 'Fragancia diseñada para el hombre moderno que aprecia la elegancia y el carácter. Con notas de cardamomo, pimienta negra y haba tonka, este perfume ofrece una experiencia olfativa intensa y cautivadora, ideal para cualquier ocasión.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO" alt="BLACK SUEDE CHARM"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
-                    <div class="brand">NATURA</div>
+                    <div class="brand">AVON</div>
                     <div class="title">PERFUME BLACK SUEDE CHARM</div>
                     <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
@@ -944,7 +1044,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="splash violeta y lichi avon 200ml" data-category="SPLASH" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-', 'SPLASH VIOLETA Y LICHI')">
+        <div class="card" data-search="splash violeta y lichi avon 200ml descubre la frescura y la elegancia de la colonia violeta y lichi avon senses, un spray corporal de 200 ml diseñado especialmente para la mujer moderna. este perfume tipo splash combina las notas dulces y jugosas del lichi con la delicadeza floral de la violeta, creando una fragancia única que despierta los sentidos." data-category="SPLASH" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-', 'SPLASH VIOLETA Y LICHI', 'AVON', 'Descubre la frescura y la elegancia de la Colonia Violeta y Lichi Avon Senses, un spray corporal de 200 ml diseñado especialmente para la mujer moderna. Este perfume tipo splash combina las notas dulces y jugosas del lichi con la delicadeza floral de la violeta, creando una fragancia única que despierta los sentidos.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-" alt="VIOLETA Y LICHI"></div>
             <div class="card-body">
                 <div>
@@ -960,7 +1060,10 @@
             </div>
         </div>
         
-        <div class="card" data-search="splash linos lilas y orquideas avon 200ml" data-category="SPLASH LINOS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK', 'SPLASH LINOS LILAS Y ORQUIDEAS')">
+        <div class="card" data-search="splash linos lilas y orquideas avon 200ml lilas y orquídeas rocíos.
+para uso en textiles
+para uso en ambientes
+tiene poder antibacterial" data-category="SPLASH LINOS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK', 'SPLASH LINOS LILAS Y ORQUIDEAS', 'AVON', 'Lilas y orquídeas rocíos.<br>Para uso en textiles<br>Para uso en ambientes<br>Tiene poder antibacterial')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK" alt="LILAS Y ORQUIDEAS"></div>
             <div class="card-body">
                 <div>
@@ -976,7 +1079,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="splash delirio leonisa 105ml" data-category="SPLASH" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201', 'SPLASH DELIRIO')">
+        <div class="card" data-search="splash delirio leonisa 105ml combina notas tentadoras de fresa jugosa, rosa sensual y pistacho dulce. diseñada para envolverte en un aroma cautivador, fresco y femenino, es perfecta para refrescar tu piel a lo largo del día y aportarte un toque de elegancia y dulzura sutil." data-category="SPLASH" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201', 'SPLASH DELIRIO', 'LEONISA', 'Combina notas tentadoras de fresa jugosa, rosa sensual y pistacho dulce. Diseñada para envolverte en un aroma cautivador, fresco y femenino, es perfecta para refrescar tu piel a lo largo del día y aportarte un toque de elegancia y dulzura sutil.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201" alt="DELIRIO"></div>
             <div class="card-body">
                 <div>
@@ -992,7 +1095,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="pestañina mascara mega full size apa negra esika un" data-category="PESTAÑINA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz', 'PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA')">
+        <div class="card" data-search="pestañina mascara mega full size apa negra esika un máscara de pestañas mega full size pro a prueba de agua. logra unas pestañas con un largo insuperable y volumen profesional. mega full size es la máscara n°1 de ésika** que ofrece una sensación ligera ¡y sin grumos!" data-category="PESTAÑINA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz', 'PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA', 'ESIKA', 'Máscara de pestañas Mega Full Size PRO a prueba de agua. Logra unas pestañas con un LARGO INSUPERABLE Y VOLUMEN PROFESIONAL. Mega Full Size es la máscara N°1 de ÉSIKA** que ofrece una sensación ligera ¡y sin grumos!')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz" alt="MASCARA MEGA FULL SIZE APA NEGRA"></div>
             <div class="card-body">
                 <div>
@@ -1008,7 +1111,9 @@
             </div>
         </div>
         
-        <div class="card" data-search="pestañina exxtravagant extreme volume mascara avon un" data-category="PESTAÑINA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq', 'PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA')">
+        <div class="card" data-search="pestañina exxtravagant extreme volume mascara avon un destaca tu mirada con esta máscara avon que define y cuida tus pestañas. se verán naturalmente suaves y peinadas en todo momento. en solo unos minutos, estarás impecable para salir y deslumbrar. ¡elegir la máscara correcta nunca fue tan fácil!
+a prueba de agua
+¿te cansaste del maquillaje corrido? esta máscara te hará ver bien todo el día y no tendrás que preocuparte en retocarlo. ¡todo lo que necesitas es aplicar la máscara una vez y listo!" data-category="PESTAÑINA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq', 'PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA', 'AVON', 'Destaca tu mirada con esta máscara Avon que define y cuida tus pestañas. Se verán naturalmente suaves y peinadas en todo momento. En solo unos minutos, estarás impecable para salir y deslumbrar. ¡Elegir la máscara correcta nunca fue tan fácil!<br>A prueba de agua<br>¿Te cansaste del maquillaje corrido? Esta máscara te hará ver bien todo el día y no tendrás que preocuparte en retocarlo. ¡Todo lo que necesitas es aplicar la máscara una vez y listo!')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq" alt="EXXTRAVAGANT EXTREME VOLUME MASCARA"></div>
             <div class="card-body">
                 <div>
@@ -1024,7 +1129,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="pestañina faces negro natura un" data-category="PESTAÑINA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg', 'PESTAÑINA FACES NEGRO')">
+        <div class="card" data-search="pestañina faces negro natura un volumen, alargamiento y curvatura." data-category="PESTAÑINA" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg', 'PESTAÑINA FACES NEGRO', 'NATURA', 'Volumen, alargamiento y curvatura.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg" alt="FACES NEGRO"></div>
             <div class="card-body">
                 <div>
@@ -1040,7 +1145,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="rubor ultra color red one avon 5gr" data-category="RUBOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl', 'RUBOR ULTRA COLOR RED ONE')">
+        <div class="card" data-search="rubor ultra color red one avon 5gr descubre el rubor en polvo avon red, un producto que transformará tu rutina de maquillaje. con un formato en polvo, este rubor se aplica de manera suave y uniforme, brindando un acabado natural y radiante. su tono red es perfecto para realzar tus mejillas, aportando un toque de frescura y vitalidad a tu rostro." data-category="RUBOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl', 'RUBOR ULTRA COLOR RED ONE', 'AVON', 'Descubre el Rubor En Polvo Avon Red, un producto que transformará tu rutina de maquillaje. Con un formato en polvo, este rubor se aplica de manera suave y uniforme, brindando un acabado natural y radiante. Su tono Red es perfecto para realzar tus mejillas, aportando un toque de frescura y vitalidad a tu rostro.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl" alt="ULTRA COLOR RED ONE"></div>
             <div class="card-body">
                 <div>
@@ -1056,7 +1161,9 @@
             </div>
         </div>
         
-        <div class="card" data-search="sombras ocean vibe avon 5 tonos" data-category="SOMBRAS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q', 'SOMBRAS OCEAN VIBE')">
+        <div class="card" data-search="sombras ocean vibe avon 5 tonos la paleta de sombras avon color trend ocean vibe es la elección perfecta para quienes buscan un toque vibrante y fresco en su maquillaje. con cinco tonos cuidadosamente seleccionados, esta paleta te permite crear desde looks sutiles hasta estilos más audaces, ideales para cualquier ocasión.
+cada sombra está formulada para ofrecer una aplicación suave y una excelente pigmentación, asegurando que tus ojos resalten con intensidad y durabilidad. su diseño compacto la convierte en un accesorio ideal para llevar en el bolso, permitiéndote retocar tu maquillaje en cualquier momento.
+los colores de la paleta evocan la frescura del océano, inspirando creatividad y versatilidad en cada aplicación. atrévete a experimentar con combinaciones únicas y a expresar tu estilo personal con esta paleta que se adapta a todas las tendencias." data-category="SOMBRAS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q', 'SOMBRAS OCEAN VIBE', 'AVON', 'La paleta de sombras Avon Color Trend Ocean Vibe es la elección perfecta para quienes buscan un toque vibrante y fresco en su maquillaje. Con cinco tonos cuidadosamente seleccionados, esta paleta te permite crear desde looks sutiles hasta estilos más audaces, ideales para cualquier ocasión.<br>Cada sombra está formulada para ofrecer una aplicación suave y una excelente pigmentación, asegurando que tus ojos resalten con intensidad y durabilidad. Su diseño compacto la convierte en un accesorio ideal para llevar en el bolso, permitiéndote retocar tu maquillaje en cualquier momento.<br>Los colores de la paleta evocan la frescura del océano, inspirando creatividad y versatilidad en cada aplicación. Atrévete a experimentar con combinaciones únicas y a expresar tu estilo personal con esta paleta que se adapta a todas las tendencias.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q" alt="OCEAN VIBE"></div>
             <div class="card-body">
                 <div>
@@ -1072,7 +1179,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="delineador plumon negro avon un" data-category="DELINEADOR" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4', 'DELINEADOR PLUMON NEGRO')">
+        <div class="card" data-search="delineador plumon negro avon un compañero ideal para quienes buscan precisión y un acabado impecable en su maquillaje diario." data-category="DELINEADOR" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4', 'DELINEADOR PLUMON NEGRO', 'AVON', 'Compañero ideal para quienes buscan precisión y un acabado impecable en su maquillaje diario.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4" alt="PLUMON NEGRO"></div>
             <div class="card-body">
                 <div>
@@ -1088,7 +1195,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="lapiz para ojos azul mate avon un" data-category="LAPIZ PARA OJOS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_', 'LAPIZ PARA OJOS AZUL MATE')">
+        <div class="card" data-search="lapiz para ojos azul mate avon un esaltar tu mirada será mucho más fácil con el delineador avon." data-category="LAPIZ PARA OJOS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_', 'LAPIZ PARA OJOS AZUL MATE', 'AVON', 'esaltar tu mirada será mucho más fácil con el delineador Avon.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_" alt="AZUL MATE"></div>
             <div class="card-body">
                 <div>
@@ -1104,7 +1211,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="delineador liquido rojo pincel avon un" data-category="DELINEADOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_', 'DELINEADOR LIQUIDO ROJO PINCEL')">
+        <div class="card" data-search="delineador liquido rojo pincel avon un avon delineador liquido 3ml punta fina y precisa." data-category="DELINEADOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_', 'DELINEADOR LIQUIDO ROJO PINCEL', 'AVON', 'Avon Delineador liquido 3ml punta fina y precisa.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_" alt="LIQUIDO ROJO PINCEL"></div>
             <div class="card-body">
                 <div>
@@ -1120,7 +1227,8 @@
             </div>
         </div>
         
-        <div class="card" data-search="balsamo labial rose creme lbel un" data-category="BALSAMO LABIAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3', 'BALSAMO LABIAL ROSE CREME')">
+        <div class="card" data-search="balsamo labial rose creme lbel un ideal para uso diario y adecuado para cualquier ocasión.
+transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenecidos con el bálsamo de labios de lbel. ¡añádelo a tu rutina de belleza y siente la diferencia hoy mismo!" data-category="BALSAMO LABIAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3', 'BALSAMO LABIAL ROSE CREME', 'L&#39;BEL', 'Ideal para uso diario y adecuado para cualquier ocasión.<br>Transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenecidos con el bálsamo de labios de L&#39;BEL. ¡Añádelo a tu rutina de belleza y siente la diferencia hoy mismo!')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3" alt="ROSE CREME"></div>
             <div class="card-body">
                 <div>
@@ -1136,7 +1244,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="balsamo labial red avon un" data-category="BALSAMO LABIAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY', 'BALSAMO LABIAL RED')">
+        <div class="card" data-search="balsamo labial red avon un bálsamo labial en barra con aroma floral, ideal para piel seca y dermatológicamente testeado." data-category="BALSAMO LABIAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY', 'BALSAMO LABIAL RED', 'AVON', 'Bálsamo labial en barra con aroma floral, ideal para piel seca y dermatológicamente testeado.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY" alt="RED"></div>
             <div class="card-body">
                 <div>
@@ -1152,7 +1260,11 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal todo dia fresa y vainilla dorada natura 400ml" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp', 'CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA')">
+        <div class="card" data-search="crema corporal todo dia fresa y vainilla dorada natura 400ml un suspiro indulgente que evoca recuerdos dulces
+• sensación de frescura y ligereza que le da el toque final al cuidado de cada día
+• hidratación ligera de la piel: mantiene la hidratación de la piel a lo largo del día
+• una experiencia sensorial deliciosayirresistible, con la fragancia dulce floral que envuelve y encanta
+• las notas suculentas de fresa, combinadas con la ciruela, revelan una salida alegre. estas se equilibran con un cuerpo floral que encanta con notas de rosa y jazmín. el fondo es indulgente y envuelve con el calor gourmand de la vainilla dorada y el sándalo." data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp', 'CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA', 'NATURA', 'Un suspiro indulgente que evoca recuerdos dulces<br>• sensación de frescura y ligereza que le da el toque final al cuidado de cada día<br>• hidratación ligera de la piel: mantiene la hidratación de la piel a lo largo del día<br>• una experiencia sensorial deliciosayirresistible, con la fragancia dulce floral que envuelve y encanta<br>• las notas suculentas de fresa, combinadas con la ciruela, revelan una salida alegre. estas se equilibran con un cuerpo floral que encanta con notas de rosa y jazmín. el fondo es indulgente y envuelve con el calor gourmand de la vainilla dorada y el sándalo.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp" alt="TODO DIA FRESA Y VAINILLA DORADA"></div>
             <div class="card-body">
                 <div>
@@ -1168,7 +1280,8 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal todo dia ciruela y flor de vainilla natura 400ml" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX', 'CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA')">
+        <div class="card" data-search="crema corporal todo dia ciruela y flor de vainilla natura 400ml una fragancia dulce y atrayente con rutinas de hidratación perfumada y profunda, que combinan el poder de la nutrición prebiótica. notas de ciruela sorprenden en la salida y se equilibran con flor de vainilla. el fondo se realza por la cremosidad de las notas amaderadas.
+piel profundamente nutrida y perfumada. con tecnología inteligente que acelera la renovación celular." data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX', 'CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA', 'NATURA', 'Una fragancia dulce y atrayente con rutinas de hidratación perfumada y profunda, que combinan el poder de la nutrición prebiótica. Notas de ciruela sorprenden en la salida y se equilibran con flor de vainilla. El fondo se realza por la cremosidad de las notas amaderadas.<br>Piel profundamente nutrida y perfumada. Con tecnología inteligente que acelera la renovación celular.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX" alt="TODO DIA CIRUELA Y FLOR DE VAINILLA"></div>
             <div class="card-body">
                 <div>
@@ -1184,7 +1297,13 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal todo dia frutos rojos natura 400ml" data-category="CREMA CORPORAL" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o', 'CREMA CORPORAL TODO DIA FRUTOS ROJOS')">
+        <div class="card" data-search="crema corporal todo dia frutos rojos natura 400ml ttecnología prebiótica, piel profundamente nutrida
+• fragancia alegre y vibrante con notas frutales
+• piel más firme y ultrasuave todos los días
+• fórmula con nutrición prebiótica que se adapta a tu piel
+• textura cremosa: fácil de aplicar y de rápida absorción
+• nutrición profunda: piel saludable en todas las capas
+• 94 % de ingredientes de origen natural: mayor afinidad con tu piel" data-category="CREMA CORPORAL" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o', 'CREMA CORPORAL TODO DIA FRUTOS ROJOS', 'NATURA', 'Ttecnología prebiótica, piel profundamente nutrida<br>• fragancia alegre y vibrante con notas frutales<br>• piel más firme y ultrasuave todos los días<br>• fórmula con nutrición prebiótica que se adapta a tu piel<br>• textura cremosa: fácil de aplicar y de rápida absorción<br>• nutrición profunda: piel saludable en todas las capas<br>• 94 % de ingredientes de origen natural: mayor afinidad con tu piel')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o" alt="TODO DIA FRUTOS ROJOS"></div>
             <div class="card-body">
                 <div>
@@ -1200,7 +1319,15 @@
             </div>
         </div>
         
-        <div class="card" data-search="jabones vegetales cereza negra y praliné cajax5 natura cj x 5" data-category="JABONES VEGETALES" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ', 'JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5')">
+        <div class="card" data-search="jabones vegetales cereza negra y praliné cajax5 natura cj x 5 perfuma y limpia manteniendo la hidratación natural de la piel.
+• fórmula con una cuidadosa combinación de ingredientes de origen natural, que mantiene la hidratación de tu piel
+• piel hidratada, perfumada y protegida
+• activo hidratante para una limpieza profunda sin resecar
+• textura cremosa y deliciosas nubes de espuma perfumada
+• fragancia dulce frutal que atrae y marca presencia
+• rinde muchos baños, para más momentos de autocuidado
+• baño vigorizante con deliciosa sensación de suavidad en la piel
+• 94% de ingredientes naturales." data-category="JABONES VEGETALES" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ', 'JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5', 'NATURA', 'Perfuma y limpia manteniendo la hidratación natural de la piel.<br>• fórmula con una cuidadosa combinación de ingredientes de origen natural, que mantiene la hidratación de tu piel<br>• piel hidratada, perfumada y protegida<br>• activo hidratante para una limpieza profunda sin resecar<br>• textura cremosa y deliciosas nubes de espuma perfumada<br>• fragancia dulce frutal que atrae y marca presencia<br>• rinde muchos baños, para más momentos de autocuidado<br>• baño vigorizante con deliciosa sensación de suavidad en la piel<br>• 94% de ingredientes naturales.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ" alt="CEREZA NEGRA Y PRALINÉ CAJAx5"></div>
             <div class="card-body">
                 <div>
@@ -1216,7 +1343,19 @@
             </div>
         </div>
         
-        <div class="card" data-search="jabones vegetales algodón cajax5 natura cj x 5" data-category="JABONES VEGETALES" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2', 'JABONES VEGETALES ALGODÓN CAJAx5')">
+        <div class="card" data-search="jabones vegetales algodón cajax5 natura cj x 5 limpieza e hidratación con la suavidad del algodón
+• limpieza delicada
+• mantiene la hidratación natural de la piel
+• fórmula vegana: libre de grasa animal
+• espuma cremosa y envolvente
+• fragancia floral cómoda, que combina la suavidad del algodón con notas florales
+• 97 % de ingredientes de origen natural
+• mayor afinidad con tu piel
+• no reseca la piel
+• explosión de fragancia
+• probado dermatológicamente
+• libre de crueldad animal
+• tipo de piel: todo tipo de piel" data-category="JABONES VEGETALES" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2', 'JABONES VEGETALES ALGODÓN CAJAx5', 'NATURA', 'Limpieza e hidratación con la suavidad del algodón<br>• limpieza delicada<br>• mantiene la hidratación natural de la piel<br>• fórmula vegana: libre de grasa animal<br>• espuma cremosa y envolvente<br>• fragancia floral cómoda, que combina la suavidad del algodón con notas florales<br>• 97 % de ingredientes de origen natural<br>• mayor afinidad con tu piel<br>• no reseca la piel<br>• explosión de fragancia<br>• probado dermatológicamente<br>• libre de crueldad animal<br>• tipo de piel: todo tipo de piel')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2" alt="ALGODÓN CAJAx5"></div>
             <div class="card-body">
                 <div>
@@ -1232,7 +1371,14 @@
             </div>
         </div>
         
-        <div class="card" data-search="jabones vegetales fresa y vainilla dorada cajax5 natura cj x 5" data-category="JABONES VEGETALES" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj', 'JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5')">
+        <div class="card" data-search="jabones vegetales fresa y vainilla dorada cajax5 natura cj x 5 pperfuma y limpia sin resecar, manteniendo la hidratación natural de la piel
+• fórmula suave con una combinación de ingredientes de origen natural
+• piel hidratada, perfumada y protegida
+• activo hidratante para una limpieza profunda sin resecar
+• textura cremosa y deliciosas nubes de espuma perfumada
+• rinde para muchos baños, para más momentos de autocuidado
+• 98% de ingredientes naturales
+• fragancia dulce floral con notas suculentas de fresa, que se mezclan con el gourmand cálido de la vainilla dorada." data-category="JABONES VEGETALES" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj', 'JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5', 'NATURA', 'Pperfuma y limpia sin resecar, manteniendo la hidratación natural de la piel<br>• fórmula suave con una combinación de ingredientes de origen natural<br>• piel hidratada, perfumada y protegida<br>• activo hidratante para una limpieza profunda sin resecar<br>• textura cremosa y deliciosas nubes de espuma perfumada<br>• rinde para muchos baños, para más momentos de autocuidado<br>• 98% de ingredientes naturales<br>• fragancia dulce floral con notas suculentas de fresa, que se mezclan con el gourmand cálido de la vainilla dorada.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj" alt="FRESA Y VAINILLA DORADA CAJAx5"></div>
             <div class="card-body">
                 <div>
@@ -1248,7 +1394,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="protector solar defense total lbel 30ml" data-category="PROTECTOR SOLAR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU', 'PROTECTOR SOLAR DEFENSE TOTAL')">
+        <div class="card" data-search="protector solar defense total lbel 30ml protector solar con color antimanchas défense total con niacinamida y vitamina c que ayuda a cubrir, aclarar y prevenir manchas." data-category="PROTECTOR SOLAR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU', 'PROTECTOR SOLAR DEFENSE TOTAL', 'L&#39;BEL', 'Protector solar con color antimanchas Défense Total con niacinamida y vitamina C que ayuda a cubrir, aclarar y prevenir manchas.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU" alt="DEFENSE TOTAL"></div>
             <div class="card-body">
                 <div>
@@ -1264,7 +1410,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="skincare serum intensivo reductor arrugas lbel 27ml" data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk', 'SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS')">
+        <div class="card" data-search="skincare serum intensivo reductor arrugas lbel 27ml sérum ácido hialurónico intensivo concentré: reduce líneas de expresión, le devuelve la hidratación a la piel y rellena arrugas." data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk', 'SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS', 'L&#39;BEL', 'Sérum ácido hialurónico intensivo Concentré: reduce líneas de expresión, le devuelve la hidratación a la piel y rellena arrugas.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk" alt="SERUM INTENSIVO REDUCTOR ARRUGAS"></div>
             <div class="card-body">
                 <div>
@@ -1280,7 +1426,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="skincare serum vitamina c avon 30ml" data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV', 'SKINCARE SERUM VITAMINA C')">
+        <div class="card" data-search="skincare serum vitamina c avon 30ml la mejor manera de darle un saludable ‘vaso de jugo de naranja’ a la piel es por medio de un sérum, ya que la alta concentración y textura líquida favorecen una rápida y más profunda absorción de los componentes." data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV', 'SKINCARE SERUM VITAMINA C', 'AVON', 'La mejor manera de darle un saludable ‘vaso de jugo de naranja’ a la piel es por medio de un sérum, ya que la alta concentración y textura líquida favorecen una rápida y más profunda absorción de los componentes.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV" alt="SERUM VITAMINA C"></div>
             <div class="card-body">
                 <div>
@@ -1296,7 +1442,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="skincare gel hidratante con acido hialuronico lbel 40gr" data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755', 'SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO')">
+        <div class="card" data-search="skincare gel hidratante con acido hialuronico lbel 40gr un ultrahidratante facial que transforma tu rutina de cuidado de la piel. formulado con ácido hialurónico, este gel ligero proporciona una hidratación intensa, dejando tu rostro fresco y radiante." data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755', 'SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO', 'L&#39;BEL', 'Un ultrahidratante facial que transforma tu rutina de cuidado de la piel. Formulado con ácido hialurónico, este gel ligero proporciona una hidratación intensa, dejando tu rostro fresco y radiante.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755" alt="GEL HIDRATANTE CON ACIDO HIALURONICO"></div>
             <div class="card-body">
                 <div>
@@ -1312,7 +1458,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="cuidado del cabello serum tratamiento dream liso loreal 100ml" data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv', 'CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO')">
+        <div class="card" data-search="cuidado del cabello serum tratamiento dream liso loreal 100ml el sérum capilar elvive dream liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados." data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv', 'CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO', 'L&#39;OREAL', 'El Sérum Capilar Elvive Dream Liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. Su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. Está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. Es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" alt="SERUM TRATAMIENTO DREAM LISO"></div>
             <div class="card-body">
                 <div>
@@ -1328,7 +1474,13 @@
             </div>
         </div>
         
-        <div class="card" data-search="cuidado del cabello mascarilla tratamiento reparacion flor de cereza y aguacate natura 250ml" data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl', 'CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE')">
+        <div class="card" data-search="cuidado del cabello mascarilla tratamiento reparacion flor de cereza y aguacate natura 250ml reconstrucción intensa, resultado visible
+• repara los daños causados por procedimientos químicos
+• recupera el cabello debilitado y dañado
+• devuelve el aspecto saludable al cabello
+• enriquecida con arginina y aceite de palta, que restauran la fibra capilar
+• fragancia envolvente con notas de flor de cerezo
+• fórmula con un 95% de ingredientes de origen natural" data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl', 'CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE', 'NATURA', 'Reconstrucción intensa, resultado visible<br>• repara los daños causados por procedimientos químicos<br>• recupera el cabello debilitado y dañado<br>• devuelve el aspecto saludable al cabello<br>• enriquecida con arginina y aceite de Palta, que restauran la fibra capilar<br>• fragancia envolvente con notas de flor de cerezo<br>• fórmula con un 95% de ingredientes de origen natural')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl" alt="MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE"></div>
             <div class="card-body">
                 <div>
@@ -1344,7 +1496,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="skincare crema hidratante ponds 100gr" data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4', 'SKINCARE CREMA HIDRATANTE')">
+        <div class="card" data-search="skincare crema hidratante ponds 100gr la crema humectante pond´s bio - hidratante humecta la piel hacia dentro, dejándola suave y fresca por fuera. dermatológicamente probada." data-category="SKINCARE" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4', 'SKINCARE CREMA HIDRATANTE', 'POND&#39;S', 'La crema humectante Pond´s Bio - Hidratante humecta la piel hacia dentro, dejándola suave y fresca por fuera. Dermatológicamente probada.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4" alt="CREMA HIDRATANTE"></div>
             <div class="card-body">
                 <div>
@@ -1360,7 +1512,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="accesorios bolso manos libres color camel leonisa un" data-category="ACCESORIOS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_', 'ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL')">
+        <div class="card" data-search="accesorios bolso manos libres color camel leonisa un bolso manos libres color camel con cadena." data-category="ACCESORIOS" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_', 'ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL', 'LEONISA', 'Bolso manos libres color camel con cadena.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_" alt="BOLSO MANOS LIBRES COLOR CAMEL"></div>
             <div class="card-body">
                 <div>
@@ -1376,7 +1528,11 @@
             </div>
         </div>
         
-        <div class="card" data-search="jabones vegetales cacao con estuche - edición especial natura cj x 4" data-category="JABONES VEGETALES" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB', 'JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL')">
+        <div class="card" data-search="jabones vegetales cacao con estuche - edición especial natura cj x 4 barras de bienestar con la fuerza del cacao somos natura ekos, potencia biocosmética para tu piel
+• somos veganos
+• nuestras fórmulas son de origen natura
+• activos y bioactivos brutos de la amazonía
+• biocompatibles con la piel y biodegradables con el medio ambiente" data-category="JABONES VEGETALES" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB', 'JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL', 'NATURA', 'Barras de bienestar con la fuerza del cacao somos Natura EKOS, potencia biocosmética para tu piel<br>• somos veganos<br>• nuestras fórmulas son de origen natura<br>• activos y bioactivos brutos de la Amazonía<br>• biocompatibles con la piel y biodegradables con el medio ambiente')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB" alt="CACAO CON ESTUCHE - EDICIÓN ESPECIAL"></div>
             <div class="card-body">
                 <div>
@@ -1392,7 +1548,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="shampoo anticaida dr. c. tuna farmasi 225ml" data-category="SHAMPOO" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU', 'SHAMPOO ANTICAIDA DR. C. TUNA')">
+        <div class="card" data-search="shampoo anticaida dr. c. tuna farmasi 225ml champú revitalizante que ayuda a fortalecer y suavizar el cabello frágil, manteniéndolo brillante y saludable. su fórmula enriquecida con ajo, capixyl ™ y el nuevo ingrediente patentado trichogen ™ le darán vida a tu cabello. aporta hidratación, suavidad y brillo, dejando una sensación de frescura que dura todo el día. perfecto para cabellos normales a grasos que necesitan un extra de vitalidad y frescura, o para quienes buscan un shampoo de uso diario que mantenga el cabello ligero y con brillo natural." data-category="SHAMPOO" data-availability="NO" onclick="openModal('https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU', 'SHAMPOO ANTICAIDA DR. C. TUNA', 'FARMASI', 'Champú revitalizante que ayuda a fortalecer y suavizar el cabello frágil, manteniéndolo brillante y saludable. Su fórmula enriquecida con ajo, Capixyl ™ y el nuevo ingrediente patentado Trichogen ™ le darán vida a tu cabello. Aporta hidratación, suavidad y brillo, dejando una sensación de frescura que dura todo el día. Perfecto para cabellos normales a grasos que necesitan un extra de vitalidad y frescura, o para quienes buscan un shampoo de uso diario que mantenga el cabello ligero y con brillo natural.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU" alt="ANTICAIDA DR. C. TUNA"></div>
             <div class="card-body">
                 <div>
@@ -1408,7 +1564,11 @@
             </div>
         </div>
         
-        <div class="card" data-search="labial faces cobre sunset natura un" data-category="LABIAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn', 'LABIAL FACES COBRE SUNSET')">
+        <div class="card" data-search="labial faces cobre sunset natura un tu labial. tu intensidad
+• más capas;
+• más color con efecto cremoso;
+• adiós labios resecos;
+• producto vegano." data-category="LABIAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn', 'LABIAL FACES COBRE SUNSET', 'NATURA', 'Tu labial. tu intensidad<br>• más capas;<br>• más color con efecto cremoso;<br>• adiós labios resecos;<br>• producto vegano.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn" alt="FACES COBRE SUNSET"></div>
             <div class="card-body">
                 <div>
@@ -1424,7 +1584,13 @@
             </div>
         </div>
         
-        <div class="card" data-search="cuidado del cabello serum reconstructor avon para puntas secas y abiertas avon 30ml" data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s', 'CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS')">
+        <div class="card" data-search="cuidado del cabello serum reconstructor avon para puntas secas y abiertas avon 30ml serum restaurador de puntas abiertas avon advance techniques
+- fórmula diseñada para reparar y sellar las puntas abiertas.
+- proporciona hidratación y nutrición al cabello.
+- ayuda a mejorar la apariencia y suavidad del cabello.
+- textura ligera que no deja residuos.
+- ideal para todo tipo de cabello.
+este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s', 'CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS', 'AVON', 'Serum Restaurador De Puntas Abiertas Avon Advance Techniques<br>- Fórmula diseñada para reparar y sellar las puntas abiertas.<br>- Proporciona hidratación y nutrición al cabello.<br>- Ayuda a mejorar la apariencia y suavidad del cabello.<br>- Textura ligera que no deja residuos.<br>- Ideal para todo tipo de cabello.<br>Este sérum es perfecto para quienes buscan restaurar el cabello dañado.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s" alt="SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS"></div>
             <div class="card-body">
                 <div>
@@ -1440,7 +1606,11 @@
             </div>
         </div>
         
-        <div class="card" data-search="frescor ekos castaña natura 150ml" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v', 'FRESCOR EKOS CASTAÑA')">
+        <div class="card" data-search="frescor ekos castaña natura 150ml fragancia envolvente y acogedora como la brisa cálida que permea la selva.
+• perfumación envolvente y acogedora
+• las notas dulces y almendradas de la castaña se unen al toque fresco de las notas cítricas
+• fragancia que transmite una deliciosa sensación de calor y frescura
+• eau de toilette enriquecido con aromático 100% natural, extraído del castaño, árbol nativo de la amazonía" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v', 'FRESCOR EKOS CASTAÑA', 'NATURA', 'Fragancia envolvente y acogedora como la brisa cálida que permea la selva.<br>• perfumación envolvente y acogedora<br>• las notas dulces y almendradas de la castaña se unen al toque fresco de las notas cítricas<br>• fragancia que transmite una deliciosa sensación de calor y frescura<br>• eau de toilette enriquecido con aromático 100% natural, extraído del castaño, árbol nativo de la Amazonía')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v" alt="EKOS CASTAÑA"></div>
             <div class="card-body">
                 <div>
@@ -1456,7 +1626,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="frescor ekos acai natura 150ml" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe', 'FRESCOR EKOS ACAI')">
+        <div class="card" data-search="frescor ekos acai natura 150ml siente la energía de la selva y el frescor de las palmeras con las notas de açaí. esta eau de toilette ofrece una perfumación tropical y vital, combinando notas verdes y frescas con un ligero toque floral. con su ingrediente natural inédito extraído de la pulpa del açaí, un fruto icónico de la amazonía" data-category="FRESCOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe', 'FRESCOR EKOS ACAI', 'NATURA', 'Siente la energía de la selva y el frescor de las palmeras con las notas de açaí. Esta Eau de Toilette ofrece una perfumación tropical y vital, combinando notas verdes y frescas con un ligero toque floral. Con su ingrediente natural inédito extraído de la pulpa del açaí, un fruto icónico de la Amazonía')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe" alt="EKOS ACAI"></div>
             <div class="card-body">
                 <div>
@@ -1472,7 +1642,11 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal todo dia pera y flor de loto natura 400ml" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO')">
+        <div class="card" data-search="crema corporal todo dia pera y flor de loto natura 400ml piel 4 veces más hidratada.
+• nutre y ayuda en la recuperación de la uniformidad de la piel
+• textura cremosa y fácil de aplicar, con rápida absorción
+• enriquecido con niacinamida, pantenol y aceite de sésamo
+• tecnología prebiótica que se adapta a los cambios de tu piel." data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO', 'NATURA', 'Piel 4 veces más hidratada.<br>• nutre y ayuda en la recuperación de la uniformidad de la piel<br>• textura cremosa y fácil de aplicar, con rápida absorción<br>• enriquecido con niacinamida, pantenol y aceite de sésamo<br>• Tecnología Prebiótica que se adapta a los cambios de tu piel.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog" alt="TODO DIA PERA Y FLOR DE LOTO"></div>
             <div class="card-body">
                 <div>
@@ -1488,7 +1662,11 @@
             </div>
         </div>
         
-        <div class="card" data-search="crema corporal todo dia pera y flor de loto (refil) natura 400ml" data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)')">
+        <div class="card" data-search="crema corporal todo dia pera y flor de loto (refil) natura 400ml piel 4 veces más hidratada.
+• nutre y ayuda en la recuperación de la uniformidad de la piel
+• textura cremosa y fácil de aplicar, con rápida absorción
+• enriquecido con niacinamida, pantenol y aceite de sésamo
+• tecnología prebiótica que se adapta a los cambios de tu piel." data-category="CREMA CORPORAL" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)', 'NATURA', 'Piel 4 veces más hidratada.<br>• nutre y ayuda en la recuperación de la uniformidad de la piel<br>• textura cremosa y fácil de aplicar, con rápida absorción<br>• enriquecido con niacinamida, pantenol y aceite de sésamo<br>• Tecnología Prebiótica que se adapta a los cambios de tu piel.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" alt="TODO DIA PERA Y FLOR DE LOTO (REFIL)"></div>
             <div class="card-body">
                 <div>
@@ -1504,13 +1682,13 @@
             </div>
         </div>
         
-        <div class="card" data-search="cuidado del cabello serum seis oleos loreal 100ml" data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-', 'CUIDADO DEL CABELLO SERUM SEIS OLEOS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-" alt="SERUM SEIS OLEOS"></div>
+        <div class="card" data-search="cuidado del cabello serum cinco oleos loreal 100ml el tratamiento #1 del mundo elvive óleo extraordinario con su fórmula con 5 óleo de flores preciosas brinda nutrición intensa, brillo extraordinario, control de frizz y protección térmica. uso diario y sin enjuague." data-category="CUIDADO DEL CABELLO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-', 'CUIDADO DEL CABELLO SERUM CINCO OLEOS', 'L&#39;OREAL', 'El Tratamiento #1 Del Mundo Elvive Óleo Extraordinario Con Su Fórmula Con 5 Óleo De Flores Preciosas Brinda Nutrición Intensa, Brillo Extraordinario, Control De Frizz Y Protección Térmica. Uso Diario Y Sin Enjuague.')">
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-" alt="SERUM CINCO OLEOS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'OREAL</div>
-                    <div class="title">CUIDADO DEL CABELLO SERUM SEIS OLEOS</div>
+                    <div class="title">CUIDADO DEL CABELLO SERUM CINCO OLEOS</div>
                     <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
@@ -1520,7 +1698,14 @@
             </div>
         </div>
         
-        <div class="card" data-search="shampoo lumina anticaida y crecimiento (refil) natura 300ml" data-category="SHAMPOO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b', 'SHAMPOO LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)')">
+        <div class="card" data-search="shampoo lumina anticaida y crecimiento (refil) natura 300ml menos caída, más resistencia desde la raíz
+• limpia y estimula el cuero cabelludo evitando la caída
+• 2 veces menos caída por quiebre
+• fortalece los cabellos y estimula el crecimiento saludable
+• actúa directamente en la fibra capilar
+• nuevo envase práctico y sostenible
+• fórmula con bioproteína triple acción + activo dermoactivador
+• producto vegano" data-category="SHAMPOO" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b', 'SHAMPOO LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)', 'NATURA', 'Menos caída, más resistencia desde la raíz<br>• limpia y estimula el cuero cabelludo evitando la caída<br>• 2 veces menos caída por quiebre<br>• fortalece los cabellos y estimula el crecimiento saludable<br>• actúa directamente en la fibra capilar<br>• nuevo envase práctico y sostenible<br>• fórmula con BioProteína Triple Acción + Activo Dermoactivador<br>• producto vegano')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b" alt="LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)"></div>
             <div class="card-body">
                 <div>
@@ -1536,7 +1721,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="delineador plumon alta precision cyzone un" data-category="DELINEADOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG', 'DELINEADOR PLUMON ALTA PRECISION')">
+        <div class="card" data-search="delineador plumon alta precision cyzone un dale vida a cualquier look: -20 horas de color intenso en un solo twist: color intenso que permanece por más tiempo sin correrse ni borrarse. -alta pigmentación: obtén un color vibrante desde la primera pasada con acabado mate. -textura ultra suave: su fórmula cremosa se desliza fácilmente para una aplicación cómoda y uniforme. -fácil de aplicar: su formato retráctil permite crear trazos precisos y difuminar con facilidad. -cobertura uniforme: se fija rápidamente para un delineado definido que acompaña tu look durante horas." data-category="DELINEADOR" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG', 'DELINEADOR PLUMON ALTA PRECISION', 'CYZONE', 'Dale vida a cualquier look: -20 horas de color intenso en un solo twist: Color intenso que permanece por más tiempo sin correrse ni borrarse. -Alta pigmentación: Obtén un color vibrante desde la primera pasada con acabado mate. -Textura ultra suave: Su fórmula cremosa se desliza fácilmente para una aplicación cómoda y uniforme. -Fácil de aplicar: Su formato retráctil permite crear trazos precisos y difuminar con facilidad. -Cobertura uniforme: Se fija rápidamente para un delineado definido que acompaña tu look durante horas.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG" alt="PLUMON ALTA PRECISION"></div>
             <div class="card-body">
                 <div>
@@ -1552,7 +1737,7 @@
             </div>
         </div>
         
-        <div class="card" data-search="perfume blue femenino lbel 50ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7', 'PERFUME BLUE FEMENINO')">
+        <div class="card" data-search="perfume blue femenino lbel 50ml exclusiva frescura. intensa como el mar. aroma floral frutal: delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7', 'PERFUME BLUE FEMENINO', 'L&#39;BEL', 'Exclusiva frescura. Intensa como el mar. Aroma Floral Frutal: Delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7" alt="BLUE FEMENINO"></div>
             <div class="card-body">
                 <div>
@@ -1562,13 +1747,13 @@
                     <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
-                    <span class="price">$50.000</span>
+                    <span class="price">$60.000</span>
                     <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
         
-        <div class="card" data-search="perfume mithyka lbel 50ml" data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8', 'PERFUME MITHYKA')">
+        <div class="card" data-search="perfume mithyka lbel 50ml aroma de mujer con alta concentración de flores para crear un seductor aroma que refleja todo el poder y sensualidad de una diosa." data-category="PERFUME" data-availability="DISPONIBLE" onclick="openModal('https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8', 'PERFUME MITHYKA', 'L&#39;BEL', 'Aroma de mujer con alta concentración de flores para crear un seductor aroma que refleja todo el poder y sensualidad de una diosa.')">
             <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8" alt="MITHYKA"></div>
             <div class="card-body">
                 <div>
@@ -1586,11 +1771,21 @@
         
     </div>
 
+    <!-- MODAL DE DOS COLUMNAS -->
     <div class="image-modal" id="imageModal" onclick="closeModalDirect()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModalDirect()">×</button>
-            <img id="modalImg" src="" alt="Creación ampliada" onclick="closeModalDirect()">
-            <div class="modal-title" id="modalTitle"></div>
+        <button class="modal-close" onclick="closeModalDirect()">×</button>
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-left">
+                <img id="modalImg" src="" alt="Creación ampliada">
+            </div>
+            <div class="modal-right">
+                <div class="modal-category-tag" id="modalBrand"></div>
+                <div class="modal-title-text" id="modalTitle"></div>
+                <div class="modal-details-box" id="modalDetails"></div>
+                <div style="font-size: 11px; color: var(--accent-gold); letter-spacing: 1.5px; text-transform: uppercase;">
+                    <i class="fa-solid fa-gem"><b> ÉCLAT ATELIER</b></i>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1648,7 +1843,6 @@
             document.getElementById('sidebarOverlay').classList.toggle('active');
         }
 
-        // Filtrado con animación Fade & Slide fluida
         function filterCatalog() {
             let query = document.getElementById('searchInput').value.toLowerCase().trim();
             let cards = document.getElementsByClassName('card');
@@ -1691,10 +1885,12 @@
             filterCatalog();
         }
 
-        function openModal(imgUrl, title) {
+        function openModal(imgUrl, title, brand, details) {
             if(!imgUrl) return;
             document.getElementById('modalImg').src = imgUrl;
-            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalBrand').innerHTML = brand;
+            document.getElementById('modalDetails').innerHTML = details;
             document.getElementById('imageModal').classList.add('active');
         }
         function closeModalDirect() {
@@ -1731,6 +1927,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_fade_slide_1792859039 -->
+    <!-- v_twocolumn_modal_1792871497 -->
 </body>
 </html>
