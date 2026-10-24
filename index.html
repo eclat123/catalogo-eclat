@@ -308,6 +308,36 @@
             font-weight: 600;
             margin-top: 15px;
         }
+        
+        /* ESTILOS PARA LA BARRITA SLIDER DE PRECIOS */
+        .price-slider-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+        .price-slider {
+            width: 100%;
+            accent-color: var(--accent-gold);
+            cursor: pointer;
+            margin: 8px 0;
+        }
+        .price-output-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .price-output-box span:last-child {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 12px;
+        }
+
         .sidebar-categories { display: flex; flex-direction: column; gap: 8px; }
         .cat-btn-sidebar {
             background: transparent;
@@ -712,12 +742,13 @@
             <button class="avail-btn" onclick="filterByAvailability('NO', this)">Agotados</button>
         </div>
 
-        <div class="sidebar-section-title">Rango de Precios</div>
-        <div class="sidebar-categories" id="priceFilterContainer">
-            <button class="cat-btn-sidebar active" onclick="filterByPrice('TODOS', this)">Todos los precios</button>
-            <button class="cat-btn-sidebar" onclick="filterByPrice('LOW', this)">Menos de $100.000</button>
-            <button class="cat-btn-sidebar" onclick="filterByPrice('MID', this)">$100.000 - $300.000</button>
-            <button class="cat-btn-sidebar" onclick="filterByPrice('HIGH', this)">Más de $300.000</button>
+        <div class="sidebar-section-title">Precio Máximo</div>
+        <div class="price-slider-container">
+            <div class="price-output-box">
+                <span>Hasta:</span>
+                <span id="priceValText">$500.000</span>
+            </div>
+            <input type="range" id="priceRange" class="price-slider" min="0" max="500000" step="10000" value="500000" oninput="updatePriceFilter(this.value)">
         </div>
 
         <div class="sidebar-section-title">Categorías</div>
@@ -2145,7 +2176,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
 
         let currentCategory = 'TODOS';
         let currentAvailability = 'TODOS';
-        let currentPriceRange = 'TODOS';
+        let maxPriceLimit = 500000;
 
         window.addEventListener('load', () => {
             const loader = document.getElementById('page-loader');
@@ -2169,6 +2200,16 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             document.getElementById('sidebarOverlay').classList.toggle('active');
         }
 
+        function formatCurrency(num) {
+            return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function updatePriceFilter(val) {
+            maxPriceLimit = parseInt(val);
+            document.getElementById('priceValText').innerText = formatCurrency(maxPriceLimit);
+            filterCatalog();
+        }
+
         function filterCatalog() {
             let query = document.getElementById('searchInput').value.toLowerCase().trim();
             let cards = document.getElementsByClassName('card');
@@ -2182,11 +2223,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 let matchSearch = text.includes(query);
                 let matchCat = (currentCategory === 'TODOS' || cat === currentCategory);
                 let matchAvail = (currentAvailability === 'TODOS' || avail === currentAvailability);
-                
-                let matchPrice = true;
-                if (currentPriceRange === 'LOW') matchPrice = (price < 100000);
-                else if (currentPriceRange === 'MID') matchPrice = (price >= 100000 && price <= 300000);
-                else if (currentPriceRange === 'HIGH') matchPrice = (price > 300000);
+                let matchPrice = (price <= maxPriceLimit);
 
                 if (matchSearch && matchCat && matchAvail && matchPrice) {
                     card.classList.remove('hidden-card');
@@ -2206,15 +2243,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             currentCategory = cat;
             const catButtons = document.querySelectorAll('#catFilterContainer .cat-btn-sidebar');
             catButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterCatalog();
-            toggleSidebar();
-        }
-
-        function filterByPrice(range, btn) {
-            currentPriceRange = range;
-            const priceButtons = document.querySelectorAll('#priceFilterContainer .cat-btn-sidebar');
-            priceButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             filterCatalog();
             toggleSidebar();
@@ -2281,6 +2309,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_price_filter_fixed_1792875351 -->
+    <!-- v_price_slider_1792875524 -->
 </body>
 </html>
