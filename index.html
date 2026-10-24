@@ -475,10 +475,11 @@
             align-items: center;
             gap: 5px;
             cursor: pointer;
-            padding: 4px 8px;
+            padding: 6px 10px;
             border-radius: 4px;
             border: 1px solid var(--border-subtle);
             transition: all 0.3s;
+            user-select: none;
         }
         .view-detail-hint:hover {
             background: var(--accent-gold);
@@ -518,7 +519,6 @@
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            cursor: pointer;
         }
         .zoom-title {
             text-align: center;
@@ -577,7 +577,6 @@
             max-height: 70vh;
             object-fit: contain;
             display: block;
-            cursor: pointer;
         }
         .detail-right {
             padding: 45px 40px;
@@ -767,7 +766,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ', 'PERFUME FLEUR', 'L&#39;BEL', 'La frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta¹ concentración.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" data-title="PERFUME FLEUR" data-brand="L'BEL" data-details="La frescura y elegancia del lirio francés, se combina con brillantes notas frutales de pera y mandarina para crear un perfume de muy alta¹ concentración.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -787,7 +786,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q', 'PERFUME FANTASIA AZUL INFINITO', 'ESIKA', 'Eau de Parfum para mujer de aroma frutal de alta concentración, con vibrantes notas frescas de bergamota y sándalo.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q" data-title="PERFUME FANTASIA AZUL INFINITO" data-brand="ESIKA" data-details="Eau de Parfum para mujer de aroma frutal de alta concentración, con vibrantes notas frescas de bergamota y sándalo.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -807,7 +806,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$25.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o', 'GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO', 'NATURA', 'Hidrata e ilumina la piel, fragancia irreverente que combina un cóctel de frutas vibrantes y notas cítricas, contiene activos: aceite de ajonjolí, pantenol y vitamina E, vegano')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o" data-title="GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO" data-brand="NATURA" data-details="Hidrata e ilumina la piel, fragancia irreverente que combina un cóctel de frutas vibrantes y notas cítricas, contiene activos: aceite de ajonjolí, pantenol y vitamina E, vegano">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -827,7 +826,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2', 'FRESCOR EKOS PITANGA PRETA', 'NATURA', 'La fragancia vibrante y colorida de Pitanga Preta para tus días, notas de pitanga preta conviven con flores coloridas y reciben un toque de notas amaderadas, transmite una deliciosa sensación de calor y frescura, con ingrediente natural inédito, extraído de las hojas del pitanguero')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2" data-title="FRESCOR EKOS PITANGA PRETA" data-brand="NATURA" data-details="La fragancia vibrante y colorida de Pitanga Preta para tus días, notas de pitanga preta conviven con flores coloridas y reciben un toque de notas amaderadas, transmite una deliciosa sensación de calor y frescura, con ingrediente natural inédito, extraído de las hojas del pitanguero">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -847,7 +846,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC', 'FRESCOR EKOS MARACUYA SUEÑOS', 'NATURA', 'Fragancia encantadora y refrescante como un descanso en el vaivén de una hamaca, destaca el ácido dulce del maracuyá en contraste con el confort de las notas de musk y maderas, con ingrediente natural de la biodiversidad brasileña, extraído de la pulpa del maracuyá')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC" data-title="FRESCOR EKOS MARACUYA SUEÑOS" data-brand="NATURA" data-details="Fragancia encantadora y refrescante como un descanso en el vaivén de una hamaca, destaca el ácido dulce del maracuyá en contraste con el confort de las notas de musk y maderas, con ingrediente natural de la biodiversidad brasileña, extraído de la pulpa del maracuyá">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -867,7 +866,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9', 'FRESCOR EKOS ISH PINK', 'NATURA', 'La fragancia multifacética, sensual y natural de Ishpink para tus días, lo inesperado de una frescura especiada se revela por la nota cálida del ishpink, especia amazónica, además trae pimientas y azafrán en contraste con la feminidad de las flores y una frescura cítrica.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9" data-title="FRESCOR EKOS ISH PINK" data-brand="NATURA" data-details="La fragancia multifacética, sensual y natural de Ishpink para tus días, lo inesperado de una frescura especiada se revela por la nota cálida del ishpink, especia amazónica, además trae pimientas y azafrán en contraste con la feminidad de las flores y una frescura cítrica.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -900,7 +899,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F', 'CREMA CORPORAL CUPUACU', 'NATURA', 'Crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.<br>• 3 veces más hidratación reafirmante para la piel*<br>• mejora visible de la celulitis en 30 días**<br>• 91% afirman que deja la piel más firme y tonificada***<br>• crema hidratante que combate la sequedad profunda<br>• 86% de mejora en el aspecto piel de naranja****<br>• mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso<br>• 100% más firmeza y elasticidad*<br>• 72 horas de hidratación reafirmante<br>• resultados clínicamente comprobados<br>• crema con toque seco y rápida absorción<br>• no deja la piel oleosa ni pegajosa<br>• no deja residuo blanco en la piel<br>• enriquecido con cafeína natural vegetal para estimular la circulación de la piel.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F" data-title="CREMA CORPORAL CUPUACU" data-brand="NATURA" data-details="Crema corporal que promueve mejora visible de la firmeza y estrías en dos semanas.<br>• 3 veces más hidratación reafirmante para la piel*<br>• mejora visible de la celulitis en 30 días**<br>• 91% afirman que deja la piel más firme y tonificada***<br>• crema hidratante que combate la sequedad profunda<br>• 86% de mejora en el aspecto piel de naranja****<br>• mejora la firmeza y elasticidad de la piel después de 15 y 30 días de uso<br>• 100% más firmeza y elasticidad*<br>• 72 horas de hidratación reafirmante<br>• resultados clínicamente comprobados<br>• crema con toque seco y rápida absorción<br>• no deja la piel oleosa ni pegajosa<br>• no deja residuo blanco en la piel<br>• enriquecido con cafeína natural vegetal para estimular la circulación de la piel.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -931,7 +930,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo', 'MANTEQUILLA CUPUACU', 'NATURA', 'Mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas¹<br>• efecto 2x más rápido y potente en 7 días&#39;<br>• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días¹<br>• hasta 3x más hidratación reafirmante²<br>• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad*<br>• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja**<br>• efecto tensor: deja la piel visiblemente más firme y resistente<br>• bioafirmante de la piel de los glúteos e hidratación reafirmante²<br>• enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal<br>• mejora la sustentación y remodela la piel de adentro hacia afuera<br>• el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días<br>• ayuda en la prevención de la flacidez y a inhibir la degradación de la elastina de la piel.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo" data-title="MANTEQUILLA CUPUACU" data-brand="NATURA" data-details="Mejora visible de la firmeza, estrías y celulitis de la piel de los glúteos en 2 semanas¹<br>• efecto 2x más rápido y potente en 7 días&#39;<br>• 97% + firmeza: mejora la firmeza y elasticidad de la piel después de 7 días¹<br>• hasta 3x más hidratación reafirmante²<br>• mejora progresiva de la firmeza de la piel con uso continuo. 100% más firmeza y elasticidad*<br>• tonifica el contorno de los glúteos: 79% de mejora en el aspecto de piel de naranja**<br>• efecto tensor: deja la piel visiblemente más firme y resistente<br>• bioafirmante de la piel de los glúteos e hidratación reafirmante²<br>• enriquecido con cafeína natural para estimular la circulación de la piel y cafeína vegetal<br>• mejora la sustentación y remodela la piel de adentro hacia afuera<br>• el uso continuo del producto proporciona el fortalecimiento de la barrera cutánea por hasta 30 días<br>• ayuda en la prevención de la flacidez y a inhibir la degradación de la elastina de la piel.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -951,7 +950,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS', 'COLONIA AGUAS', 'NATURA', 'Explosión colorida y vibrante de frescura, con un toque de priprioca, ingrediente de la biodiversidad brasileña.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS" data-title="COLONIA AGUAS" data-brand="NATURA" data-details="Explosión colorida y vibrante de frescura, con un toque de priprioca, ingrediente de la biodiversidad brasileña.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -971,7 +970,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$75.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650', 'PERFUME TOPAZE COLECCION ICONIC', 'AVON', 'Para mujeres que exhalan elegancia, la pera fresca se fusiona con la sofisticada luminosidad del ylang ylang, mientras que la flor de azahar irradia una feminidad impactante.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650" data-title="PERFUME TOPAZE COLECCION ICONIC" data-brand="AVON" data-details="Para mujeres que exhalan elegancia, la pera fresca se fusiona con la sofisticada luminosidad del ylang ylang, mientras que la flor de azahar irradia una feminidad impactante.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -991,7 +990,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$75.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo', 'PERFUME SWEET HONESTY COLLECCION ICONIC', 'AVON', 'Frescura limpia y suavidad duradera para tu día a día. Revive la magia de los momentos más puros con Sweet Honesty, la fragancia clásica de Avon que nunca pasa de moda. Con una delicada mezcla de notas florales de jacinto y lirio de los valles, combinadas con un toque dulce de vainilla y almizcle, este perfume ofrece un aroma ligero y atalcado que prolonga la sensación de frescura después del baño')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo" data-title="PERFUME SWEET HONESTY COLLECCION ICONIC" data-brand="AVON" data-details="Frescura limpia y suavidad duradera para tu día a día. Revive la magia de los momentos más puros con Sweet Honesty, la fragancia clásica de Avon que nunca pasa de moda. Con una delicada mezcla de notas florales de jacinto y lirio de los valles, combinadas con un toque dulce de vainilla y almizcle, este perfume ofrece un aroma ligero y atalcado que prolonga la sensación de frescura después del baño">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1011,7 +1010,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$30.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW', 'PERFUME SWEET BLACK SEDUCTION', 'CYZONE', 'Experimenta la frescura y dulzura exótica con una composición intrigante de notas orientales. Este perfume fresco para mujer combina las vibrantes esencias de frambuesa con la delicadeza de las notas florales de rosa, logrando una armonía perfecta que es tan irresistible como envolvente.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW" data-title="PERFUME SWEET BLACK SEDUCTION" data-brand="CYZONE" data-details="Experimenta la frescura y dulzura exótica con una composición intrigante de notas orientales. Este perfume fresco para mujer combina las vibrantes esencias de frambuesa con la delicadeza de las notas florales de rosa, logrando una armonía perfecta que es tan irresistible como envolvente.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1031,7 +1030,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$84.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG', 'KIT BELLEZA EXPRESSION', 'ESIKA', 'El Set Ésika Expression Spirit es la combinación perfecta para resaltar tu belleza natural y cautivar a donde vaya, ofreciendo una experiencia completa de cuidado y estilo en tres sencillos pasos. Este kit reúne la exquisita loción perfumada Expression Spirit para hidratar y envolver tu piel en su vibrante aroma, un labial o producto para labios de la línea Ésika ideal para darle intensidad a tu sonrisa, y un brillo/hidratante Glow en tubo para aportar un toque jugoso y radiante. Presentado en una elegante caja de edición especial, es la opción perfecta tanto para regalar un detalle sofisticado como para complementar tu rutina diaria con el inconfundible sello y la calidad de Ésika.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG" data-title="KIT BELLEZA EXPRESSION" data-brand="ESIKA" data-details="El Set Ésika Expression Spirit es la combinación perfecta para resaltar tu belleza natural y cautivar a donde vaya, ofreciendo una experiencia completa de cuidado y estilo en tres sencillos pasos. Este kit reúne la exquisita loción perfumada Expression Spirit para hidratar y envolver tu piel en su vibrante aroma, un labial o producto para labios de la línea Ésika ideal para darle intensidad a tu sonrisa, y un brillo/hidratante Glow en tubo para aportar un toque jugoso y radiante. Presentado en una elegante caja de edición especial, es la opción perfecta tanto para regalar un detalle sofisticado como para complementar tu rutina diaria con el inconfundible sello y la calidad de Ésika.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1051,7 +1050,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_', 'PERFUME SOFT MUSK', 'AVON', 'Fragancia de vainilla oriental amaderada. La fragrancia contiene flores blancas, frambuesa, vainilla y almizcle. Exquisitas notas que te harán sentir la dulce y suave vainilla, resaltando tu lado más femenino y sensual')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_" data-title="PERFUME SOFT MUSK" data-brand="AVON" data-details="Fragancia de vainilla oriental amaderada. La fragrancia contiene flores blancas, frambuesa, vainilla y almizcle. Exquisitas notas que te harán sentir la dulce y suave vainilla, resaltando tu lado más femenino y sensual">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1080,7 +1079,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2', 'PULPA CACAU', 'NATURA', 'Hidratación que fortalece manos y uñas<br>• contiene bioactivo: manteca bruta de cacao<br>• perfuma con una fragancia cítrica y dulce<br>• combate la resequedad<br>• hidrata por hasta 72 horas<br>• estimula hasta 2 veces más la producción de colágeno<br>• dermatológicamente probado<br>• libre de crueldad animal<br>• vegano<br>• para todo tipo de piel')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2" data-title="PULPA CACAU" data-brand="NATURA" data-details="Hidratación que fortalece manos y uñas<br>• contiene bioactivo: manteca bruta de cacao<br>• perfuma con una fragancia cítrica y dulce<br>• combate la resequedad<br>• hidrata por hasta 72 horas<br>• estimula hasta 2 veces más la producción de colágeno<br>• dermatológicamente probado<br>• libre de crueldad animal<br>• vegano<br>• para todo tipo de piel">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1105,7 +1104,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7', 'PULPA MARACUYA', 'NATURA', '48 horas de hidratación para las manos con la potencia antiestrés del maracuyá.<br>• crema de manos hecha con aceite bruto de maracuyá, rico en ácidos grasos esenciales<br>• promueve hidratación prolongada<br>• textura ligera de rápida absorción<br>• hidratante que ayuda a calmar la piel<br>• forma una película protectora sobre las manos')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7" data-title="PULPA MARACUYA" data-brand="NATURA" data-details="48 horas de hidratación para las manos con la potencia antiestrés del maracuyá.<br>• crema de manos hecha con aceite bruto de maracuyá, rico en ácidos grasos esenciales<br>• promueve hidratación prolongada<br>• textura ligera de rápida absorción<br>• hidratante que ayuda a calmar la piel<br>• forma una película protectora sobre las manos">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1131,7 +1130,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h', 'CREMA CORPORAL TODO DIA ALGODON', 'NATURA', 'Hidratación inteligente para todo tipo de piel<br>• contiene activo prebiótico, se adapta a los cambios de tu piel<br>• probado dermatológicamente<br>• con repuesto disponible<br>• cruelty free<br>• vegano<br>• indicado para todo tipo de piel')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h" data-title="CREMA CORPORAL TODO DIA ALGODON" data-brand="NATURA" data-details="Hidratación inteligente para todo tipo de piel<br>• contiene activo prebiótico, se adapta a los cambios de tu piel<br>• probado dermatológicamente<br>• con repuesto disponible<br>• cruelty free<br>• vegano<br>• indicado para todo tipo de piel">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1153,7 +1152,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3', 'COLONIA HORUS AZUL MARINE', 'NATURA', 'Frescura y vitalidad para todos los días<br>• fragancia cítrica moderada<br>• combina la envolvente lavanda y geranio con un toque fresco de cítricos, como el limón siciliano')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3" data-title="COLONIA HORUS AZUL MARINE" data-brand="NATURA" data-details="Frescura y vitalidad para todos los días<br>• fragancia cítrica moderada<br>• combina la envolvente lavanda y geranio con un toque fresco de cítricos, como el limón siciliano">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1173,7 +1172,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO', 'PERFUME BLACK SUEDE CHARM', 'AVON', 'Fragancia diseñada para el hombre moderno que aprecia la elegancia y el carácter. Con notas de cardamomo, pimienta negra y haba tonka, este perfume ofrece una experiencia olfativa intensa y cautivadora, ideal para cualquier ocasión.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO" data-title="PERFUME BLACK SUEDE CHARM" data-brand="AVON" data-details="Fragancia diseñada para el hombre moderno que aprecia la elegancia y el carácter. Con notas de cardamomo, pimienta negra y haba tonka, este perfume ofrece una experiencia olfativa intensa y cautivadora, ideal para cualquier ocasión.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1193,7 +1192,7 @@
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-', 'SPLASH VIOLETA Y LICHI', 'AVON', 'Descubre la frescura y la elegancia de la Colonia Violeta y Lichi Avon Senses, un spray corporal de 200 ml diseñado especialmente para la mujer moderna. Este perfume tipo splash combina las notas dulces y jugosas del lichi con la delicadeza floral de la violeta, creando una fragancia única que despierta los sentidos.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-" data-title="SPLASH VIOLETA Y LICHI" data-brand="AVON" data-details="Descubre la frescura y la elegancia de la Colonia Violeta y Lichi Avon Senses, un spray corporal de 200 ml diseñado especialmente para la mujer moderna. Este perfume tipo splash combina las notas dulces y jugosas del lichi con la delicadeza floral de la violeta, creando una fragancia única que despierta los sentidos.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1216,7 +1215,7 @@ tiene poder antibacterial" data-category="SPLASH LINOS" data-availability="DISPO
                 </div>
                 <div class="footer-card">
                     <span class="price">$14.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK', 'SPLASH LINOS LILAS Y ORQUIDEAS', 'AVON', 'Lilas y orquídeas rocíos.<br>Para uso en textiles<br>Para uso en ambientes<br>Tiene poder antibacterial')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK" data-title="SPLASH LINOS LILAS Y ORQUIDEAS" data-brand="AVON" data-details="Lilas y orquídeas rocíos.<br>Para uso en textiles<br>Para uso en ambientes<br>Tiene poder antibacterial">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1236,7 +1235,7 @@ tiene poder antibacterial" data-category="SPLASH LINOS" data-availability="DISPO
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201', 'SPLASH DELIRIO', 'LEONISA', 'Combina notas tentadoras de fresa jugosa, rosa sensual y pistacho dulce. Diseñada para envolverte en un aroma cautivador, fresco y femenino, es perfecta para refrescar tu piel a lo largo del día y aportarte un toque de elegancia y dulzura sutil.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201" data-title="SPLASH DELIRIO" data-brand="LEONISA" data-details="Combina notas tentadoras de fresa jugosa, rosa sensual y pistacho dulce. Diseñada para envolverte en un aroma cautivador, fresco y femenino, es perfecta para refrescar tu piel a lo largo del día y aportarte un toque de elegancia y dulzura sutil.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1256,7 +1255,7 @@ tiene poder antibacterial" data-category="SPLASH LINOS" data-availability="DISPO
                 </div>
                 <div class="footer-card">
                     <span class="price">$22.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz', 'PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA', 'ESIKA', 'Máscara de pestañas Mega Full Size PRO a prueba de agua. Logra unas pestañas con un LARGO INSUPERABLE Y VOLUMEN PROFESIONAL. Mega Full Size es la máscara N°1 de ÉSIKA** que ofrece una sensación ligera ¡y sin grumos!')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz" data-title="PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA" data-brand="ESIKA" data-details="Máscara de pestañas Mega Full Size PRO a prueba de agua. Logra unas pestañas con un LARGO INSUPERABLE Y VOLUMEN PROFESIONAL. Mega Full Size es la máscara N°1 de ÉSIKA** que ofrece una sensación ligera ¡y sin grumos!">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1278,7 +1277,7 @@ a prueba de agua
                 </div>
                 <div class="footer-card">
                     <span class="price">$24.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq', 'PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA', 'AVON', 'Destaca tu mirada con esta máscara Avon que define y cuida tus pestañas. Se verán naturalmente suaves y peinadas en todo momento. En solo unos minutos, estarás impecable para salir y deslumbrar. ¡Elegir la máscara correcta nunca fue tan fácil!<br>A prueba de agua<br>¿Te cansaste del maquillaje corrido? Esta máscara te hará ver bien todo el día y no tendrás que preocuparte en retocarlo. ¡Todo lo que necesitas es aplicar la máscara una vez y listo!')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq" data-title="PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA" data-brand="AVON" data-details="Destaca tu mirada con esta máscara Avon que define y cuida tus pestañas. Se verán naturalmente suaves y peinadas en todo momento. En solo unos minutos, estarás impecable para salir y deslumbrar. ¡Elegir la máscara correcta nunca fue tan fácil!<br>A prueba de agua<br>¿Te cansaste del maquillaje corrido? Esta máscara te hará ver bien todo el día y no tendrás que preocuparte en retocarlo. ¡Todo lo que necesitas es aplicar la máscara una vez y listo!">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1298,7 +1297,7 @@ a prueba de agua
                 </div>
                 <div class="footer-card">
                     <span class="price">$28.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg', 'PESTAÑINA FACES NEGRO', 'NATURA', 'Volumen, alargamiento y curvatura.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg" data-title="PESTAÑINA FACES NEGRO" data-brand="NATURA" data-details="Volumen, alargamiento y curvatura.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1318,7 +1317,7 @@ a prueba de agua
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl', 'RUBOR ULTRA COLOR RED ONE', 'AVON', 'Descubre el Rubor En Polvo Avon Red, un producto que transformará tu rutina de maquillaje. Con un formato en polvo, este rubor se aplica de manera suave y uniforme, brindando un acabado natural y radiante. Su tono Red es perfecto para realzar tus mejillas, aportando un toque de frescura y vitalidad a tu rostro.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl" data-title="RUBOR ULTRA COLOR RED ONE" data-brand="AVON" data-details="Descubre el Rubor En Polvo Avon Red, un producto que transformará tu rutina de maquillaje. Con un formato en polvo, este rubor se aplica de manera suave y uniforme, brindando un acabado natural y radiante. Su tono Red es perfecto para realzar tus mejillas, aportando un toque de frescura y vitalidad a tu rostro.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1340,7 +1339,7 @@ los colores de la paleta evocan la frescura del océano, inspirando creatividad 
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q', 'SOMBRAS OCEAN VIBE', 'AVON', 'La paleta de sombras Avon Color Trend Ocean Vibe es la elección perfecta para quienes buscan un toque vibrante y fresco en su maquillaje. Con cinco tonos cuidadosamente seleccionados, esta paleta te permite crear desde looks sutiles hasta estilos más audaces, ideales para cualquier ocasión.<br>Cada sombra está formulada para ofrecer una aplicación suave y una excelente pigmentación, asegurando que tus ojos resalten con intensidad y durabilidad. Su diseño compacto la convierte en un accesorio ideal para llevar en el bolso, permitiéndote retocar tu maquillaje en cualquier momento.<br>Los colores de la paleta evocan la frescura del océano, inspirando creatividad y versatilidad en cada aplicación. Atrévete a experimentar con combinaciones únicas y a expresar tu estilo personal con esta paleta que se adapta a todas las tendencias.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q" data-title="SOMBRAS OCEAN VIBE" data-brand="AVON" data-details="La paleta de sombras Avon Color Trend Ocean Vibe es la elección perfecta para quienes buscan un toque vibrante y fresco en su maquillaje. Con cinco tonos cuidadosamente seleccionados, esta paleta te permite crear desde looks sutiles hasta estilos más audaces, ideales para cualquier ocasión.<br>Cada sombra está formulada para ofrecer una aplicación suave y una excelente pigmentación, asegurando que tus ojos resalten con intensidad y durabilidad. Su diseño compacto la convierte en un accesorio ideal para llevar en el bolso, permitiéndote retocar tu maquillaje en cualquier momento.<br>Los colores de la paleta evocan la frescura del océano, inspirando creatividad y versatilidad en cada aplicación. Atrévete a experimentar con combinaciones únicas y a expresar tu estilo personal con esta paleta que se adapta a todas las tendencias.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1360,7 +1359,7 @@ los colores de la paleta evocan la frescura del océano, inspirando creatividad 
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4', 'DELINEADOR PLUMON NEGRO', 'AVON', 'Compañero ideal para quienes buscan precisión y un acabado impecable en su maquillaje diario.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4" data-title="DELINEADOR PLUMON NEGRO" data-brand="AVON" data-details="Compañero ideal para quienes buscan precisión y un acabado impecable en su maquillaje diario.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1380,7 +1379,7 @@ los colores de la paleta evocan la frescura del océano, inspirando creatividad 
                 </div>
                 <div class="footer-card">
                     <span class="price">$10.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_', 'LAPIZ PARA OJOS AZUL MATE', 'AVON', 'esaltar tu mirada será mucho más fácil con el delineador Avon.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_" data-title="LAPIZ PARA OJOS AZUL MATE" data-brand="AVON" data-details="esaltar tu mirada será mucho más fácil con el delineador Avon.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1400,7 +1399,7 @@ los colores de la paleta evocan la frescura del océano, inspirando creatividad 
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_', 'DELINEADOR LIQUIDO ROJO PINCEL', 'AVON', 'Avon Delineador liquido 3ml punta fina y precisa.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_" data-title="DELINEADOR LIQUIDO ROJO PINCEL" data-brand="AVON" data-details="Avon Delineador liquido 3ml punta fina y precisa.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1421,7 +1420,7 @@ transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenec
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3', 'BALSAMO LABIAL ROSE CREME', 'L&#39;BEL', 'Ideal para uso diario y adecuado para cualquier ocasión.<br>Transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenecidos con el bálsamo de labios de L&#39;BEL. ¡Añádelo a tu rutina de belleza y siente la diferencia hoy mismo!')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3" data-title="BALSAMO LABIAL ROSE CREME" data-brand="L'BEL" data-details="Ideal para uso diario y adecuado para cualquier ocasión.<br>Transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenecidos con el bálsamo de labios de L&#39;BEL. ¡Añádelo a tu rutina de belleza y siente la diferencia hoy mismo!">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1441,7 +1440,7 @@ transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenec
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY', 'BALSAMO LABIAL RED', 'AVON', 'Bálsamo labial en barra con aroma floral, ideal para piel seca y dermatológicamente testeado.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY" data-title="BALSAMO LABIAL RED" data-brand="AVON" data-details="Bálsamo labial en barra con aroma floral, ideal para piel seca y dermatológicamente testeado.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1465,7 +1464,7 @@ transforma tu rutina de cuidado labial y disfruta de labios nutridos y rejuvenec
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp', 'CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA', 'NATURA', 'Un suspiro indulgente que evoca recuerdos dulces<br>• sensación de frescura y ligereza que le da el toque final al cuidado de cada día<br>• hidratación ligera de la piel: mantiene la hidratación de la piel a lo largo del día<br>• una experiencia sensorial deliciosayirresistible, con la fragancia dulce floral que envuelve y encanta<br>• las notas suculentas de fresa, combinadas con la ciruela, revelan una salida alegre. estas se equilibran con un cuerpo floral que encanta con notas de rosa y jazmín. el fondo es indulgente y envuelve con el calor gourmand de la vainilla dorada y el sándalo.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp" data-title="CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA" data-brand="NATURA" data-details="Un suspiro indulgente que evoca recuerdos dulces<br>• sensación de frescura y ligereza que le da el toque final al cuidado de cada día<br>• hidratación ligera de la piel: mantiene la hidratación de la piel a lo largo del día<br>• una experiencia sensorial deliciosayirresistible, con la fragancia dulce floral que envuelve y encanta<br>• las notas suculentas de fresa, combinadas con la ciruela, revelan una salida alegre. estas se equilibran con un cuerpo floral que encanta con notas de rosa y jazmín. el fondo es indulgente y envuelve con el calor gourmand de la vainilla dorada y el sándalo.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1486,7 +1485,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX', 'CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA', 'NATURA', 'Una fragancia dulce y atrayente con rutinas de hidratación perfumada y profunda, que combinan el poder de la nutrición prebiótica. Notas de ciruela sorprenden en la salida y se equilibran con flor de vainilla. El fondo se realza por la cremosidad de las notas amaderadas.<br>Piel profundamente nutrida y perfumada. Con tecnología inteligente que acelera la renovación celular.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX" data-title="CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA" data-brand="NATURA" data-details="Una fragancia dulce y atrayente con rutinas de hidratación perfumada y profunda, que combinan el poder de la nutrición prebiótica. Notas de ciruela sorprenden en la salida y se equilibran con flor de vainilla. El fondo se realza por la cremosidad de las notas amaderadas.<br>Piel profundamente nutrida y perfumada. Con tecnología inteligente que acelera la renovación celular.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1512,7 +1511,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o', 'CREMA CORPORAL TODO DIA FRUTOS ROJOS', 'NATURA', 'Ttecnología prebiótica, piel profundamente nutrida<br>• fragancia alegre y vibrante con notas frutales<br>• piel más firme y ultrasuave todos los días<br>• fórmula con nutrición prebiótica que se adapta a tu piel<br>• textura cremosa: fácil de aplicar y de rápida absorción<br>• nutrición profunda: piel saludable en todas las capas<br>• 94 % de ingredientes de origen natural: mayor afinidad con tu piel')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o" data-title="CREMA CORPORAL TODO DIA FRUTOS ROJOS" data-brand="NATURA" data-details="Ttecnología prebiótica, piel profundamente nutrida<br>• fragancia alegre y vibrante con notas frutales<br>• piel más firme y ultrasuave todos los días<br>• fórmula con nutrición prebiótica que se adapta a tu piel<br>• textura cremosa: fácil de aplicar y de rápida absorción<br>• nutrición profunda: piel saludable en todas las capas<br>• 94 % de ingredientes de origen natural: mayor afinidad con tu piel">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1540,7 +1539,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ', 'JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5', 'NATURA', 'Perfuma y limpia manteniendo la hidratación natural de la piel.<br>• fórmula con una cuidadosa combinación de ingredientes de origen natural, que mantiene la hidratación de tu piel<br>• piel hidratada, perfumada y protegida<br>• activo hidratante para una limpieza profunda sin resecar<br>• textura cremosa y deliciosas nubes de espuma perfumada<br>• fragancia dulce frutal que atrae y marca presencia<br>• rinde muchos baños, para más momentos de autocuidado<br>• baño vigorizante con deliciosa sensación de suavidad en la piel<br>• 94% de ingredientes naturales.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ" data-title="JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5" data-brand="NATURA" data-details="Perfuma y limpia manteniendo la hidratación natural de la piel.<br>• fórmula con una cuidadosa combinación de ingredientes de origen natural, que mantiene la hidratación de tu piel<br>• piel hidratada, perfumada y protegida<br>• activo hidratante para una limpieza profunda sin resecar<br>• textura cremosa y deliciosas nubes de espuma perfumada<br>• fragancia dulce frutal que atrae y marca presencia<br>• rinde muchos baños, para más momentos de autocuidado<br>• baño vigorizante con deliciosa sensación de suavidad en la piel<br>• 94% de ingredientes naturales.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1572,7 +1571,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2', 'JABONES VEGETALES ALGODÓN CAJAx5', 'NATURA', 'Limpieza e hidratación con la suavidad del algodón<br>• limpieza delicada<br>• mantiene la hidratación natural de la piel<br>• fórmula vegana: libre de grasa animal<br>• espuma cremosa y envolvente<br>• fragancia floral cómoda, que combina la suavidad del algodón con notas florales<br>• 97 % de ingredientes de origen natural<br>• mayor afinidad con tu piel<br>• no reseca la piel<br>• explosión de fragancia<br>• probado dermatológicamente<br>• libre de crueldad animal<br>• tipo de piel: todo tipo de piel')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2" data-title="JABONES VEGETALES ALGODÓN CAJAx5" data-brand="NATURA" data-details="Limpieza e hidratación con la suavidad del algodón<br>• limpieza delicada<br>• mantiene la hidratación natural de la piel<br>• fórmula vegana: libre de grasa animal<br>• espuma cremosa y envolvente<br>• fragancia floral cómoda, que combina la suavidad del algodón con notas florales<br>• 97 % de ingredientes de origen natural<br>• mayor afinidad con tu piel<br>• no reseca la piel<br>• explosión de fragancia<br>• probado dermatológicamente<br>• libre de crueldad animal<br>• tipo de piel: todo tipo de piel">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1599,7 +1598,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj', 'JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5', 'NATURA', 'Pperfuma y limpia sin resecar, manteniendo la hidratación natural de la piel<br>• fórmula suave con una combinación de ingredientes de origen natural<br>• piel hidratada, perfumada y protegida<br>• activo hidratante para una limpieza profunda sin resecar<br>• textura cremosa y deliciosas nubes de espuma perfumada<br>• rinde para muchos baños, para más momentos de autocuidado<br>• 98% de ingredientes naturales<br>• fragancia dulce floral con notas suculentas de fresa, que se mezclan con el gourmand cálido de la vainilla dorada.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj" data-title="JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5" data-brand="NATURA" data-details="Pperfuma y limpia sin resecar, manteniendo la hidratación natural de la piel<br>• fórmula suave con una combinación de ingredientes de origen natural<br>• piel hidratada, perfumada y protegida<br>• activo hidratante para una limpieza profunda sin resecar<br>• textura cremosa y deliciosas nubes de espuma perfumada<br>• rinde para muchos baños, para más momentos de autocuidado<br>• 98% de ingredientes naturales<br>• fragancia dulce floral con notas suculentas de fresa, que se mezclan con el gourmand cálido de la vainilla dorada.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1619,7 +1618,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU', 'PROTECTOR SOLAR DEFENSE TOTAL', 'L&#39;BEL', 'Protector solar con color antimanchas Défense Total con niacinamida y vitamina C que ayuda a cubrir, aclarar y prevenir manchas.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU" data-title="PROTECTOR SOLAR DEFENSE TOTAL" data-brand="L'BEL" data-details="Protector solar con color antimanchas Défense Total con niacinamida y vitamina C que ayuda a cubrir, aclarar y prevenir manchas.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1639,7 +1638,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk', 'SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS', 'L&#39;BEL', 'Sérum ácido hialurónico intensivo Concentré: reduce líneas de expresión, le devuelve la hidratación a la piel y rellena arrugas.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk" data-title="SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS" data-brand="L'BEL" data-details="Sérum ácido hialurónico intensivo Concentré: reduce líneas de expresión, le devuelve la hidratación a la piel y rellena arrugas.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1659,7 +1658,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV', 'SKINCARE SERUM VITAMINA C', 'AVON', 'La mejor manera de darle un saludable ‘vaso de jugo de naranja’ a la piel es por medio de un sérum, ya que la alta concentración y textura líquida favorecen una rápida y más profunda absorción de los componentes.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV" data-title="SKINCARE SERUM VITAMINA C" data-brand="AVON" data-details="La mejor manera de darle un saludable ‘vaso de jugo de naranja’ a la piel es por medio de un sérum, ya que la alta concentración y textura líquida favorecen una rápida y más profunda absorción de los componentes.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1679,7 +1678,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$80.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755', 'SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO', 'L&#39;BEL', 'Un ultrahidratante facial que transforma tu rutina de cuidado de la piel. Formulado con ácido hialurónico, este gel ligero proporciona una hidratación intensa, dejando tu rostro fresco y radiante.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755" data-title="SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO" data-brand="L'BEL" data-details="Un ultrahidratante facial que transforma tu rutina de cuidado de la piel. Formulado con ácido hialurónico, este gel ligero proporciona una hidratación intensa, dejando tu rostro fresco y radiante.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1699,7 +1698,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv', 'CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO', 'L&#39;OREAL', 'El Sérum Capilar Elvive Dream Liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. Su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. Está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. Es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" data-title="CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO" data-brand="L'OREAL" data-details="El Sérum Capilar Elvive Dream Liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. Su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. Está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. Es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1725,7 +1724,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$36.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl', 'CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE', 'NATURA', 'Reconstrucción intensa, resultado visible<br>• repara los daños causados por procedimientos químicos<br>• recupera el cabello debilitado y dañado<br>• devuelve el aspecto saludable al cabello<br>• enriquecida con arginina y aceite de Palta, que restauran la fibra capilar<br>• fragancia envolvente con notas de flor de cerezo<br>• fórmula con un 95% de ingredientes de origen natural')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl" data-title="CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE" data-brand="NATURA" data-details="Reconstrucción intensa, resultado visible<br>• repara los daños causados por procedimientos químicos<br>• recupera el cabello debilitado y dañado<br>• devuelve el aspecto saludable al cabello<br>• enriquecida con arginina y aceite de Palta, que restauran la fibra capilar<br>• fragancia envolvente con notas de flor de cerezo<br>• fórmula con un 95% de ingredientes de origen natural">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1745,7 +1744,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$25.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4', 'SKINCARE CREMA HIDRATANTE', 'POND&#39;S', 'La crema humectante Pond´s Bio - Hidratante humecta la piel hacia dentro, dejándola suave y fresca por fuera. Dermatológicamente probada.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4" data-title="SKINCARE CREMA HIDRATANTE" data-brand="POND'S" data-details="La crema humectante Pond´s Bio - Hidratante humecta la piel hacia dentro, dejándola suave y fresca por fuera. Dermatológicamente probada.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1765,7 +1764,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_', 'ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL', 'LEONISA', 'Bolso manos libres color camel con cadena.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_" data-title="ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL" data-brand="LEONISA" data-details="Bolso manos libres color camel con cadena.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1789,7 +1788,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB', 'JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL', 'NATURA', 'Barras de bienestar con la fuerza del cacao somos Natura EKOS, potencia biocosmética para tu piel<br>• somos veganos<br>• nuestras fórmulas son de origen natura<br>• activos y bioactivos brutos de la Amazonía<br>• biocompatibles con la piel y biodegradables con el medio ambiente')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB" data-title="JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL" data-brand="NATURA" data-details="Barras de bienestar con la fuerza del cacao somos Natura EKOS, potencia biocosmética para tu piel<br>• somos veganos<br>• nuestras fórmulas son de origen natura<br>• activos y bioactivos brutos de la Amazonía<br>• biocompatibles con la piel y biodegradables con el medio ambiente">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1809,7 +1808,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU', 'SHAMPOO ANTICAIDA DR. C. TUNA', 'FARMASI', 'Champú revitalizante que ayuda a fortalecer y suavizar el cabello frágil, manteniéndolo brillante y saludable. Su fórmula enriquecida con ajo, Capixyl ™ y el nuevo ingrediente patentado Trichogen ™ le darán vida a tu cabello. Aporta hidratación, suavidad y brillo, dejando una sensación de frescura que dura todo el día. Perfecto para cabellos normales a grasos que necesitan un extra de vitalidad y frescura, o para quienes buscan un shampoo de uso diario que mantenga el cabello ligero y con brillo natural.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU" data-title="SHAMPOO ANTICAIDA DR. C. TUNA" data-brand="FARMASI" data-details="Champú revitalizante que ayuda a fortalecer y suavizar el cabello frágil, manteniéndolo brillante y saludable. Su fórmula enriquecida con ajo, Capixyl ™ y el nuevo ingrediente patentado Trichogen ™ le darán vida a tu cabello. Aporta hidratación, suavidad y brillo, dejando una sensación de frescura que dura todo el día. Perfecto para cabellos normales a grasos que necesitan un extra de vitalidad y frescura, o para quienes buscan un shampoo de uso diario que mantenga el cabello ligero y con brillo natural.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1833,7 +1832,7 @@ piel profundamente nutrida y perfumada. con tecnología inteligente que acelera 
                 </div>
                 <div class="footer-card">
                     <span class="price">$20.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn', 'LABIAL FACES COBRE SUNSET', 'NATURA', 'Tu labial. tu intensidad<br>• más capas;<br>• más color con efecto cremoso;<br>• adiós labios resecos;<br>• producto vegano.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn" data-title="LABIAL FACES COBRE SUNSET" data-brand="NATURA" data-details="Tu labial. tu intensidad<br>• más capas;<br>• más color con efecto cremoso;<br>• adiós labios resecos;<br>• producto vegano.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1859,7 +1858,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s', 'CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS', 'AVON', 'Serum Restaurador De Puntas Abiertas Avon Advance Techniques<br>- Fórmula diseñada para reparar y sellar las puntas abiertas.<br>- Proporciona hidratación y nutrición al cabello.<br>- Ayuda a mejorar la apariencia y suavidad del cabello.<br>- Textura ligera que no deja residuos.<br>- Ideal para todo tipo de cabello.<br>Este sérum es perfecto para quienes buscan restaurar el cabello dañado.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s" data-title="CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS" data-brand="AVON" data-details="Serum Restaurador De Puntas Abiertas Avon Advance Techniques<br>- Fórmula diseñada para reparar y sellar las puntas abiertas.<br>- Proporciona hidratación y nutrición al cabello.<br>- Ayuda a mejorar la apariencia y suavidad del cabello.<br>- Textura ligera que no deja residuos.<br>- Ideal para todo tipo de cabello.<br>Este sérum es perfecto para quienes buscan restaurar el cabello dañado.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1883,7 +1882,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v', 'FRESCOR EKOS CASTAÑA', 'NATURA', 'Fragancia envolvente y acogedora como la brisa cálida que permea la selva.<br>• perfumación envolvente y acogedora<br>• las notas dulces y almendradas de la castaña se unen al toque fresco de las notas cítricas<br>• fragancia que transmite una deliciosa sensación de calor y frescura<br>• eau de toilette enriquecido con aromático 100% natural, extraído del castaño, árbol nativo de la Amazonía')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v" data-title="FRESCOR EKOS CASTAÑA" data-brand="NATURA" data-details="Fragancia envolvente y acogedora como la brisa cálida que permea la selva.<br>• perfumación envolvente y acogedora<br>• las notas dulces y almendradas de la castaña se unen al toque fresco de las notas cítricas<br>• fragancia que transmite una deliciosa sensación de calor y frescura<br>• eau de toilette enriquecido con aromático 100% natural, extraído del castaño, árbol nativo de la Amazonía">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1903,7 +1902,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe', 'FRESCOR EKOS ACAI', 'NATURA', 'Siente la energía de la selva y el frescor de las palmeras con las notas de açaí. Esta Eau de Toilette ofrece una perfumación tropical y vital, combinando notas verdes y frescas con un ligero toque floral. Con su ingrediente natural inédito extraído de la pulpa del açaí, un fruto icónico de la Amazonía')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe" data-title="FRESCOR EKOS ACAI" data-brand="NATURA" data-details="Siente la energía de la selva y el frescor de las palmeras con las notas de açaí. Esta Eau de Toilette ofrece una perfumación tropical y vital, combinando notas verdes y frescas con un ligero toque floral. Con su ingrediente natural inédito extraído de la pulpa del açaí, un fruto icónico de la Amazonía">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1927,7 +1926,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO', 'NATURA', 'Piel 4 veces más hidratada.<br>• nutre y ayuda en la recuperación de la uniformidad de la piel<br>• textura cremosa y fácil de aplicar, con rápida absorción<br>• enriquecido con niacinamida, pantenol y aceite de sésamo<br>• Tecnología Prebiótica que se adapta a los cambios de tu piel.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog" data-title="CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO" data-brand="NATURA" data-details="Piel 4 veces más hidratada.<br>• nutre y ayuda en la recuperación de la uniformidad de la piel<br>• textura cremosa y fácil de aplicar, con rápida absorción<br>• enriquecido con niacinamida, pantenol y aceite de sésamo<br>• Tecnología Prebiótica que se adapta a los cambios de tu piel.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1951,7 +1950,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)', 'NATURA', 'Piel 4 veces más hidratada.<br>• nutre y ayuda en la recuperación de la uniformidad de la piel<br>• textura cremosa y fácil de aplicar, con rápida absorción<br>• enriquecido con niacinamida, pantenol y aceite de sésamo<br>• Tecnología Prebiótica que se adapta a los cambios de tu piel.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" data-title="CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)" data-brand="NATURA" data-details="Piel 4 veces más hidratada.<br>• nutre y ayuda en la recuperación de la uniformidad de la piel<br>• textura cremosa y fácil de aplicar, con rápida absorción<br>• enriquecido con niacinamida, pantenol y aceite de sésamo<br>• Tecnología Prebiótica que se adapta a los cambios de tu piel.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1971,7 +1970,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-', 'CUIDADO DEL CABELLO SERUM CINCO OLEOS', 'L&#39;OREAL', 'El Tratamiento #1 Del Mundo Elvive Óleo Extraordinario Con Su Fórmula Con 5 Óleo De Flores Preciosas Brinda Nutrición Intensa, Brillo Extraordinario, Control De Frizz Y Protección Térmica. Uso Diario Y Sin Enjuague.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-" data-title="CUIDADO DEL CABELLO SERUM CINCO OLEOS" data-brand="L'OREAL" data-details="El Tratamiento #1 Del Mundo Elvive Óleo Extraordinario Con Su Fórmula Con 5 Óleo De Flores Preciosas Brinda Nutrición Intensa, Brillo Extraordinario, Control De Frizz Y Protección Térmica. Uso Diario Y Sin Enjuague.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -1998,7 +1997,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b', 'SHAMPOO LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)', 'NATURA', 'Menos caída, más resistencia desde la raíz<br>• limpia y estimula el cuero cabelludo evitando la caída<br>• 2 veces menos caída por quiebre<br>• fortalece los cabellos y estimula el crecimiento saludable<br>• actúa directamente en la fibra capilar<br>• nuevo envase práctico y sostenible<br>• fórmula con BioProteína Triple Acción + Activo Dermoactivador<br>• producto vegano')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b" data-title="SHAMPOO LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)" data-brand="NATURA" data-details="Menos caída, más resistencia desde la raíz<br>• limpia y estimula el cuero cabelludo evitando la caída<br>• 2 veces menos caída por quiebre<br>• fortalece los cabellos y estimula el crecimiento saludable<br>• actúa directamente en la fibra capilar<br>• nuevo envase práctico y sostenible<br>• fórmula con BioProteína Triple Acción + Activo Dermoactivador<br>• producto vegano">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -2018,7 +2017,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG', 'DELINEADOR PLUMON ALTA PRECISION', 'CYZONE', 'Dale vida a cualquier look: -20 horas de color intenso en un solo twist: Color intenso que permanece por más tiempo sin correrse ni borrarse. -Alta pigmentación: Obtén un color vibrante desde la primera pasada con acabado mate. -Textura ultra suave: Su fórmula cremosa se desliza fácilmente para una aplicación cómoda y uniforme. -Fácil de aplicar: Su formato retráctil permite crear trazos precisos y difuminar con facilidad. -Cobertura uniforme: Se fija rápidamente para un delineado definido que acompaña tu look durante horas.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG" data-title="DELINEADOR PLUMON ALTA PRECISION" data-brand="CYZONE" data-details="Dale vida a cualquier look: -20 horas de color intenso en un solo twist: Color intenso que permanece por más tiempo sin correrse ni borrarse. -Alta pigmentación: Obtén un color vibrante desde la primera pasada con acabado mate. -Textura ultra suave: Su fórmula cremosa se desliza fácilmente para una aplicación cómoda y uniforme. -Fácil de aplicar: Su formato retráctil permite crear trazos precisos y difuminar con facilidad. -Cobertura uniforme: Se fija rápidamente para un delineado definido que acompaña tu look durante horas.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -2038,7 +2037,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7', 'PERFUME BLUE FEMENINO', 'L&#39;BEL', 'Exclusiva frescura. Intensa como el mar. Aroma Floral Frutal: Delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7" data-title="PERFUME BLUE FEMENINO" data-brand="L'BEL" data-details="Exclusiva frescura. Intensa como el mar. Aroma Floral Frutal: Delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -2058,7 +2057,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint" onclick="openDetailModal('https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8', 'PERFUME MITHYKA', 'L&#39;BEL', 'Aroma de mujer con alta concentración de flores para crear un seductor aroma que refleja todo el poder y sensualidad de una diosa.')">
+                    <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8" data-title="PERFUME MITHYKA" data-brand="L'BEL" data-details="Aroma de mujer con alta concentración de flores para crear un seductor aroma que refleja todo el poder y sensualidad de una diosa.">
                         <i class="fa-solid fa-expand"></i> Detalle
                     </span>
                 </div>
@@ -2071,7 +2070,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
     <div class="zoom-modal" id="zoomModal" onclick="closeZoomModal()">
         <div class="zoom-content" onclick="closeZoomModal()">
             <button class="modal-close" onclick="closeZoomModal()">×</button>
-            <img id="zoomImg" src="" alt="Creación ampliada" onclick="closeZoomModal()">
+            <img id="zoomImg" src="" alt="Creación ampliada">
             <div class="zoom-title" id="zoomTitle"></div>
         </div>
     </div>
@@ -2081,7 +2080,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
         <div class="detail-box" onclick="closeDetailModal()">
             <button class="modal-close" onclick="closeDetailModal()">×</button>
             <div class="detail-left" onclick="closeDetailModal()">
-                <img id="detailImg" src="" alt="Detalle de creación" onclick="closeDetailModal()">
+                <img id="detailImg" src="" alt="Detalle de creación">
             </div>
             <div class="detail-right" onclick="event.stopPropagation()">
                 <div class="detail-category-tag" id="detailBrand"></div>
@@ -2138,6 +2137,18 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             const loader = document.getElementById('page-loader');
             loader.style.opacity = '0';
             setTimeout(() => loader.style.display = 'none', 600);
+
+            // BINDING ROBUSTO PARA LOS BOTONES DE DETALLES
+            document.querySelectorAll('.view-detail-hint').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const imgUrl = btn.getAttribute('data-img');
+                    const title = btn.getAttribute('data-title');
+                    const brand = btn.getAttribute('data-brand');
+                    const details = btn.getAttribute('data-details');
+                    openDetailModal(imgUrl, title, brand, details);
+                });
+            });
         });
 
         function toggleSidebar() {
@@ -2241,6 +2252,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_entrega_inmediata_bga_1792872178 -->
+    <!-- v_detail_fix_robust_1792872443 -->
 </body>
 </html>
