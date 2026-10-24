@@ -430,6 +430,9 @@
         }
         .cat-btn-sidebar:hover::after, .cat-btn-sidebar.active::after { opacity: 1; transform: translateX(2px); }
         .catalog-controls { max-width: 1300px; margin: 0 auto 12px; display: grid; grid-template-columns: minmax(180px,1fr) auto auto; gap: 10px; align-items: center; }
+        /* Barra de búsqueda y filtros siempre accesible mientras se explora el catálogo */
+        .catalog-controls { position: sticky; top: 0; z-index: 90; padding: 10px 0; background: rgba(10,10,10,.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(197,160,89,.13); }
+        @media (max-width: 600px) { .catalog-controls { padding: 8px 10px; margin-left: -10px; margin-right: -10px; } }
         .quick-search-wrap { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 0 14px; height: 43px; border: 1px solid rgba(197,160,89,.22); border-radius: 7px; background: linear-gradient(110deg, #151515, #101010); color: var(--accent-gold); transition: border-color .2s, box-shadow .2s; }
         .quick-search-wrap:focus-within { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(197,160,89,.07); }
         .quick-search { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: 12px; }
@@ -2477,8 +2480,19 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
         }
 
         function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-            document.getElementById('sidebarOverlay').classList.toggle('active');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const opening = !sidebar.classList.contains('open');
+            if (opening) {
+                // Lleva al usuario a la zona del catálogo y abre los filtros a la vez.
+                const controls = document.getElementById('catalogToolbar');
+                if (controls) controls.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+            } else {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
         }
 
         function formatCurrency(num) {
@@ -2704,6 +2718,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792881089 -->
+    <!-- v_detail_zoom_hd_fixed_1792881374 -->
 </body>
 </html>
