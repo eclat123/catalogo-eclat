@@ -23,10 +23,9 @@
             padding: 0 24px 100px 24px;
             min-height: 100vh;
             letter-spacing: 0.02em;
-            perspective: 1200px;
         }
 
-        /* CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) */
+        /* CURSOR DE LUJO Y EFECTO LUPA (SÓLO ESCRITORIO) */
         @media (min-width: 769px) {
             *, *:hover, body, button, input, a, .card, .image-modal, .modal-content, img {
                 cursor: none !important;
@@ -42,6 +41,9 @@
                 transition: width 0.2s, height 0.2s, background-color 0.2s;
                 z-index: 10000;
                 background: rgba(197, 160, 89, 0.05);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .custom-cursor-dot {
                 position: fixed;
@@ -53,10 +55,21 @@
                 transform: translate(-50%, -50%);
                 z-index: 10001;
             }
+            /* Icono interno de lupa que aparece al pasar sobre las fotos */
+            .custom-cursor .lens-icon {
+                font-size: 12px;
+                color: var(--accent-gold);
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
             body:hover .custom-cursor.expanded {
-                width: 56px; height: 56px;
-                background: rgba(197, 160, 89, 0.12);
-                border-color: #ffffff;
+                width: 64px; height: 64px;
+                background: rgba(197, 160, 89, 0.15);
+                border-color: var(--accent-gold);
+                box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+            }
+            body:hover .custom-cursor.expanded .lens-icon {
+                opacity: 1;
             }
         }
 
@@ -342,7 +355,7 @@
         }
         .sidebar-overlay.active { display: block; }
 
-        /* GRID CON EFECTO 3D EN LAS TARJETAS */
+        /* GRID LIMPIO SIN DIFUMINADO */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -358,15 +371,13 @@
             border: 1px solid var(--border-subtle);
             display: flex;
             flex-direction: column;
-            transform-style: preserve-3d;
-            will-change: transform;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease;
             break-inside: avoid;
             page-break-inside: avoid;
         }
         .card:hover {
+            transform: translateY(-6px);
             border-color: var(--accent-gold);
-            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.15);
         }
         .img-container {
             width: 100%;
@@ -538,7 +549,7 @@
             .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
             .contact-item { color: #000000 !important; }
             .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
-            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; transform: none !important; }
+            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; }
             .img-container { background: #f9f9f9 !important; height: 160px !important; }
             .title, .price { color: #111827 !important; }
             .brand, .presentation { color: #4b5563 !important; }
@@ -547,8 +558,10 @@
     </style>
 </head>
 <body>
-    <!-- CURSOR DE LUJO EXCLUSIVO -->
-    <div class="custom-cursor" id="customCursor"></div>
+    <!-- CURSOR DE LUJO CON EFECTO LUPA -->
+    <div class="custom-cursor" id="customCursor">
+        <i class="fa-solid fa-magnifying-glass lens-icon"></i>
+    </div>
     <div class="custom-cursor-dot" id="customCursorDot"></div>
 
     <!-- PANTALLA DE CARGA CINEMATOGRÁFICA -->
@@ -1588,7 +1601,7 @@
     </div>
 
     <script>
-        // Lógica del Cursor y Efecto Tilt 3D en las Tarjetas
+        // Lógica del Cursor con Efecto Lupa Óptica
         const cursor = document.getElementById('customCursor');
         const cursorDot = document.getElementById('customCursorDot');
         
@@ -1618,35 +1631,13 @@
             }
             renderCursor();
 
-            // Efecto Tilt 3D fluido en cada tarjeta
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = ((y - centerY) / centerY) * -8;
-                    const rotateY = ((x - centerX) / centerX) * 8;
-
-                    card.style.transform = "perspective(1000px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateY(-6px)";
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
-                });
-
-                card.addEventListener('mouseenter', () => {
-                    cursor.classList.add('expanded');
-                });
-                card.addEventListener('mouseleave', () => {
-                    cursor.classList.remove('expanded');
-                });
+            // Expandir lupa al pasar sobre las imágenes de los productos
+            document.querySelectorAll('.img-container, .card img').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
             });
 
-            // Efecto expansión al pasar sobre elementos interactivos generales
+            // Comportamiento normal para botones y enlaces
             document.querySelectorAll('button, a, input').forEach(el => {
                 el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
                 el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
@@ -1741,5 +1732,6 @@
             }, 2000);
         }
     </script>
+    <!-- v_1792815189 -->
 </body>
 </html>
