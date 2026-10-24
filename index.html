@@ -152,11 +152,11 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* REGLAS DE IMPRESIÓN Y DESCARGA A PDF SOBERBIAS */
+        /* REGLAS DE IMPRESIÓN PDF PERFECTAS */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 12mm;
+                margin: 10mm;
             }
             body {
                 background: #ffffff !important;
@@ -168,7 +168,7 @@
             }
             header h1 {
                 color: #000000 !important;
-                font-size: 32px !important;
+                font-size: 28px !important;
             }
             .subtitle {
                 color: #9a7b0c !important;
@@ -177,6 +177,8 @@
                 border: 1px solid #ccc !important;
                 background: #f9f9f9 !important;
                 color: #000000 !important;
+                padding: 10px !important;
+                margin-bottom: 15px !important;
             }
             .contact-item {
                 color: #000000 !important;
@@ -184,7 +186,7 @@
             .grid {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
-                gap: 15px !important;
+                gap: 12px !important;
             }
             .card {
                 box-shadow: none !important;
@@ -193,14 +195,18 @@
                 page-break-inside: avoid !important;
             }
             .img-container {
-                height: 180px !important;
+                height: 150px !important;
+            }
+            img {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
         }
     </style>
 </head>
 <body>
     <button class="menu-toggle-btn" onclick="toggleSidebar()"><span>☰</span> Filtros y Búsqueda</button>
-    <button class="pdf-btn" onclick="window.print()"><span>📥</span> Descargar PDF</button>
+    <button class="pdf-btn" onclick="generatePDF()"><span>📥</span> Descargar PDF</button>
 
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
@@ -255,7 +261,7 @@
     <div class="grid" id="productGrid">
 
         <div class="card" data-search="perfume fleur l'bel 50ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ', 'PERFUME FLEUR')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" alt="FLEUR" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/18QDUFdX-1kqRg-Cqlegf9k4lOAQdihhQ" alt="FLEUR"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -270,7 +276,7 @@
         </div>
         
         <div class="card" data-search="perfume azul infinito esika 50ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q', 'PERFUME AZUL INFINITO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q" alt="AZUL INFINITO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1qxRHo3UVCMkcPVGA_2w-2v_Wt1ln3L1Q" alt="AZUL INFINITO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -285,7 +291,7 @@
         </div>
         
         <div class="card" data-search="gel hidratante humor meu primero escarchado natura 75gr" data-category="GEL HIDRATANTE" onclick="openModal('https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o', 'GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o" alt="HUMOR MEU PRIMERO ESCARCHADO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/10DEGjnpPZw4lfAKsJPU4L-Y5ePYmBl-o" alt="HUMOR MEU PRIMERO ESCARCHADO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -300,7 +306,7 @@
         </div>
         
         <div class="card" data-search="frescor ekos pitanga preta natura 150ml" data-category="FRESCOR" onclick="openModal('https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2', 'FRESCOR EKOS PITANGA PRETA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2" alt="EKOS PITANGA PRETA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1TqaBhrLTqXdJ9OWcMGp-GwS9DUm6Pow2" alt="EKOS PITANGA PRETA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -315,7 +321,7 @@
         </div>
         
         <div class="card" data-search="frescor ekos maracuya sueños natura 150ml" data-category="FRESCOR" onclick="openModal('https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC', 'FRESCOR EKOS MARACUYA SUEÑOS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC" alt="EKOS MARACUYA SUEÑOS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1vhELAX_FfGsfCQqkFBwSO0MSFK1JoOkC" alt="EKOS MARACUYA SUEÑOS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -330,7 +336,7 @@
         </div>
         
         <div class="card" data-search="frescor ekos ish pink natura 150ml" data-category="FRESCOR" onclick="openModal('https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9', 'FRESCOR EKOS ISH PINK')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9" alt="EKOS ISH PINK" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1DEFd18Yk3spxfRUA6b4rXk8wlNrd6_p9" alt="EKOS ISH PINK"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -345,7 +351,7 @@
         </div>
         
         <div class="card" data-search="crema corporal cupuacu natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F', 'CREMA CORPORAL CUPUACU')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F" alt="CUPUACU" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/13ZPtbrrM_2fSQxakH5WZgKjBdTR1Wd9F" alt="CUPUACU"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -360,7 +366,7 @@
         </div>
         
         <div class="card" data-search="mantequilla cupuacu natura 200gr" data-category="MANTEQUILLA" onclick="openModal('https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo', 'MANTEQUILLA CUPUACU')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo" alt="CUPUACU" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1VaKjwtSiG7TZDSWjPEhpURKKOAm_rZBo" alt="CUPUACU"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -375,7 +381,7 @@
         </div>
         
         <div class="card" data-search="colonia aguas natura 150ml" data-category="COLONIA" onclick="openModal('https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS', 'COLONIA AGUAS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS" alt="AGUAS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1cKHLk-WQsqgJp94PXfS2Ezx-XFEIqBtS" alt="AGUAS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -390,7 +396,7 @@
         </div>
         
         <div class="card" data-search="perfume topaze coleccion iconic avon 100ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650', 'PERFUME TOPAZE COLECCION ICONIC')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650" alt="TOPAZE COLECCION ICONIC" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZqY8VPrTQ_Ds1UKQNLG58u8ys_sJ3650" alt="TOPAZE COLECCION ICONIC"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -405,7 +411,7 @@
         </div>
         
         <div class="card" data-search="perfume sweet honesty colleccion iconic avon 100ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo', 'PERFUME SWEET HONESTY COLLECCION ICONIC')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo" alt="SWEET HONESTY COLLECCION ICONIC" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1BC26zKdzd1BRCFjlO8vf7UIPsQ2oAORo" alt="SWEET HONESTY COLLECCION ICONIC"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -420,7 +426,7 @@
         </div>
         
         <div class="card" data-search="perfume sweet black seduction cyzone 50ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW', 'PERFUME SWEET BLACK SEDUCTION')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW" alt="SWEET BLACK SEDUCTION" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1r3gXFCihDlHumxfEKrYQw7AwEhwEGZIW" alt="SWEET BLACK SEDUCTION"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -435,7 +441,7 @@
         </div>
         
         <div class="card" data-search="kit belleza expression esika kit" data-category="KIT BELLEZA" onclick="openModal('https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG', 'KIT BELLEZA EXPRESSION')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG" alt="EXPRESSION" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1d1wxoJzSZZCWCMp-ge_A4RtAOAEEezZG" alt="EXPRESSION"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -450,7 +456,7 @@
         </div>
         
         <div class="card" data-search="perfume soft musk avon 50ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_', 'PERFUME SOFT MUSK')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_" alt="SOFT MUSK" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ucY1k3eQQS6oM7hkieZq4wPVS_8iz1C_" alt="SOFT MUSK"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -465,7 +471,7 @@
         </div>
         
         <div class="card" data-search="pulpa cacau natura 75gr" data-category="PULPA" onclick="openModal('https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2', 'PULPA CACAU')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2" alt="CACAU" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1gQi0cdaeDZMCQMmsp1A6EFRmY3TIv_X2" alt="CACAU"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -480,7 +486,7 @@
         </div>
         
         <div class="card" data-search="pulpa maracuya natura 75gr" data-category="PULPA" onclick="openModal('https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7', 'PULPA MARACUYA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7" alt="MARACUYA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1BO760hWBssCGWnYMmKMSlBuZs5PLA4S7" alt="MARACUYA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -495,7 +501,7 @@
         </div>
         
         <div class="card" data-search="crema corporal todo dia algodon natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h', 'CREMA CORPORAL TODO DIA ALGODON')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h" alt="TODO DIA ALGODON" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/11A0Jga545NqyiU_bWAdopdYA8KWdld2h" alt="TODO DIA ALGODON"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -510,7 +516,7 @@
         </div>
         
         <div class="card" data-search="colonia horus azul marine natura 100ml" data-category="COLONIA" onclick="openModal('https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3', 'COLONIA HORUS AZUL MARINE')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3" alt="HORUS AZUL MARINE" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1QniuUJ8QgMQPj3e_JY0pEJSfz0AXhVH3" alt="HORUS AZUL MARINE"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -525,7 +531,7 @@
         </div>
         
         <div class="card" data-search="perfume black suede charm natura 100ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO', 'PERFUME BLACK SUEDE CHARM')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO" alt="BLACK SUEDE CHARM" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO" alt="BLACK SUEDE CHARM"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -540,7 +546,7 @@
         </div>
         
         <div class="card" data-search="splash violeta y lichi avon 200ml" data-category="SPLASH" onclick="openModal('https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-', 'SPLASH VIOLETA Y LICHI')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-" alt="VIOLETA Y LICHI" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1KA4NVaE3bXka1X6_U6N13dfY_2H86dB-" alt="VIOLETA Y LICHI"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -555,7 +561,7 @@
         </div>
         
         <div class="card" data-search="splash linos lilas y orquideas avon 200ml" data-category="SPLASH LINOS" onclick="openModal('https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK', 'SPLASH LINOS LILAS Y ORQUIDEAS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK" alt="LILAS Y ORQUIDEAS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1r3Jc3fZpKDlY5Rks6vrRqcN7BgQYYHPK" alt="LILAS Y ORQUIDEAS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -570,7 +576,7 @@
         </div>
         
         <div class="card" data-search="splash delirio leonisa 105ml" data-category="SPLASH" onclick="openModal('https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201', 'SPLASH DELIRIO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201" alt="DELIRIO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1XSXfStUNeykD9y-C0E-LJXuB6q2fj201" alt="DELIRIO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -585,7 +591,7 @@
         </div>
         
         <div class="card" data-search="pestañina mascara mega full size apa negra esika un" data-category="PESTAÑINA" onclick="openModal('https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz', 'PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz" alt="MASCARA MEGA FULL SIZE APA NEGRA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1rkp2JDqUqBbfjyK2H_btFq5enfLjnruz" alt="MASCARA MEGA FULL SIZE APA NEGRA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -600,7 +606,7 @@
         </div>
         
         <div class="card" data-search="pestañina exxtravagant extreme volume mascara avon un" data-category="PESTAÑINA" onclick="openModal('https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq', 'PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq" alt="EXXTRAVAGANT EXTREME VOLUME MASCARA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1I6hDPD_CqRiTZ_UvYy3Dr-He6Xs7PJnq" alt="EXXTRAVAGANT EXTREME VOLUME MASCARA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -615,7 +621,7 @@
         </div>
         
         <div class="card" data-search="pestañina faces negro natura un" data-category="PESTAÑINA" onclick="openModal('https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg', 'PESTAÑINA FACES NEGRO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg" alt="FACES NEGRO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1l5EOCVCufHv6rZ470WnmBIfgfRrnuqkg" alt="FACES NEGRO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -630,7 +636,7 @@
         </div>
         
         <div class="card" data-search="rubor ultra color red one avon 5gr" data-category="RUBOR" onclick="openModal('https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl', 'RUBOR ULTRA COLOR RED ONE')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl" alt="ULTRA COLOR RED ONE" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ElucZYUVrIk4e8tJi338ZWhz2MyQnAtl" alt="ULTRA COLOR RED ONE"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -645,7 +651,7 @@
         </div>
         
         <div class="card" data-search="sombras ocean vibe avon 5 tonos" data-category="SOMBRAS" onclick="openModal('https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q', 'SOMBRAS OCEAN VIBE')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q" alt="OCEAN VIBE" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1sqbJPFRz3tK6N2SB8zJiJfruhBkpzT2q" alt="OCEAN VIBE"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -660,7 +666,7 @@
         </div>
         
         <div class="card" data-search="delineador plumon negro avon un" data-category="DELINEADOR" onclick="openModal('https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4', 'DELINEADOR PLUMON NEGRO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4" alt="PLUMON NEGRO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1tOmAYiH0pjkg6nKj1CllJAOYPJwHI9Z4" alt="PLUMON NEGRO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge no-disponible">AGOTADO</span>
@@ -675,7 +681,7 @@
         </div>
         
         <div class="card" data-search="lapiz para ojos azul mate avon un" data-category="LAPIZ PARA OJOS" onclick="openModal('https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_', 'LAPIZ PARA OJOS AZUL MATE')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_" alt="AZUL MATE" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1WEDHPtLwijc-08SLJQyfRNe5WzHlllX_" alt="AZUL MATE"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -690,7 +696,7 @@
         </div>
         
         <div class="card" data-search="delineador liquido rojo pincel avon un" data-category="DELINEADOR" onclick="openModal('https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_', 'DELINEADOR LIQUIDO ROJO PINCEL')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_" alt="LIQUIDO ROJO PINCEL" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/11pGNHUaW0wDwbMmJHh8P4vATBOxuOWr_" alt="LIQUIDO ROJO PINCEL"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -705,7 +711,7 @@
         </div>
         
         <div class="card" data-search="balsamo labial rose creme l'bel un" data-category="BALSAMO LABIAL" onclick="openModal('https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3', 'BALSAMO LABIAL ROSE CREME')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3" alt="ROSE CREME" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1DLx5Ic9T6FX14tCSTM-7xj1gNgEpEkK3" alt="ROSE CREME"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -720,7 +726,7 @@
         </div>
         
         <div class="card" data-search="balsamo labial red avon un" data-category="BALSAMO LABIAL" onclick="openModal('https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY', 'BALSAMO LABIAL RED')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY" alt="RED" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/15rpEhykBaOFxfyxawkIdTu0kg1x7RZNY" alt="RED"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -735,7 +741,7 @@
         </div>
         
         <div class="card" data-search="crema corporal todo dia fresa y vainilla dorada natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp', 'CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp" alt="TODO DIA FRESA Y VAINILLA DORADA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1hyxgWc_eQsYI19jO4eEbbnVYP60rd_bp" alt="TODO DIA FRESA Y VAINILLA DORADA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -750,7 +756,7 @@
         </div>
         
         <div class="card" data-search="crema corporal todo dia ciruela y flor de vainilla natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX', 'CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX" alt="TODO DIA CIRUELA Y FLOR DE VAINILLA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ZFKpO6sw1dz7m7gRwovjbIIrrf-leyGX" alt="TODO DIA CIRUELA Y FLOR DE VAINILLA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -765,7 +771,7 @@
         </div>
         
         <div class="card" data-search="crema corporal todo dia frutos rojos natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o', 'CREMA CORPORAL TODO DIA FRUTOS ROJOS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o" alt="TODO DIA FRUTOS ROJOS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1THDkzRFunYWQLideWlXpirFmCHsQi89o" alt="TODO DIA FRUTOS ROJOS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge no-disponible">AGOTADO</span>
@@ -780,7 +786,7 @@
         </div>
         
         <div class="card" data-search="jabones vegetales cereza negra y praliné cajax5 natura cj x 5" data-category="JABONES VEGETALES" onclick="openModal('https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ', 'JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ" alt="CEREZA NEGRA Y PRALINÉ CAJAx5" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1B43l82qtVd310Z0ZZu7-nPXDDCeCvHDJ" alt="CEREZA NEGRA Y PRALINÉ CAJAx5"></div>
             <div class="card-body">
                 <div>
                     <span class="badge no-disponible">AGOTADO</span>
@@ -795,7 +801,7 @@
         </div>
         
         <div class="card" data-search="jabones vegetales algodón cajax5 natura cj x 5" data-category="JABONES VEGETALES" onclick="openModal('https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2', 'JABONES VEGETALES ALGODÓN CAJAx5')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2" alt="ALGODÓN CAJAx5" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1UdjaSIMLhT2ChvJ0yDL3AMnuNRTAUTP2" alt="ALGODÓN CAJAx5"></div>
             <div class="card-body">
                 <div>
                     <span class="badge no-disponible">AGOTADO</span>
@@ -810,7 +816,7 @@
         </div>
         
         <div class="card" data-search="jabones vegetales fresa y vainilla dorada cajax5 natura cj x 5" data-category="JABONES VEGETALES" onclick="openModal('https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj', 'JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj" alt="FRESA Y VAINILLA DORADA CAJAx5" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Yaagtt3d9qOHFZqqocZwPEFR_9yV-Vzj" alt="FRESA Y VAINILLA DORADA CAJAx5"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -825,7 +831,7 @@
         </div>
         
         <div class="card" data-search="protector solar defense total l'bel 30ml" data-category="PROTECTOR SOLAR" onclick="openModal('https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU', 'PROTECTOR SOLAR DEFENSE TOTAL')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU" alt="DEFENSE TOTAL" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1ybDVQ88b7-7orbOJbOTja9BVRdpY8aKU" alt="DEFENSE TOTAL"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -840,7 +846,7 @@
         </div>
         
         <div class="card" data-search="skincare serum intensivo reductor arrugas l'bel 27ml" data-category="SKINCARE" onclick="openModal('https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk', 'SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk" alt="SERUM INTENSIVO REDUCTOR ARRUGAS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Cb5MJz2nzRa8ZBp_IRCKVx3lGzMR3Ajk" alt="SERUM INTENSIVO REDUCTOR ARRUGAS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -855,7 +861,7 @@
         </div>
         
         <div class="card" data-search="skincare serum vitamina c avon 30ml" data-category="SKINCARE" onclick="openModal('https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV', 'SKINCARE SERUM VITAMINA C')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV" alt="SERUM VITAMINA C" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1PNGkYleXphSXtjOXe0iUO1kg01-pjvvV" alt="SERUM VITAMINA C"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -870,7 +876,7 @@
         </div>
         
         <div class="card" data-search="skincare gel hidratante con acido hialuronico l'bel 40gr" data-category="SKINCARE" onclick="openModal('https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755', 'SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755" alt="GEL HIDRATANTE CON ACIDO HIALURONICO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1AEqOipThadMY0SRj7Yu1ntyQQvQFy755" alt="GEL HIDRATANTE CON ACIDO HIALURONICO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -885,7 +891,7 @@
         </div>
         
         <div class="card" data-search="cuidado del cabello serum tratamiento dream liso l'oreal 100ml" data-category="CUIDADO DEL CABELLO" onclick="openModal('https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv', 'CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" alt="SERUM TRATAMIENTO DREAM LISO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" alt="SERUM TRATAMIENTO DREAM LISO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -900,7 +906,7 @@
         </div>
         
         <div class="card" data-search="cuidado del cabello mascarilla tratamiento reparacion flor de cereza y aguacate natura 250ml" data-category="CUIDADO DEL CABELLO" onclick="openModal('https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl', 'CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl" alt="MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1VACLs3ZdH-88IiWigYYaeliEBXd187zl" alt="MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -915,7 +921,7 @@
         </div>
         
         <div class="card" data-search="skincare crema hidratante pond's 100gr" data-category="SKINCARE" onclick="openModal('https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4', 'SKINCARE CREMA HIDRATANTE')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4" alt="CREMA HIDRATANTE" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1yRUF2JluWuRI9Dene1PBWxizN25do0f4" alt="CREMA HIDRATANTE"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -930,7 +936,7 @@
         </div>
         
         <div class="card" data-search="accesorios bolso manos libres color camel leonisa un" data-category="ACCESORIOS" onclick="openModal('https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_', 'ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_" alt="BOLSO MANOS LIBRES COLOR CAMEL" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1C-l-qEfykudxFsgs3HRVZVXe00qfx7U_" alt="BOLSO MANOS LIBRES COLOR CAMEL"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -945,7 +951,7 @@
         </div>
         
         <div class="card" data-search="jabones vegetales cacao con estuche - edición especial natura cj x 4" data-category="JABONES VEGETALES" onclick="openModal('https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB', 'JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB" alt="CACAO CON ESTUCHE - EDICIÓN ESPECIAL" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/17FP5tRVuCvte4Ma0yogn0OqDexUfF0rB" alt="CACAO CON ESTUCHE - EDICIÓN ESPECIAL"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -960,7 +966,7 @@
         </div>
         
         <div class="card" data-search="shampoo anticaida dr. c. tuna farmasi 225ml" data-category="SHAMPOO" onclick="openModal('https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU', 'SHAMPOO ANTICAIDA DR. C. TUNA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU" alt="ANTICAIDA DR. C. TUNA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1_zVcVZkcJxX-yyAUDiK4cWMfaHvu6ivU" alt="ANTICAIDA DR. C. TUNA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge no-disponible">AGOTADO</span>
@@ -975,7 +981,7 @@
         </div>
         
         <div class="card" data-search="labial faces cobre sunset natura un" data-category="LABIAL" onclick="openModal('https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn', 'LABIAL FACES COBRE SUNSET')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn" alt="FACES COBRE SUNSET" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1yiQKNn9995DrxMpxFD43YSQ0FVxjNzFn" alt="FACES COBRE SUNSET"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -990,7 +996,7 @@
         </div>
         
         <div class="card" data-search="cuidado del cabello serum reconstructor avon para puntas secas y abiertas avon 30ml" data-category="CUIDADO DEL CABELLO" onclick="openModal('https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s', 'CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s" alt="SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/13SmcwGH35brKYyTvwcYg5kFkwA2jlD0s" alt="SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1005,7 +1011,7 @@
         </div>
         
         <div class="card" data-search="frescor ekos castaña natura 150ml" data-category="FRESCOR" onclick="openModal('https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v', 'FRESCOR EKOS CASTAÑA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v" alt="EKOS CASTAÑA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Nkri5eI0jHchPm03mMhBMazAgv5xkR4v" alt="EKOS CASTAÑA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1020,7 +1026,7 @@
         </div>
         
         <div class="card" data-search="frescor ekos acai natura 150ml" data-category="FRESCOR" onclick="openModal('https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe', 'FRESCOR EKOS ACAI')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe" alt="EKOS ACAI" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Cscd6Z5EhyZFAq8yTK_qzupmk7jjAkwe" alt="EKOS ACAI"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1035,7 +1041,7 @@
         </div>
         
         <div class="card" data-search="crema corporal todo dia pera y flor de loto natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog" alt="TODO DIA PERA Y FLOR DE LOTO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/14FBCsURnNC0GO8-oDQkJlvkO7pwXjYog" alt="TODO DIA PERA Y FLOR DE LOTO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1050,7 +1056,7 @@
         </div>
         
         <div class="card" data-search="crema corporal todo dia pera y flor de loto (refil) natura 400ml" data-category="CREMA CORPORAL" onclick="openModal('https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2', 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" alt="TODO DIA PERA Y FLOR DE LOTO (REFIL)" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" alt="TODO DIA PERA Y FLOR DE LOTO (REFIL)"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1065,7 +1071,7 @@
         </div>
         
         <div class="card" data-search="cuidado del cabello serum seis oleos l'oreal 100ml" data-category="CUIDADO DEL CABELLO" onclick="openModal('https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-', 'CUIDADO DEL CABELLO SERUM SEIS OLEOS')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-" alt="SERUM SEIS OLEOS" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1YK4X8XVgY5schmnloSf6OpyoEJaBrxh-" alt="SERUM SEIS OLEOS"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1080,7 +1086,7 @@
         </div>
         
         <div class="card" data-search="shampoo lumina anticaida y crecimiento (refil) natura 300ml" data-category="SHAMPOO" onclick="openModal('https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b', 'SHAMPOO LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b" alt="LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1eoooK08V3a_v3gNoFpVVwWMirc1R2R5b" alt="LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1095,7 +1101,7 @@
         </div>
         
         <div class="card" data-search="delineador plumon alta precision cyzone un" data-category="DELINEADOR" onclick="openModal('https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG', 'DELINEADOR PLUMON ALTA PRECISION')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG" alt="PLUMON ALTA PRECISION" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1i70UkhE-VCJ2HoUafz_PdjnQz4Ss55HG" alt="PLUMON ALTA PRECISION"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1110,7 +1116,7 @@
         </div>
         
         <div class="card" data-search="perfume blue femenino l'bel 50ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1Hwc34nJtWGohlAHEH_7xmu3Nb2b-g4Oo', 'PERFUME BLUE FEMENINO')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Hwc34nJtWGohlAHEH_7xmu3Nb2b-g4Oo" alt="BLUE FEMENINO" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1Hwc34nJtWGohlAHEH_7xmu3Nb2b-g4Oo" alt="BLUE FEMENINO"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1125,7 +1131,7 @@
         </div>
         
         <div class="card" data-search="perfume mithyka l'bel 50ml" data-category="PERFUME" onclick="openModal('https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8', 'PERFUME MITHYKA')">
-            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8" alt="MITHYKA" loading="lazy"></div>
+            <div class="img-container"><img src="https://lh3.googleusercontent.com/d/1hOIZBycEJS1fudhpo7abw-mlFHIGlii8" alt="MITHYKA"></div>
             <div class="card-body">
                 <div>
                     <span class="badge disponible">DISPONIBLE</span>
@@ -1188,7 +1194,39 @@
                 closeModalDirect();
             }
         }
+
+        /* FUNCIÓN INTELIGENTE PARA FORZAR CARGA DE TODAS LAS FOTOS ANTES DE IMPRIMIR */
+        function generatePDF() {
+            const images = document.querySelectorAll('.card img');
+            let loadedCount = 0;
+            
+            if (images.length === 0) {
+                window.print();
+                return;
+            }
+
+            images.forEach(img => {
+                if (img.complete) {
+                    loadedCount++;
+                    if (loadedCount === images.length) window.print();
+                } else {
+                    img.onload = () => {
+                        loadedCount++;
+                        if (loadedCount === images.length) window.print();
+                    };
+                    img.onerror = () => {
+                        loadedCount++;
+                        if (loadedCount === images.length) window.print();
+                    };
+                }
+            });
+            
+            // Seguridad por si alguna imagen se demora mucho: abre el diálogo tras 2 segundos máximo
+            setTimeout(() => {
+                window.print();
+            }, 2000);
+        }
     </script>
-    <!-- v_1792807324 -->
+    <!-- v_1792807587 -->
 </body>
 </html>
