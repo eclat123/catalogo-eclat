@@ -2666,7 +2666,8 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             detailImg.src = imgUrl;
             document.getElementById('detailTitle').textContent = title;
             document.getElementById('detailBrand').textContent = brand;
-            document.getElementById('detailDetails').textContent = details.includes('<br>') ? ('• ' + details.replace(/<br>/gi, String.fromCharCode(10) + '• ')) : details;
+            const cleanDetails = details.split('**').join('').replace(/<br>/gi, String.fromCharCode(10));
+            document.getElementById('detailDetails').textContent = cleanDetails.includes(String.fromCharCode(10)) ? ('• ' + cleanDetails.split(String.fromCharCode(10)).join(String.fromCharCode(10) + '• ')) : cleanDetails;
             const waText = `Hola, quisiera más información sobre: ${title}${brand ? ' - ' + brand : ''}. ¿Me pueden asesorar?`;
             document.getElementById('detailWhatsapp').href = 'https://wa.me/573118620589?text=' + encodeURIComponent(waText);
             document.getElementById('detailModal').classList.add('active');
@@ -2736,6 +2737,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792883218 -->
+    <!-- v_detail_zoom_hd_fixed_1792883379 -->
 </body>
 </html>
