@@ -3,212 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Éclat • Catálogo Exclusivo de Belleza</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Éclat • Haute Parfumerie & Beauté</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0b0f19;
-            --accent: #d4af37;
-            --accent-hover: #e5c158;
-            --bg-gradient: linear-gradient(135deg, #07090e 0%, #111827 50%, #1f121a 100%);
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --border-color: rgba(212, 175, 55, 0.25);
+            --bg-color: #0c0c0c;
+            --surface-color: #141414;
+            --accent-gold: #c5a059;
+            --text-primary: #f5f5f5;
+            --text-secondary: #9ca3af;
+            --border-subtle: rgba(197, 160, 89, 0.2);
         }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
-            padding: 30px 20px 90px 20px;
+            padding: 40px 24px 100px 24px;
             min-height: 100vh;
+            letter-spacing: 0.02em;
         }
-        
-        /* HEADER PROFESIONAL */
-        header { text-align: center; margin-bottom: 25px; }
-        .logo-container { margin-bottom: 12px; }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-container { margin-bottom: 16px; }
         .logo-monogram {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 64px; height: 64px; border: 2px solid var(--accent);
-            border-radius: 50%; font-family: 'Playfair Display', serif;
-            font-size: 28px; color: var(--accent); background: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            color: var(--accent-gold);
+            background: rgba(197, 160, 89, 0.04);
+            letter-spacing: 2px;
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 42px; color: #ffffff; letter-spacing: 8px; margin: 0; }
-        .subtitle { color: var(--accent); font-size: 13px; letter-spacing: 5px; text-transform: uppercase; margin-top: 6px; font-weight: 600; }
-
-        /* BARRA DE BOTONES FLOTANTES SUPERIORES */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 46px;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 12px;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            color: var(--accent-gold);
+            font-size: 11px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
         .top-actions {
-            position: fixed; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between;
-            pointer-events: none; z-index: 100; max-width: 1300px; margin: 0 auto;
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            right: 24px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 100;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .menu-toggle-btn, .pdf-btn {
-            pointer-events: auto; background: rgba(17, 24, 39, 0.9); backdrop-filter: blur(12px);
-            color: #fff; border: 1.5px solid var(--accent); padding: 10px 18px;
-            border-radius: 50px; font-weight: 600; font-size: 13px; cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 8px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .action-btn {
+            pointer-events: auto;
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(12px);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            padding: 11px 22px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
         }
-        .menu-toggle-btn:hover, .pdf-btn:hover { background: var(--accent); color: #000; transform: translateY(-2px); }
-        .pdf-btn { background: rgba(212, 175, 55, 0.9); color: #000; font-weight: 700; }
-
-        /* SIDEBAR DE FILTROS */
+        .action-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+        .pdf-btn {
+            background: rgba(197, 160, 89, 0.9);
+            color: #000;
+            font-weight: 600;
+        }
+        .contact-banner {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            background: var(--surface-color);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-item:hover { color: var(--accent-gold); }
+        .contact-item i { font-size: 18px; }
+        .wa-icon { color: #25d366; }
+        .nequi-icon { color: var(--accent-gold); }
         .sidebar {
-            position: fixed; top: 0; left: -340px; width: 320px; height: 100%;
-            background: rgba(11, 15, 25, 0.98); backdrop-filter: blur(20px);
-            border-right: 1px solid var(--border-color); z-index: 200;
-            box-shadow: 15px 0 50px rgba(0,0,0,0.7); transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            display: flex; flex-direction: column; padding: 30px 22px; box-sizing: border-box; overflow-y: auto;
+            position: fixed;
+            top: 0;
+            left: -360px;
+            width: 340px;
+            height: 100%;
+            background: #111111;
+            border-right: 1px solid var(--border-subtle);
+            z-index: 200;
+            box-shadow: 20px 0 60px rgba(0,0,0,0.8);
+            transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 35px 25px;
+            box-sizing: border-box;
+            overflow-y: auto;
         }
         .sidebar.open { left: 0; }
         .sidebar-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 15px;
         }
-        .sidebar-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--accent); letter-spacing: 2px; margin: 0; }
-        .sidebar-close { background: none; border: none; color: #fff; font-size: 26px; cursor: pointer; transition: color 0.2s; }
-        .sidebar-close:hover { color: var(--accent); }
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--accent-gold);
+            letter-spacing: 3px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
         .sidebar-search {
-            width: 100%; padding: 13px 20px; font-size: 14px; border: 1.5px solid var(--border-color);
-            border-radius: 30px; outline: none; background: rgba(255, 255, 255, 0.08); color: #fff; margin-bottom: 25px; box-sizing: border-box;
-            transition: border-color 0.3s;
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 13px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            outline: none;
+            background: #1a1a1a;
+            color: #fff;
+            margin-bottom: 30px;
+            box-sizing: border-box;
         }
-        .sidebar-search:focus { border-color: var(--accent); background: rgba(255, 255, 255, 0.12); }
-        .sidebar-categories { display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-categories { display: flex; flex-direction: column; gap: 8px; }
         .cat-btn-sidebar {
-            background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 600;
-            color: #d1d5db; text-align: left; cursor: pointer; transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         .cat-btn-sidebar:hover, .cat-btn-sidebar.active {
-            background: var(--accent); color: #000000; font-weight: 700; transform: translateX(6px);
-            border-color: var(--accent);
+            background: rgba(197, 160, 89, 0.08);
+            color: var(--accent-gold);
+            border-color: var(--border-subtle);
+            padding-left: 22px;
         }
         .sidebar-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(5px); z-index: 150;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 150;
         }
         .sidebar-overlay.active { display: block; }
-
-        /* BANNER DE CONTACTO PROFESIONAL */
-        .contact-banner {
-            max-width: 1100px; margin: 0 auto 35px auto; background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color); border-radius: 18px; padding: 16px 25px;
-            display: flex; justify-content: center; align-items: center; gap: 35px; flex-wrap: wrap;
-            backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .contact-item {
-            display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #f3f4f6;
-            text-decoration: none; transition: transform 0.2s;
-        }
-        .contact-item:hover { transform: scale(1.04); color: var(--accent); }
-        .contact-item i { font-size: 22px; }
-        .wa-icon { color: #25d366; }
-        .nequi-icon { color: #ff3366; }
-
-        /* GRID DE PRODUCTOS ELEGANTE */
         .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 28px; max-width: 1200px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1300px;
+            margin: 0 auto;
         }
         .card {
-            background: #ffffff !important; color: var(--text-main) !important; border-radius: 20px;
-            overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.25); display: flex;
-            flex-direction: column; border: 1px solid rgba(212, 175, 55, 0.2); cursor: pointer; 
-            transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            break-inside: avoid; page-break-inside: avoid;
+            background: var(--surface-color) !important;
+            color: var(--text-primary) !important;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 22px 45px rgba(212, 175, 55, 0.25); }
-        
-        .img-container { 
-            width: 100%; height: 260px; background: #fafafa; display: flex; align-items: center; 
-            justify-content: center; padding: 15px; box-sizing: border-box; position: relative;
-            border-bottom: 1px solid #f3f4f6;
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
         }
-        .card img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s ease; }
-        .card:hover img { transform: scale(1.06); }
-        .sin-imagen { color: #9ca3af; font-size: 12px; font-weight: 500; text-align: center; }
-        
-        .card-body { padding: 18px 20px 20px 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        
-        .badge { 
-            display: inline-block; padding: 4px 10px; font-size: 10px; font-weight: 700; 
-            border-radius: 20px; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;
+        .img-container {
+            width: 100%;
+            height: 320px;
+            background: #171717;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            box-sizing: border-box;
+            position: relative;
         }
-        .disponible { background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
-        .no-disponible { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
-        
-        .brand { font-size: 11px; color: #b45309; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 2px; }
-        .title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 6px; line-height: 1.3; }
-        
-        .presentation { font-size: 12px; color: #4b5563; margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
-        .presentation i { color: var(--accent); font-size: 12px; }
-
-        .footer-card { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f3f4f6; padding-top: 12px; margin-top: auto; }
-        .price { font-size: 20px; font-weight: 700; color: #0f172a; font-family: 'Playfair Display', serif; }
-        
-        .view-detail-hint { font-size: 11px; color: #9ca3af; font-weight: 500; display: flex; align-items: center; gap: 4px; }
-        .view-detail-hint i { font-size: 10px; }
-
-        /* MODAL DE ZOOM PROFESIONAL */
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .card:hover img { transform: scale(1.04); }
+        .sin-imagen { color: var(--text-secondary); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+        .card-body {
+            padding: 22px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            font-size: 9px;
+            font-weight: 600;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+        .disponible {
+            background-color: rgba(4, 120, 87, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        .no-disponible {
+            background-color: rgba(185, 28, 28, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, 0.3);
+        }
+        .brand {
+            font-size: 10px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            margin-bottom: 4px;
+        }
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+        .presentation {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+        }
+        .presentation i { color: var(--accent-gold); font-size: 10px; }
+        .footer-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 14px;
+            margin-top: auto;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+        .view-detail-hint {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
         .image-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 7, 12, 0.9); backdrop-filter: blur(10px); z-index: 1000;
-            justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 8, 8, 0.92);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .image-modal.active { display: flex; }
         .modal-content {
-            max-width: 90%; max-height: 85vh; border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8); background: #ffffff; padding: 20px;
-            position: relative; animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 85%;
+            max-height: 85vh;
+            border-radius: 4px;
+            background: #141414;
+            border: 1px solid var(--border-subtle);
+            padding: 30px;
+            position: relative;
+            animation: zoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .modal-content img { max-width: 100%; max-height: 72vh; object-fit: contain; display: block; margin: 0 auto; border-radius: 12px; }
-        .modal-title { text-align: center; color: #111827; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-top: 14px; }
+        .modal-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .modal-title {
+            text-align: center;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
         .modal-close {
-            position: absolute; top: -15px; right: -15px; background: var(--accent); color: #000;
-            border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 20px;
-            font-weight: bold; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .modal-close:hover { transform: scale(1.1); }
         @keyframes zoomIn {
-            from { transform: scale(0.75); opacity: 0; }
+            from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
-        /* REGLAS DE IMPRESIÓN / PDF IMPECABLES */
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
             .top-actions, .sidebar, .sidebar-overlay, .image-modal { display: none !important; }
-            header h1 { color: #000000 !important; font-size: 28px !important; }
-            .subtitle { color: #9a7b0c !important; }
-            .contact-banner { border: 1px solid #ccc !important; background: #f9f9f9 !important; color: #000000 !important; padding: 10px !important; margin-bottom: 15px !important; }
+            header { border-bottom-color: #ddd !important; }
+            header h1 { color: #000000 !important; font-size: 26px !important; }
+            .subtitle { color: var(--accent-gold) !important; }
+            .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
             .contact-item { color: #000000 !important; }
-            .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
-            .card { box-shadow: none !important; border: 1px solid #ddd !important; break-inside: avoid !important; page-break-inside: avoid !important; }
-            .img-container { height: 150px !important; }
+            .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
+            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+            .img-container { background: #f9f9f9 !important; height: 160px !important; }
+            .title, .price { color: #111827 !important; }
+            .brand, .presentation { color: #4b5563 !important; }
             img { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
     <div class="top-actions">
-        <button class="menu-toggle-btn" onclick="toggleSidebar()"><span>☰</span> Menú y Búsqueda</button>
-        <button class="pdf-btn" onclick="generatePDF()"><span>📥</span> Descargar PDF</button>
+        <button class="action-btn" onclick="toggleSidebar()"><span>☰</span> Colecciones</button>
+        <button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button>
     </div>
 
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3 class="sidebar-title">FILTRAR</h3>
+            <h3 class="sidebar-title">Colecciones</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">×</button>
         </div>
-        <input type="text" id="searchInput" class="sidebar-search" onkeyup="filterCatalog()" placeholder="✨ Buscar producto...">
+        <input type="text" id="searchInput" class="sidebar-search" onkeyup="filterCatalog()" placeholder="Buscar creación...">
         <div class="sidebar-categories">
-            <button class="cat-btn-sidebar active" onclick="filterByCategory('TODOS', this)">Todos los productos</button>
+            <button class="cat-btn-sidebar active" onclick="filterByCategory('TODOS', this)">Todas las colecciones</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('ACCESORIOS', this)">ACCESORIOS</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('BALSAMO LABIAL', this)">BALSAMO LABIAL</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('COLONIA', this)">COLONIA</button>
@@ -239,15 +469,15 @@
     <header>
         <div class="logo-container"><div class="logo-monogram">É</div></div>
         <h1>ÉCLAT</h1>
-        <div class="subtitle">Catálogo Exclusivo de Belleza</div>
+        <div class="subtitle">Haute Parfumerie & Beauté Exclusive</div>
     </header>
 
     <div class="contact-banner">
-        <a href="https://wa.me/573118620589?text=Hola,%20quiero%20más%20información%20sobre%20el%20catálogo%20Éclat" target="_blank" class="contact-item">
-            <i class="fa-brands fa-whatsapp wa-icon"></i> WhatsApp: 311 862 0589
+        <a href="https://wa.me/573118620589?text=Hola,%20deseo%20asesoría%20personalizada%20con%20el%20catálogo%20Éclat" target="_blank" class="contact-item">
+            <i class="fa-brands fa-whatsapp wa-icon"></i> Asesoría WhatsApp: 311 862 0589
         </a>
         <div class="contact-item">
-            <i class="fa-solid fa-wallet nequi-icon"></i> Nequi: 311 862 0589
+            <i class="fa-solid fa-wallet nequi-icon"></i> Pagos Nequi: 311 862 0589
         </div>
     </div>
 
@@ -260,11 +490,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">PERFUME FLEUR</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -276,11 +506,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
                     <div class="title">PERFUME AZUL INFINITO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -292,11 +522,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">GEL HIDRATANTE HUMOR MEU PRIMERO ESCARCHADO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 75GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 75GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$25.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -308,11 +538,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS PITANGA PRETA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -324,11 +554,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS MARACUYA SUEÑOS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -340,11 +570,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS ISH PINK</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -356,11 +586,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL CUPUACU</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -372,11 +602,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">MANTEQUILLA CUPUACU</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 200GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 200GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -388,11 +618,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">COLONIA AGUAS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -404,11 +634,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PERFUME TOPAZE COLECCION ICONIC</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$75.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -420,11 +650,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PERFUME SWEET HONESTY COLLECCION ICONIC</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$75.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -436,11 +666,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">CYZONE</div>
                     <div class="title">PERFUME SWEET BLACK SEDUCTION</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$30.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -452,11 +682,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
                     <div class="title">KIT BELLEZA EXPRESSION</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> KIT</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> KIT</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$84.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -468,11 +698,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PERFUME SOFT MUSK</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -484,11 +714,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PULPA CACAU</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 75GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 75GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -500,11 +730,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PULPA MARACUYA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 75GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 75GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -516,11 +746,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA ALGODON</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -532,11 +762,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">COLONIA HORUS AZUL MARINE</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -548,11 +778,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PERFUME BLACK SUEDE CHARM</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -564,11 +794,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SPLASH VIOLETA Y LICHI</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 200ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 200ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -580,11 +810,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SPLASH LINOS LILAS Y ORQUIDEAS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 200ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 200ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$14.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -596,11 +826,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">LEONISA</div>
                     <div class="title">SPLASH DELIRIO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 105ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 105ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -612,11 +842,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">ESIKA</div>
                     <div class="title">PESTAÑINA MASCARA MEGA FULL SIZE APA NEGRA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$22.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -628,11 +858,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">PESTAÑINA EXXTRAVAGANT EXTREME VOLUME MASCARA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$24.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -644,11 +874,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">PESTAÑINA FACES NEGRO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$28.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -660,11 +890,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">RUBOR ULTRA COLOR RED ONE</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 5GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 5GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -676,11 +906,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SOMBRAS OCEAN VIBE</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 5 TONOS</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 5 TONOS</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -692,11 +922,11 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">AVON</div>
                     <div class="title">DELINEADOR PLUMON NEGRO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -708,11 +938,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">LAPIZ PARA OJOS AZUL MATE</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$10.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -724,11 +954,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">DELINEADOR LIQUIDO ROJO PINCEL</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -740,11 +970,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">BALSAMO LABIAL ROSE CREME</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -756,11 +986,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">BALSAMO LABIAL RED</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -772,11 +1002,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA FRESA Y VAINILLA DORADA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -788,11 +1018,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA CIRUELA Y FLOR DE VAINILLA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -804,11 +1034,11 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA FRUTOS ROJOS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -820,11 +1050,11 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES CEREZA NEGRA Y PRALINÉ CAJAx5</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 5</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> CJ X 5</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -836,11 +1066,11 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES ALGODÓN CAJAx5</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 5</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> CJ X 5</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -852,11 +1082,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES FRESA Y VAINILLA DORADA CAJAx5</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 5</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> CJ X 5</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -868,11 +1098,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">PROTECTOR SOLAR DEFENSE TOTAL</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 30ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 30ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -884,11 +1114,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">SKINCARE SERUM INTENSIVO REDUCTOR ARRUGAS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 27ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 27ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$70.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -900,11 +1130,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">SKINCARE SERUM VITAMINA C</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 30ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 30ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -916,11 +1146,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">SKINCARE GEL HIDRATANTE CON ACIDO HIALURONICO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 40GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 40GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$80.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -932,11 +1162,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'OREAL</div>
                     <div class="title">CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -948,11 +1178,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CUIDADO DEL CABELLO MASCARILLA TRATAMIENTO REPARACION FLOR DE CEREZA Y AGUACATE</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 250ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 250ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$36.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -964,11 +1194,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">POND'S</div>
                     <div class="title">SKINCARE CREMA HIDRATANTE</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100GR</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100GR</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$25.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -980,11 +1210,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">LEONISA</div>
                     <div class="title">ACCESORIOS BOLSO MANOS LIBRES COLOR CAMEL</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$35.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -996,11 +1226,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">JABONES VEGETALES CACAO CON ESTUCHE - EDICIÓN ESPECIAL</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> CJ X 4</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> CJ X 4</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1012,11 +1242,11 @@
                     <span class="badge no-disponible">AGOTADO</span>
                     <div class="brand">FARMASI</div>
                     <div class="title">SHAMPOO ANTICAIDA DR. C. TUNA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 225ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 225ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1028,11 +1258,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">LABIAL FACES COBRE SUNSET</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$20.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1044,11 +1274,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">AVON</div>
                     <div class="title">CUIDADO DEL CABELLO SERUM RECONSTRUCTOR AVON PARA PUNTAS SECAS Y ABIERTAS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 30ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 30ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$15.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1060,11 +1290,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS CASTAÑA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1076,11 +1306,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">FRESCOR EKOS ACAI</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 150ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 150ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$65.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1092,11 +1322,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$55.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1108,11 +1338,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 400ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 400ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1124,11 +1354,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'OREAL</div>
                     <div class="title">CUIDADO DEL CABELLO SERUM SEIS OLEOS</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 100ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$40.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1140,11 +1370,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">NATURA</div>
                     <div class="title">SHAMPOO LUMINA ANTICAIDA Y CRECIMIENTO (REFIL)</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 300ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 300ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1156,11 +1386,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">CYZONE</div>
                     <div class="title">DELINEADOR PLUMON ALTA PRECISION</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> UN</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> UN</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$18.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1172,11 +1402,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">PERFUME BLUE FEMENINO</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$50.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1188,11 +1418,11 @@
                     <span class="badge disponible">DISPONIBLE</span>
                     <div class="brand">L'BEL</div>
                     <div class="title">PERFUME MITHYKA</div>
-                    <div class="presentation"><i class="fa-solid fa-box-open"></i> 50ML</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
                 </div>
                 <div class="footer-card">
                     <span class="price">$60.000</span>
-                    <span class="view-detail-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Ver foto</span>
+                    <span class="view-detail-hint"><i class="fa-solid fa-expand"></i> Detalle</span>
                 </div>
             </div>
         </div>
@@ -1202,7 +1432,7 @@
     <div class="image-modal" id="imageModal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModalDirect()">×</button>
-            <img id="modalImg" src="" alt="Producto ampliado">
+            <img id="modalImg" src="" alt="Creación ampliada">
             <div class="modal-title" id="modalTitle"></div>
         </div>
     </div>
@@ -1277,6 +1507,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792809045 -->
+    <!-- v_1792809314 -->
 </body>
 </html>
