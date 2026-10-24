@@ -405,26 +405,55 @@
             box-shadow: 0 6px 25px rgba(197, 160, 89, 0.3);
         }
 
-        .sidebar-categories { display: flex; flex-direction: column; gap: 8px; }
+        .sidebar-categories { display: flex; flex-direction: column; gap: 7px; }
         .cat-btn-sidebar {
-            background: transparent;
-            border: 1px solid transparent;
-            padding: 12px 16px;
-            border-radius: 4px;
-            font-size: 12px;
+            position: relative;
+            background: linear-gradient(110deg, rgba(255,255,255,.018), transparent);
+            border: 1px solid rgba(255,255,255,.055);
+            padding: 11px 14px;
+            border-radius: 7px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--text-secondary);
             text-align: left;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.22s ease;
         }
+        .cat-btn-sidebar::after { content: '›'; position: absolute; right: 13px; color: var(--accent-gold); opacity: 0; transition: opacity .2s ease, transform .2s ease; }
         .cat-btn-sidebar:hover, .cat-btn-sidebar.active {
-            background: rgba(197, 160, 89, 0.08);
-            color: var(--accent-gold);
-            border-color: var(--border-subtle);
-            padding-left: 22px;
+            background: linear-gradient(110deg, rgba(197,160,89,.14), rgba(197,160,89,.035));
+            color: #f4d99c;
+            border-color: rgba(197,160,89,.42);
+            padding-left: 17px;
+        }
+        .cat-btn-sidebar:hover::after, .cat-btn-sidebar.active::after { opacity: 1; transform: translateX(2px); }
+        .catalog-controls { max-width: 1300px; margin: 0 auto 12px; display: grid; grid-template-columns: minmax(180px,1fr) auto auto; gap: 10px; align-items: center; }
+        .quick-search-wrap { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 0 14px; height: 43px; border: 1px solid rgba(197,160,89,.22); border-radius: 7px; background: linear-gradient(110deg, #151515, #101010); color: var(--accent-gold); transition: border-color .2s, box-shadow .2s; }
+        .quick-search-wrap:focus-within { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(197,160,89,.07); }
+        .quick-search { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text-primary); font: inherit; font-size: 12px; }
+        .quick-search::placeholder { color: #777; }
+        .filter-trigger { height: 43px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 16px; border: 1px solid rgba(197,160,89,.42); border-radius: 7px; background: rgba(197,160,89,.08); color: #e5c783; font: inherit; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all .2s ease; white-space: nowrap; }
+        .filter-trigger:hover { background: var(--accent-gold); color: #111; }
+        .filter-count { display: inline-flex; min-width: 18px; height: 18px; align-items: center; justify-content: center; padding: 0 4px; border-radius: 20px; background: var(--accent-gold); color: #111; font-size: 10px; font-weight: 700; }
+        .sort-wrap { display: flex; align-items: center; gap: 8px; height: 43px; padding: 0 10px; border: 1px solid rgba(255,255,255,.09); border-radius: 7px; color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: .7px; }
+        .sort-select { max-width: 145px; border: 0; outline: 0; background: #151515; color: #eee; font: inherit; font-size: 11px; text-transform: none; cursor: pointer; }
+        .active-filter-row { max-width: 1300px; margin: 0 auto 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 7px; min-height: 0; }
+        .filter-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border: 1px solid rgba(197,160,89,.28); border-radius: 30px; background: rgba(197,160,89,.07); color: #e5c783; font-size: 10px; }
+        .filter-chip button { border: 0; background: none; color: inherit; padding: 0; cursor: pointer; font-size: 13px; line-height: 1; }
+        .clear-filters { margin-left: auto; border: 0; background: transparent; color: #aaa; text-decoration: underline; text-underline-offset: 3px; font: inherit; font-size: 10px; cursor: pointer; }
+        .clear-filters:hover { color: var(--accent-gold); }
+        .sidebar-clear { width: 100%; margin-top: 20px; padding: 11px; border: 1px solid rgba(197,160,89,.3); border-radius: 6px; background: transparent; color: var(--accent-gold); font: inherit; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
+        .sidebar-clear:hover { background: rgba(197,160,89,.1); }
+        @media (max-width: 600px) {
+            .catalog-controls { grid-template-columns: minmax(0,1fr) auto; gap: 8px; }
+            .quick-search-wrap { grid-column: 1 / -1; height: 40px; }
+            .filter-trigger { height: 40px; }
+            .sort-wrap { height: 40px; justify-content: space-between; min-width: 0; }
+            .sort-select { max-width: 130px; }
+            .active-filter-row { margin-bottom: 10px; }
+            .sidebar { width: min(340px, 90vw); padding: 24px 18px; }
         }
         .sidebar-overlay {
             display: none;
@@ -808,7 +837,7 @@
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
-            .top-actions, .sidebar, .sidebar-overlay, .zoom-modal, .detail-modal, #page-loader, .runway-ticker, .custom-cursor, .custom-cursor-dot, .back-to-top { display: none !important; }
+            .top-actions, .sidebar, .sidebar-overlay, .zoom-modal, .detail-modal, #page-loader, .runway-ticker, .custom-cursor, .custom-cursor-dot, .back-to-top, .catalog-controls, .active-filter-row { display: none !important; }
             header { border-bottom-color: #ddd !important; }
             header h1 { color: #000000 !important; font-size: 26px !important; }
             .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20mm !important; }
@@ -859,7 +888,7 @@
             <h3 class="sidebar-title">Colecciones</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">×</button>
         </div>
-        <input type="text" id="searchInput" class="sidebar-search" onkeyup="filterCatalog()" placeholder="Buscar creación...">
+        <input type="text" id="searchInput" class="sidebar-search" oninput="syncSearch(this.value)" placeholder="Buscar creación...">
         
         <div class="sidebar-section-title">Disponibilidad</div>
         <div class="availability-filters">
@@ -905,6 +934,7 @@
             <button class="cat-btn-sidebar" onclick="filterByCategory('SPLASH LINOS', this)">SPLASH LINOS</button>
 
         </div>
+        <button class="sidebar-clear" onclick="clearAllFilters()"><i class="fa-solid fa-rotate-left"></i> Limpiar todos los filtros</button>
     </div>
     
     <header>
@@ -929,9 +959,15 @@
     </div>
 
     <div class="catalog-toolbar" id="catalogToolbar">
-        <span>COLECCIÓN ÉCLAT</span>
+        <span><i class="fa-solid fa-sparkles"></i> COLECCIÓN ÉCLAT</span>
         <span id="resultsCount" aria-live="polite"><strong>Catálogo</strong></span>
     </div>
+    <div class="catalog-controls" aria-label="Buscar, filtrar y ordenar productos">
+        <label class="quick-search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="quickSearchInput" class="quick-search" placeholder="Busca por producto o marca..." oninput="syncSearch(this.value)" aria-label="Buscar productos"></label>
+        <button class="filter-trigger" onclick="toggleSidebar()"><i class="fa-solid fa-sliders"></i> Filtros <span class="filter-count" id="activeFilterCount">0</span></button>
+        <label class="sort-wrap"><i class="fa-solid fa-arrow-down-wide-short"></i><span>Ordenar</span><select id="sortSelect" class="sort-select" onchange="sortCatalog(this.value)" aria-label="Ordenar productos"><option value="default">Recomendados</option><option value="price-asc">Precio: menor</option><option value="price-desc">Precio: mayor</option><option value="name-asc">Nombre A–Z</option><option value="name-desc">Nombre Z–A</option></select></label>
+    </div>
+    <div class="active-filter-row" id="activeFilters" aria-live="polite"></div>
     <div class="empty-state" id="emptyState"><i class="fa-solid fa-magnifying-glass"></i><strong>No encontramos coincidencias</strong>Prueba con otra palabra o ajusta los filtros para descubrir más productos.</div>
     <div class="grid" id="productGrid">
 
@@ -2367,8 +2403,78 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             filterCatalog();
         }
 
+        function syncSearch(value) {
+            const sidebarSearch = document.getElementById('searchInput');
+            const quickSearch = document.getElementById('quickSearchInput');
+            if (sidebarSearch && sidebarSearch.value !== value) sidebarSearch.value = value;
+            if (quickSearch && quickSearch.value !== value) quickSearch.value = value;
+            filterCatalog();
+        }
+
+        function sortCatalog(mode) {
+            const grid = document.getElementById('productGrid');
+            if (!grid) return;
+            const cards = Array.from(grid.querySelectorAll('.card'));
+            if (!window.__eclatOriginalOrder) window.__eclatOriginalOrder = new Map(cards.map((card, index) => [card, index]));
+            const originalOrder = window.__eclatOriginalOrder;
+            cards.sort((a, b) => {
+                const pa = parseFloat(a.getAttribute('data-price')) || 0;
+                const pb = parseFloat(b.getAttribute('data-price')) || 0;
+                const na = (a.querySelector('.title')?.textContent || a.getAttribute('data-search') || '').trim().toLocaleLowerCase();
+                const nb = (b.querySelector('.title')?.textContent || b.getAttribute('data-search') || '').trim().toLocaleLowerCase();
+                if (mode === 'price-asc') return pa - pb;
+                if (mode === 'price-desc') return pb - pa;
+                if (mode === 'name-asc') return na.localeCompare(nb, 'es');
+                if (mode === 'name-desc') return nb.localeCompare(na, 'es');
+                return originalOrder.get(a) - originalOrder.get(b);
+            });
+            cards.forEach(card => grid.appendChild(card));
+        }
+
+        function clearAllFilters() {
+            currentCategory = 'TODOS';
+            currentAvailability = 'TODOS';
+            maxPriceLimit = 500000;
+            const sidebarSearch = document.getElementById('searchInput');
+            const quickSearch = document.getElementById('quickSearchInput');
+            if (sidebarSearch) sidebarSearch.value = '';
+            if (quickSearch) quickSearch.value = '';
+            const range = document.getElementById('priceRange');
+            if (range) range.value = '500000';
+            const priceText = document.getElementById('priceValText');
+            if (priceText) priceText.innerText = formatCurrency(500000);
+            const sort = document.getElementById('sortSelect');
+            if (sort) sort.value = 'default';
+            document.querySelectorAll('#catFilterContainer .cat-btn-sidebar').forEach((b, i) => b.classList.toggle('active', i === 0));
+            document.querySelectorAll('.avail-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+            sortCatalog('default');
+            filterCatalog();
+        }
+
+        function renderActiveFilters(query) {
+            const row = document.getElementById('activeFilters');
+            const countNode = document.getElementById('activeFilterCount');
+            if (!row || !countNode) return;
+            const active = [];
+            if (query) active.push({label: 'Búsqueda: ' + query, action: () => { const a=document.getElementById('searchInput'); if(a) a.value=''; const b=document.getElementById('quickSearchInput'); if(b) b.value=''; filterCatalog(); }});
+            if (currentCategory !== 'TODOS') active.push({label: currentCategory, action: () => { currentCategory='TODOS'; document.querySelectorAll('#catFilterContainer .cat-btn-sidebar').forEach((b,i)=>b.classList.toggle('active',i===0)); filterCatalog(); }});
+            if (currentAvailability !== 'TODOS') active.push({label: currentAvailability === 'DISPONIBLE' ? 'Disponibles' : 'Agotados', action: () => { currentAvailability='TODOS'; document.querySelectorAll('.avail-btn').forEach((b,i)=>b.classList.toggle('active',i===0)); filterCatalog(); }});
+            if (maxPriceLimit < 500000) active.push({label: 'Hasta ' + formatCurrency(maxPriceLimit), action: () => { maxPriceLimit=500000; document.getElementById('priceRange').value='500000'; document.getElementById('priceValText').innerText=formatCurrency(500000); filterCatalog(); }});
+            countNode.textContent = active.length;
+            row.innerHTML = '';
+            active.forEach(item => {
+                const chip = document.createElement('span'); chip.className = 'filter-chip';
+                const label = document.createElement('span'); label.textContent = item.label;
+                const close = document.createElement('button'); close.type='button'; close.setAttribute('aria-label','Quitar filtro ' + item.label); close.textContent='×'; close.addEventListener('click', item.action);
+                chip.append(label, close); row.appendChild(chip);
+            });
+            if (active.length) {
+                const clear = document.createElement('button'); clear.className='clear-filters'; clear.type='button'; clear.textContent='Limpiar todo'; clear.onclick=clearAllFilters; row.appendChild(clear);
+            }
+        }
+
         function filterCatalog() {
-            let query = document.getElementById('searchInput').value.toLowerCase().trim();
+            let query = (document.getElementById('searchInput')?.value || document.getElementById('quickSearchInput')?.value || '').toLowerCase().trim();
             let cards = document.getElementsByClassName('card');
             let visibleCount = 0;
             const totalCount = cards.length;
@@ -2401,6 +2507,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             const emptyNode = document.getElementById('emptyState');
             if (countNode) countNode.innerHTML = `<strong>${visibleCount}</strong> de ${totalCount} productos`;
             if (emptyNode) emptyNode.style.display = visibleCount === 0 ? 'block' : 'none';
+            renderActiveFilters(query);
         }
 
         function filterByCategory(cat, btn) {
@@ -2509,6 +2616,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792879759 -->
+    <!-- v_detail_zoom_hd_fixed_1792880168 -->
 </body>
 </html>
