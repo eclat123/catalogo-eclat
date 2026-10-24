@@ -201,7 +201,7 @@
             color: #000;
         }
         .pdf-action-lower { display: none !important; }
-        .pdf-inline-row { max-width: 1300px; margin: 8px auto 14px; display: flex; justify-content: flex-end; }
+        .pdf-inline-row { max-width: 1300px; margin: 8px auto 14px; display: flex; justify-content: flex-start; }
         .pdf-inline-row .action-btn { padding: 8px 15px; font-size: 10px; }
         @media (max-width: 600px) { .pdf-inline-row { margin: 6px 10px 12px; } }
 
@@ -1056,13 +1056,13 @@
         <span><i class="fa-solid fa-sparkles"></i> CATÁLOGO ÉCLAT</span>
         <span id="resultsCount" aria-live="polite"><strong>Catálogo</strong></span>
     </div>
-    <div class="pdf-inline-row"><button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button></div>
     <div class="catalog-controls" aria-label="Buscar, filtrar y ordenar productos">
         <label class="quick-search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="quickSearchInput" class="quick-search" placeholder="Busca por producto o marca..." oninput="syncSearch(this.value)" aria-label="Buscar productos"></label>
         <button class="filter-trigger" onclick="toggleSidebar()"><i class="fa-solid fa-sliders"></i> Filtros <span class="filter-count" id="activeFilterCount">0</span></button>
         <label class="sort-wrap"><i class="fa-solid fa-arrow-down-wide-short"></i><span>Ordenar</span><select id="sortSelect" class="sort-select" onchange="sortCatalog(this.value)" aria-label="Ordenar productos"><option value="default">Recomendados</option><option value="price-asc">Precio: menor</option><option value="price-desc">Precio: mayor</option><option value="name-asc">Nombre A–Z</option><option value="name-desc">Nombre Z–A</option></select></label>
     </div>
     <div class="active-filter-row" id="activeFilters" aria-live="polite"></div>
+    <div class="pdf-inline-row"><button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button></div>
     <div class="empty-state" id="emptyState"><i class="fa-solid fa-magnifying-glass"></i><strong>No encontramos coincidencias</strong>Prueba con otra palabra o ajusta los filtros para descubrir más productos.</div>
     <div class="grid" id="productGrid">
 
@@ -2732,6 +2732,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792881727 -->
+    <!-- v_detail_zoom_hd_fixed_1792881889 -->
 </body>
 </html>
