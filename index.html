@@ -25,14 +25,14 @@
             letter-spacing: 0.02em;
         }
 
-        /* CURSOR DE LUJO EXCLUSIVO PARA ESCRITORIO (CERO CURSOR NORMAL) */
+        /* CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) */
         @media (min-width: 769px) {
             *, *:hover, body, button, input, a, .card, .image-modal, .modal-content, img {
                 cursor: none !important;
             }
             .custom-cursor {
                 position: fixed;
-                top: 0; left: 0;
+                top: -100px; left: -100px;
                 width: 36px; height: 36px;
                 border: 1px solid var(--accent-gold);
                 border-radius: 50%;
@@ -44,7 +44,7 @@
             }
             .custom-cursor-dot {
                 position: fixed;
-                top: 0; left: 0;
+                top: -100px; left: -100px;
                 width: 6px; height: 6px;
                 background: var(--accent-gold);
                 border-radius: 50%;
@@ -357,7 +357,6 @@
             border: 1px solid var(--border-subtle);
             display: flex;
             flex-direction: column;
-            cursor: pointer;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease;
             break-inside: avoid;
             page-break-inside: avoid;
@@ -1586,24 +1585,30 @@
     </div>
 
     <script>
-        // Lógica del Cursor de Lujo (Solo escritorio, sin dejar ver el cursor del sistema jamás)
+        // Lógica del Cursor de Lujo con posicionamiento inicial fluido
         const cursor = document.getElementById('customCursor');
         const cursorDot = document.getElementById('customCursorDot');
         
         if (window.innerWidth > 768) {
-            let mouseX = 0, mouseY = 0;
-            let cursorX = 0, cursorY = 0;
+            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+            let cursorX = mouseX, cursorY = mouseY;
+            let initialized = false;
 
             window.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
                 cursorDot.style.left = mouseX + 'px';
                 cursorDot.style.top = mouseY + 'px';
+                if (!initialized) {
+                    cursorX = mouseX;
+                    cursorY = mouseY;
+                    initialized = true;
+                }
             });
 
             function renderCursor() {
-                cursorX += (mouseX - cursorX) * 0.15;
-                cursorY += (mouseY - cursorY) * 0.15;
+                cursorX += (mouseX - cursorX) * 0.2;
+                cursorY += (mouseY - cursorY) * 0.2;
                 cursor.style.left = cursorX + 'px';
                 cursor.style.top = cursorY + 'px';
                 requestAnimationFrame(renderCursor);
@@ -1705,6 +1710,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792813604 -->
+    <!-- v_1792813864 -->
 </body>
 </html>
