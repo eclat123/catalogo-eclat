@@ -307,19 +307,13 @@
         }
         .sidebar-overlay.active { display: block; }
 
-        /* GRID CON CINEMATIC BLUR */
+        /* GRID LIMPIO SIN DIFUMINADO */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 32px;
             max-width: 1300px;
             margin: 0 auto;
-            transition: all 0.3s ease;
-        }
-        .grid:hover > .card:not(:hover) {
-            filter: blur(4px);
-            opacity: 0.45;
-            transform: scale(0.98);
         }
         .card {
             background: var(--surface-color) !important;
@@ -330,16 +324,13 @@
             display: flex;
             flex-direction: column;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease;
             break-inside: avoid;
             page-break-inside: avoid;
         }
         .card:hover {
             transform: translateY(-6px);
             border-color: var(--accent-gold);
-            filter: blur(0px);
-            opacity: 1;
-            z-index: 10;
         }
         .img-container {
             width: 100%;
@@ -515,7 +506,7 @@
             .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
             .contact-item { color: #000000 !important; }
             .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
-            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; filter: none !important; opacity: 1 !important; }
+            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; }
             .img-container { background: #f9f9f9 !important; height: 160px !important; }
             .title, .price { color: #111827 !important; }
             .brand, .presentation { color: #4b5563 !important; }
@@ -1646,6 +1637,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792811881 -->
+    <!-- v_1792812087 -->
 </body>
 </html>
