@@ -27,7 +27,7 @@
 
         /* CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) */
         @media (min-width: 769px) {
-            *, *:hover, body, button, input, a, .card, .image-modal, .modal-box, img {
+            *, *:hover, body, button, input, a, .card, .zoom-modal, .detail-modal, img {
                 cursor: none !important;
             }
             .custom-cursor {
@@ -486,7 +486,7 @@
             border-color: var(--accent-gold);
         }
 
-        /* MODAL 1: ZOOM CLÁSICO DE IMAGEN */
+        /* MODAL 1: ZOOM DE IMAGEN (CIERRA CON CLIC EN CUALQUIER PARTE) */
         .zoom-modal {
             display: none;
             position: fixed;
@@ -498,6 +498,7 @@
             align-items: center;
             padding: 20px;
             box-sizing: border-box;
+            cursor: pointer;
         }
         .zoom-modal.active { display: flex; }
         .zoom-content {
@@ -509,6 +510,7 @@
             padding: 30px;
             position: relative;
             animation: zoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: default;
         }
         .zoom-content img {
             max-width: 100%;
@@ -516,6 +518,7 @@
             object-fit: contain;
             display: block;
             margin: 0 auto;
+            cursor: pointer;
         }
         .zoom-title {
             text-align: center;
@@ -2060,11 +2063,11 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
         
     </div>
 
-    <!-- MODAL 1: ZOOM DE IMAGEN -->
+    <!-- MODAL 1: ZOOM DE IMAGEN (CIERRA CON CLIC EN CUALQUIER PARTE) -->
     <div class="zoom-modal" id="zoomModal" onclick="closeZoomModal()">
-        <div class="zoom-content" onclick="event.stopPropagation()">
+        <div class="zoom-content" onclick="closeZoomModal()">
             <button class="modal-close" onclick="closeZoomModal()">×</button>
-            <img id="zoomImg" src="" alt="Creación ampliada">
+            <img id="zoomImg" src="" alt="Creación ampliada" onclick="closeZoomModal()">
             <div class="zoom-title" id="zoomTitle"></div>
         </div>
     </div>
@@ -2180,7 +2183,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             filterCatalog();
         }
 
-        // Funciones Modal Zoom Imagen
+        // Funciones Modal Zoom Imagen (Cierra al hacer clic en cualquier parte)
         function openZoomModal(imgUrl, title) {
             if(!imgUrl) return;
             document.getElementById('zoomImg').src = imgUrl;
@@ -2234,6 +2237,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_split_modals_1792871772 -->
+    <!-- v_zoom_fix_1792871959 -->
 </body>
 </html>
