@@ -36,7 +36,7 @@
                 border-radius: 50%;
                 pointer-events: none;
                 transform: translate(-50%, -50%);
-                transition: width 0.2s, height 0.2s, background-color 0.2s;
+                transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
                 z-index: 10000;
                 background: rgba(197, 160, 89, 0.05);
             }
@@ -49,11 +49,20 @@
                 pointer-events: none;
                 transform: translate(-50%, -50%);
                 z-index: 10001;
+                transition: opacity 0.2s;
             }
             body:hover .custom-cursor.expanded {
                 width: 56px; height: 56px;
                 background: rgba(197, 160, 89, 0.12);
                 border-color: #ffffff;
+            }
+            /* Ocultar cursor personalizado cuando el modal esté abierto */
+            body.modal-open .custom-cursor,
+            body.modal-open .custom-cursor-dot {
+                opacity: 0;
+            }
+            body.modal-open, body.modal-open button, body.modal-open img {
+                cursor: auto !important;
             }
         }
 
@@ -1672,9 +1681,14 @@
             document.getElementById('modalImg').src = imgUrl;
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('imageModal').classList.add('active');
+            // Ocultar cursor personalizado y liberar el cursor del sistema en el modal
+            document.body.classList.add('modal-open');
         }
+        
         function closeModalDirect() {
             document.getElementById('imageModal').classList.remove('active');
+            // Restaurar cursor personalizado al cerrar el zoom
+            document.body.classList.remove('modal-open');
         }
 
         function generatePDF() {
@@ -1707,6 +1721,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792812786 -->
+    <!-- v_1792812990 -->
 </body>
 </html>
