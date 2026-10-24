@@ -629,7 +629,7 @@
             text-transform: uppercase;
         }
 
-        /* MODAL 2: VITRINA DE DETALLES A DOS COLUMNAS */
+        /* MODAL 2: VITRINA DE DETALLES A DOS COLUMNAS CON ZOOM LUPA HD */
         .detail-modal {
             display: none;
             position: fixed;
@@ -668,13 +668,17 @@
             justify-content: center;
             border-right: 1px solid var(--border-subtle);
             box-sizing: border-box;
-            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            cursor: zoom-in;
         }
         .detail-left img {
             max-width: 100%;
             max-height: 70vh;
             object-fit: contain;
             display: block;
+            transition: transform 0.2s ease-out;
+            transform-origin: center center;
         }
         .detail-right {
             padding: 45px 40px;
@@ -2195,7 +2199,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
     <div class="detail-modal" id="detailModal" onclick="closeDetailModal()">
         <div class="detail-box" onclick="closeDetailModal()">
             <button class="modal-close" onclick="closeDetailModal()">×</button>
-            <div class="detail-left" onclick="closeDetailModal()">
+            <div class="detail-left" id="detailZoomContainer" onclick="closeDetailModal()">
                 <img id="detailImg" src="" alt="Detalle de creación">
             </div>
             <div class="detail-right" onclick="closeDetailModal()">
@@ -2355,17 +2359,39 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             document.getElementById('zoomModal').classList.remove('active');
         }
 
-        // Funciones Modal Vitrina de Detalles
+        // Funciones Modal Vitrina de Detalles con Lupa de Zoom HD
+        const zoomContainer = document.getElementById('detailZoomContainer');
+        const detailImg = document.getElementById('detailImg');
+
         function openDetailModal(imgUrl, title, brand, details) {
             if(!imgUrl) return;
-            document.getElementById('detailImg').src = imgUrl;
+            detailImg.src = imgUrl;
             document.getElementById('detailTitle').innerHTML = title;
             document.getElementById('detailBrand').innerHTML = brand;
             document.getElementById('detailDetails').innerHTML = details;
             document.getElementById('detailModal').classList.add('active');
         }
+
+        if(zoomContainer && detailImg) {
+            zoomContainer.addEventListener('mousemove', (e) => {
+                const rect = zoomContainer.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                detailImg.style.transformOrigin = `${x}% ${y}%`;
+                detailImg.style.transform = 'scale(2.2)';
+            });
+
+            zoomContainer.addEventListener('mouseleave', () => {
+                detailImg.style.transformOrigin = 'center center';
+                detailImg.style.transform = 'scale(1)';
+            });
+        }
+
         function closeDetailModal() {
             document.getElementById('detailModal').classList.remove('active');
+            if(detailImg) {
+                detailImg.style.transform = 'scale(1)';
+            }
         }
 
         function generatePDF() {
@@ -2398,6 +2424,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_top_buttons_transparent_1792877604 -->
+    <!-- v_detail_zoom_hd_fixed_1792878137 -->
 </body>
 </html>
