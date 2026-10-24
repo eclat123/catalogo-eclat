@@ -713,7 +713,7 @@
         </div>
 
         <div class="sidebar-section-title">Rango de Precios</div>
-        <div class="sidebar-categories" style="margin-bottom: 15px;">
+        <div class="sidebar-categories" id="priceFilterContainer">
             <button class="cat-btn-sidebar active" onclick="filterByPrice('TODOS', this)">Todos los precios</button>
             <button class="cat-btn-sidebar" onclick="filterByPrice('LOW', this)">Menos de $100.000</button>
             <button class="cat-btn-sidebar" onclick="filterByPrice('MID', this)">$100.000 - $300.000</button>
@@ -721,7 +721,7 @@
         </div>
 
         <div class="sidebar-section-title">Categorías</div>
-        <div class="sidebar-categories">
+        <div class="sidebar-categories" id="catFilterContainer">
             <button class="cat-btn-sidebar active" onclick="filterByCategory('TODOS', this)">Todas las colecciones</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('ACCESORIOS', this)">ACCESORIOS</button>
             <button class="cat-btn-sidebar" onclick="filterByCategory('BALSAMO LABIAL', this)">BALSAMO LABIAL</button>
@@ -2204,8 +2204,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
 
         function filterByCategory(cat, btn) {
             currentCategory = cat;
-            // Solo quitar la clase active a los botones de categoría
-            const catButtons = document.querySelectorAll('.sidebar-categories .cat-btn-sidebar');
+            const catButtons = document.querySelectorAll('#catFilterContainer .cat-btn-sidebar');
             catButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             filterCatalog();
@@ -2214,7 +2213,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
 
         function filterByPrice(range, btn) {
             currentPriceRange = range;
-            const priceButtons = document.querySelectorAll('.sidebar-categories')[0].querySelectorAll('.cat-btn-sidebar');
+            const priceButtons = document.querySelectorAll('#priceFilterContainer .cat-btn-sidebar');
             priceButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             filterCatalog();
@@ -2282,6 +2281,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_price_filter_1792875212 -->
+    <!-- v_price_filter_fixed_1792875351 -->
 </body>
 </html>
