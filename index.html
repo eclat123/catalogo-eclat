@@ -834,6 +834,69 @@
         }
         @media (max-width: 380px) { .grid { grid-template-columns: 1fr; } .img-container { height: 250px; } }
 
+        /* PORTADA MÁS COMPACTA Y ADAPTACIÓN REAL A NAVEGADORES MÓVILES */
+        header { padding-top: 8px; padding-bottom: 12px; margin-bottom: 8px; }
+        .logo-container { margin-bottom: 8px; }
+        .logo-monogram { width: 58px; height: 58px; font-size: 26px; }
+        h1 { font-size: 40px; letter-spacing: 9px; }
+        .hero-intro { padding-top: 3px; padding-bottom: 7px; margin-bottom: 8px; }
+        .hero-intro p { margin-bottom: 8px; }
+        .contact-banner { padding-top: 12px; padding-bottom: 12px; margin-bottom: 12px; }
+
+        @media (max-width: 768px) {
+            body { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); padding-bottom: max(56px, env(safe-area-inset-bottom)); }
+            .runway-ticker { margin-bottom: 8px; padding-top: 6px; padding-bottom: 6px; overflow: hidden; }
+            .top-actions { top: max(8px, env(safe-area-inset-top)); left: 10px; right: 10px; }
+            .action-btn { min-height: 34px; padding: 7px 9px; font-size: 8px; letter-spacing: .4px; }
+            header { padding-top: 35px; padding-bottom: 8px; margin-bottom: 5px; }
+            .logo-container { margin-bottom: 4px; }
+            .logo-monogram { width: 39px; height: 39px; font-size: 20px; }
+            h1 { font-size: clamp(25px, 7vw, 31px); line-height: 1.1; letter-spacing: 5px; }
+            .hero-intro { padding: 0 2px 5px; margin-bottom: 5px; }
+            .hero-eyebrow { font-size: 8px; letter-spacing: 1.5px; margin-bottom: 4px; }
+            .hero-intro h2 { font-size: clamp(21px, 5.8vw, 26px); line-height: 1.12; margin-bottom: 4px; }
+            .hero-intro p { max-width: 520px; font-size: 11px; line-height: 1.35; margin-bottom: 6px; }
+            .hero-cta { padding: 8px 13px; font-size: 9px; letter-spacing: 1px; }
+            .contact-banner { gap: 7px; padding: 9px 8px; margin-bottom: 9px; }
+            .contact-item { font-size: 10px; line-height: 1.3; }
+            .catalog-toolbar { margin-bottom: 7px; }
+            .catalog-controls { margin-bottom: 8px; }
+            .quick-search-wrap { height: 38px; }
+            .filter-trigger, .sort-wrap { height: 38px; }
+            .active-filter-row { margin-bottom: 7px; }
+        }
+        @media (max-width: 420px) {
+            body { padding-left: 10px; padding-right: 10px; }
+            .top-actions { left: 8px; right: 8px; }
+            .action-btn { padding: 7px 8px; font-size: 7.5px; }
+            .hero-intro p { max-width: 340px; }
+            .contact-banner { flex-direction: column; align-items: center; text-align: center; gap: 5px; }
+            .catalog-toolbar { font-size: 8px; letter-spacing: .5px; }
+            .catalog-controls { grid-template-columns: minmax(0, 1fr) auto; gap: 6px; }
+            .quick-search-wrap { grid-column: 1 / -1; padding: 0 10px; }
+            .filter-trigger { padding: 0 11px; gap: 6px; font-size: 9px; }
+            .sort-wrap { padding: 0 7px; gap: 5px; font-size: 8px; }
+            .sort-select { max-width: 112px; font-size: 10px; }
+        }
+        @media (max-width: 360px) {
+            .hero-eyebrow { letter-spacing: 1px; }
+            .hero-intro h2 { font-size: 21px; }
+            .action-btn { font-size: 7px; }
+            .sort-wrap > span { display: none; }
+            .sort-select { max-width: 105px; }
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+            .img-container { height: 155px; padding: 8px; }
+            .card-body { padding: 10px 9px 11px; gap: 12px; }
+        }
+        @media (max-height: 740px) and (min-width: 769px) {
+            header { padding-top: 6px; padding-bottom: 10px; margin-bottom: 6px; }
+            .logo-monogram { width: 52px; height: 52px; font-size: 24px; }
+            .logo-container { margin-bottom: 6px; }
+            .hero-intro { padding-top: 0; padding-bottom: 5px; margin-bottom: 5px; }
+            .hero-intro p { margin-bottom: 6px; }
+            .contact-banner { padding: 9px 12px; margin-bottom: 8px; }
+        }
+
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
@@ -2616,6 +2679,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792880168 -->
+    <!-- v_detail_zoom_hd_fixed_1792880378 -->
 </body>
 </html>
