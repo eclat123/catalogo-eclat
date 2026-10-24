@@ -59,7 +59,7 @@
             }
         }
 
-        /* RUNWAY TICKER (ENVÍOS Y WHATSAPP) */
+        /* RUNWAY TICKER */
         .runway-ticker {
             background: var(--accent-gold);
             color: #000;
@@ -341,7 +341,7 @@
         }
         .sidebar-overlay.active { display: block; }
 
-        /* GRID CON EFECTO DE DESVANECIMIENTO (FADE-IN) */
+        /* GRID CON ANIMACIÓN FADE & SLIDE DE ENTRADA */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -357,15 +357,19 @@
             border: 1px solid var(--border-subtle);
             display: flex;
             flex-direction: column;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+            transition: transform 0.4s ease, border-color 0.4s ease, opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
             opacity: 1;
+            transform: translateY(0);
             break-inside: avoid;
             page-break-inside: avoid;
         }
+        .card.fade-out {
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+        }
         .card.hidden-card {
             display: none !important;
-            opacity: 0;
-            transform: scale(0.96);
         }
         .card:hover {
             transform: translateY(-6px);
@@ -541,7 +545,7 @@
             .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
             .contact-item { color: #000000 !important; }
             .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
-            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; opacity: 1 !important; }
+            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; opacity: 1 !important; transform: none !important; }
             .img-container { background: #f9f9f9 !important; height: 160px !important; }
             .title, .price { color: #111827 !important; }
             .brand, .presentation { color: #4b5563 !important; }
@@ -560,7 +564,7 @@
         <div class="loader-text">ÉCLAT</div>
     </div>
 
-    <!-- TICKER DE PASARELA (SOLO ENVÍOS Y WHATSAPP) -->
+    <!-- TICKER DE PASARELA -->
     <div class="runway-ticker">
         <div class="ticker-track">
             <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Envíos Seguros a Todo el País</span>
@@ -1591,7 +1595,7 @@
     </div>
 
     <script>
-        // Lógica del Cursor de Lujo
+        // Cursor de Lujo
         const cursor = document.getElementById('customCursor');
         const cursorDot = document.getElementById('customCursorDot');
         
@@ -1644,9 +1648,11 @@
             document.getElementById('sidebarOverlay').classList.toggle('active');
         }
 
+        // Filtrado con animación Fade & Slide fluida
         function filterCatalog() {
             let query = document.getElementById('searchInput').value.toLowerCase().trim();
             let cards = document.getElementsByClassName('card');
+            
             for (let card of cards) {
                 let text = card.getAttribute('data-search');
                 let cat = card.getAttribute('data-category');
@@ -1658,8 +1664,14 @@
 
                 if (matchSearch && matchCat && matchAvail) {
                     card.classList.remove('hidden-card');
+                    setTimeout(() => card.classList.remove('fade-out'), 20);
                 } else {
-                    card.classList.add('hidden-card');
+                    card.classList.add('fade-out');
+                    setTimeout(() => {
+                        if (card.classList.contains('fade-out')) {
+                            card.classList.add('hidden-card');
+                        }
+                    }, 400);
                 }
             }
         }
@@ -1719,5 +1731,6 @@
             }, 2000);
         }
     </script>
+    <!-- v_fade_slide_1792859039 -->
 </body>
 </html>
