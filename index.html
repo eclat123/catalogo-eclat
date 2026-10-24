@@ -531,7 +531,7 @@
             text-transform: uppercase;
         }
 
-        /* MODAL 2: VITRINA DE DETALLES A DOS COLUMNAS */
+        /* MODAL 2: VITRINA DE DETALLES A DOS COLUMNAS (CIERRA DESDE CUALQUIER PARTE) */
         .detail-modal {
             display: none;
             position: fixed;
@@ -560,7 +560,7 @@
             position: relative;
             animation: zoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 25px 60px rgba(0,0,0,0.8);
-            cursor: default;
+            cursor: pointer;
         }
         .detail-left {
             background: #111;
@@ -577,6 +577,7 @@
             max-height: 70vh;
             object-fit: contain;
             display: block;
+            cursor: pointer;
         }
         .detail-right {
             padding: 45px 40px;
@@ -585,6 +586,10 @@
             justify-content: center;
             box-sizing: border-box;
             overflow-y: auto;
+            cursor: pointer; /* Permite cerrar al hacer clic en zonas vacías del panel */
+        }
+        .detail-right * {
+            cursor: text; /* Las letras quedan puramente para visualizar y seleccionar texto */
         }
         .detail-category-tag {
             font-size: 10px;
@@ -2082,7 +2087,7 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             <div class="detail-left" onclick="closeDetailModal()">
                 <img id="detailImg" src="" alt="Detalle de creación">
             </div>
-            <div class="detail-right" onclick="event.stopPropagation()">
+            <div class="detail-right" onclick="closeDetailModal()">
                 <div class="detail-category-tag" id="detailBrand"></div>
                 <div class="detail-title-text" id="detailTitle"></div>
                 <div class="detail-text-box" id="detailDetails"></div>
@@ -2252,6 +2257,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_fix_robust_1792872443 -->
+    <!-- v_detail_text_fix_1792872751 -->
 </body>
 </html>
