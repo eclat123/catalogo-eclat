@@ -201,9 +201,11 @@
             color: #000;
         }
         .pdf-action-lower { display: none !important; }
-        .pdf-inline-row { max-width: 1300px; margin: 8px auto 14px; display: flex; justify-content: flex-start; }
-        .pdf-inline-row .action-btn { padding: 8px 15px; font-size: 10px; }
-        @media (max-width: 600px) { .pdf-inline-row { margin: 6px 10px 12px; } }
+        .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-top: 18px; }
+        .hero-actions .hero-cta { margin: 0; }
+        .hero-pdf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 10px 20px; border-radius: 2px; background: rgba(12,12,12,.55); color: var(--accent-gold); border: 1px solid var(--accent-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; font-size: 10px; font-weight: 700; cursor: pointer; transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease; }
+        .hero-pdf-btn:hover { transform: translateY(-2px); background: var(--accent-gold); color: #090909; box-shadow: 0 8px 25px rgba(197,160,89,.22); }
+        @media (max-width: 600px) { .hero-actions { gap: 8px; } .hero-actions .hero-cta, .hero-actions .hero-pdf-btn { padding: 9px 12px; font-size: 9px; letter-spacing: .8px; } }
 
         .contact-banner {
             max-width: 900px;
@@ -1040,7 +1042,10 @@
         <div class="hero-eyebrow">Perfumería · Cuidado personal · Exclusividad</div>
         <h2>Tu esencia, <em>tu sello</em> personal.</h2>
         <p>Descubre una selección especial de productos y encuentra ese detalle que habla de ti. En ÉCLAT te acompañamos con asesoría personalizada.</p>
-        <a class="hero-cta" href="#productGrid"><i class="fa-solid fa-sparkles"></i> Explorar catálogo</a>
+        <div class="hero-actions">
+            <a class="hero-cta" href="#productGrid"><i class="fa-solid fa-sparkles"></i> Explorar catálogo</a>
+            <button class="hero-pdf-btn" onclick="generatePDF()"><i class="fa-solid fa-file-pdf"></i> Descargar PDF</button>
+        </div>
     </section>
 
     <div class="contact-banner">
@@ -1062,7 +1067,6 @@
         <label class="sort-wrap"><i class="fa-solid fa-arrow-down-wide-short"></i><span>Ordenar</span><select id="sortSelect" class="sort-select" onchange="sortCatalog(this.value)" aria-label="Ordenar productos"><option value="default">Recomendados</option><option value="price-asc">Precio: menor</option><option value="price-desc">Precio: mayor</option><option value="name-asc">Nombre A–Z</option><option value="name-desc">Nombre Z–A</option></select></label>
     </div>
     <div class="active-filter-row" id="activeFilters" aria-live="polite"></div>
-    <div class="pdf-inline-row"><button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button></div>
     <div class="empty-state" id="emptyState"><i class="fa-solid fa-magnifying-glass"></i><strong>No encontramos coincidencias</strong>Prueba con otra palabra o ajusta los filtros para descubrir más productos.</div>
     <div class="grid" id="productGrid">
 
@@ -2732,6 +2736,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792881889 -->
+    <!-- v_detail_zoom_hd_fixed_1792882056 -->
 </body>
 </html>
