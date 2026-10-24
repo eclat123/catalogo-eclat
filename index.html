@@ -20,12 +20,43 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             margin: 0;
-            padding: 40px 24px 100px 24px;
+            padding: 0 24px 100px 24px;
             min-height: 100vh;
             letter-spacing: 0.02em;
         }
 
-        /* LOADER CINEMATOGRÁFICO (MEJORA 1) */
+        /* RUNWAY TICKER (MEJORA 3) */
+        .runway-ticker {
+            background: var(--accent-gold);
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-bottom: 35px;
+        }
+        .ticker-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: tickerScroll 25s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding-right: 50px;
+        }
+        .ticker-item i { margin-right: 8px; }
+        @keyframes tickerScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* LOADER CINEMATOGRÁFICO */
         #page-loader {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -88,7 +119,7 @@
         }
         .top-actions {
             position: fixed;
-            top: 24px;
+            top: 50px;
             left: 24px;
             right: 24px;
             display: flex;
@@ -209,8 +240,6 @@
             margin-bottom: 20px;
             box-sizing: border-box;
         }
-        
-        /* SECCIÓN DE FILTROS RÁPIDOS DE DISPONIBILIDAD (MEJORA 4) */
         .availability-filters {
             display: flex;
             gap: 10px;
@@ -236,7 +265,6 @@
             color: #000;
             border-color: var(--accent-gold);
         }
-
         .sidebar-section-title {
             font-size: 10px;
             letter-spacing: 2px;
@@ -278,12 +306,20 @@
             z-index: 150;
         }
         .sidebar-overlay.active { display: block; }
+
+        /* GRID CON CINEMATIC BLUR (MEJORA 2) */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 32px;
             max-width: 1300px;
             margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        .grid:hover > .card:not(:hover) {
+            filter: blur(4px);
+            opacity: 0.45;
+            transform: scale(0.98);
         }
         .card {
             background: var(--surface-color) !important;
@@ -294,13 +330,16 @@
             display: flex;
             flex-direction: column;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
             break-inside: avoid;
             page-break-inside: avoid;
         }
         .card:hover {
             transform: translateY(-6px);
             border-color: var(--accent-gold);
+            filter: blur(0px);
+            opacity: 1;
+            z-index: 10;
         }
         .img-container {
             width: 100%;
@@ -470,13 +509,13 @@
         @media print {
             @page { size: A4 portrait; margin: 10mm; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; }
-            .top-actions, .sidebar, .sidebar-overlay, .image-modal, #page-loader { display: none !important; }
+            .top-actions, .sidebar, .sidebar-overlay, .image-modal, #page-loader, .runway-ticker { display: none !important; }
             header { border-bottom-color: #ddd !important; }
             header h1 { color: #000000 !important; font-size: 26px !important; }
             .contact-banner { border: 1px solid #ddd !important; background: #fdfdfd !important; color: #000000 !important; padding: 8px !important; margin-bottom: 20px !important; }
             .contact-item { color: #000000 !important; }
             .grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
-            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; }
+            .card { background: #ffffff !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; break-inside: avoid !important; page-break-inside: avoid !important; filter: none !important; opacity: 1 !important; }
             .img-container { background: #f9f9f9 !important; height: 160px !important; }
             .title, .price { color: #111827 !important; }
             .brand, .presentation { color: #4b5563 !important; }
@@ -489,6 +528,18 @@
     <div id="page-loader">
         <div class="loader-monogram">É</div>
         <div class="loader-text">ÉCLAT</div>
+    </div>
+
+    <!-- TICKER DE PASARELA (MEJORA 3) -->
+    <div class="runway-ticker">
+        <div class="ticker-track">
+            <span class="ticker-item"><i class="fa-solid fa-gem"></i> Colección Exclusiva Haute Parfumerie</span>
+            <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Envíos Seguros a Todo el País</span>
+            <span class="ticker-item"><i class="fa-solid fa-star"></i> Atención Personalizada vía WhatsApp</span>
+            <span class="ticker-item"><i class="fa-solid fa-gem"></i> Colección Exclusiva Haute Parfumerie</span>
+            <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Envíos Seguros a Todo el País</span>
+            <span class="ticker-item"><i class="fa-solid fa-star"></i> Atención Personalizada vía WhatsApp</span>
+        </div>
     </div>
 
     <div class="top-actions">
@@ -504,7 +555,6 @@
         </div>
         <input type="text" id="searchInput" class="sidebar-search" onkeyup="filterCatalog()" placeholder="Buscar creación...">
         
-        <!-- FILTROS RÁPIDOS DE DISPONIBILIDAD -->
         <div class="sidebar-section-title">Disponibilidad</div>
         <div class="availability-filters">
             <button class="avail-btn active" onclick="filterByAvailability('TODOS', this)">Todos</button>
@@ -1516,7 +1566,6 @@
         let currentCategory = 'TODOS';
         let currentAvailability = 'TODOS';
 
-        // Ocultar loader al terminar de cargar la página
         window.addEventListener('load', () => {
             const loader = document.getElementById('page-loader');
             loader.style.opacity = '0';
@@ -1599,6 +1648,6 @@
             }, 2000);
         }
     </script>
-    <!-- v_1792810695 -->
+    <!-- v_1792811489 -->
 </body>
 </html>
