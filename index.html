@@ -640,10 +640,16 @@
             z-index: 950; display: none; align-items: center; gap: 12px; width: min(620px, calc(100vw - 24px));
             padding: 12px 14px; border: 1px solid rgba(197,160,89,.55); border-radius: 10px;
             background: rgba(15,15,15,.97); box-shadow: 0 12px 35px rgba(0,0,0,.5); backdrop-filter: blur(14px);
+            flex-wrap: wrap;
         }
         .selection-bar.active { display: flex; }
-        .selection-summary { flex: 1; min-width: 0; color: #e8d8b2; font-size: 11px; line-height: 1.4; }
+        .selection-summary { flex: 1; min-width: 140px; color: #e8d8b2; font-size: 11px; line-height: 1.4; }
         .selection-summary strong { display: block; color: #fff; font-size: 12px; }
+        .selection-items { display: none; flex: 0 0 100%; max-height: 150px; overflow-y: auto; border-top: 1px solid rgba(197,160,89,.22); padding-top: 6px; }
+        .selection-items.has-items { display: block; }
+        .selection-item { display: flex; align-items: center; gap: 8px; padding: 5px 0; color: #eee; font-size: 11px; }
+        .selection-item-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+        .selection-item-remove { flex: 0 0 auto; border: 1px solid rgba(197,160,89,.35); border-radius: 4px; background: transparent; color: #e8d8b2; padding: 3px 7px; cursor: pointer; font-size: 10px; }
         .selection-action { border: 0; border-radius: 6px; padding: 10px 12px; background: var(--accent-gold); color: #111; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .selection-clear { border: 0; padding: 5px; background: transparent; color: #aaa; font: inherit; font-size: 10px; cursor: pointer; }
         @media (max-width: 420px) { .selection-bar { gap: 7px; padding: 10px; } .selection-action { padding: 9px; font-size: 9px; } .selection-clear { font-size: 9px; } }
@@ -2604,6 +2610,7 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         <div class="selection-summary" id="selectionSummary"><strong>0 productos</strong>Selecciona artículos para consultar</div>
         <button type="button" class="selection-clear" onclick="clearProductSelection()">Vaciar</button>
         <button type="button" class="selection-action" onclick="sendSelectionToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
+        <div class="selection-items" id="selectionItems" aria-label="Detalle de productos seleccionados"></div>
     </div>
 
     <!-- MODAL 1: ZOOM DE IMAGEN -->
@@ -2905,6 +2912,37 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             if (!bar || !summary) return;
             bar.classList.toggle('active', count > 0);
             summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto seleccionado' : 'productos seleccionados'}</strong>Se enviarán juntos en una consulta por WhatsApp`;
+            const itemsList = document.getElementById('selectionItems');
+            if (itemsList) {
+                itemsList.replaceChildren();
+                itemsList.classList.toggle('has-items', count > 0);
+                selectedProducts.forEach((item, card) => {
+                    const row = document.createElement('div');
+                    row.className = 'selection-item';
+                    const name = document.createElement('span');
+                    name.className = 'selection-item-name';
+                    name.textContent = item.title + (item.brand ? ' — ' + item.brand : '') + (item.price ? ' · ' + item.price : '');
+                    const remove = document.createElement('button');
+                    remove.type = 'button';
+                    remove.className = 'selection-item-remove';
+                    remove.textContent = 'Quitar';
+                    remove.setAttribute('aria-label', 'Quitar ' + item.title + ' de la selección');
+                    remove.addEventListener('click', () => removeProductFromSelection(card));
+                    row.append(name, remove);
+                    itemsList.appendChild(row);
+                });
+            }
+        }
+        function removeProductFromSelection(card) {
+            if (!selectedProducts.has(card)) return;
+            selectedProducts.delete(card);
+            card.classList.remove('is-selected');
+            const button = card.querySelector('.select-product-btn');
+            if (button) {
+                button.innerHTML = '<i class="fa-solid fa-plus"></i> Añadir';
+                button.setAttribute('aria-label', 'Añadir producto a la consulta');
+            }
+            updateSelectionBar();
         }
         function clearProductSelection() {
             selectedProducts.forEach((data, card) => {
@@ -3067,6 +3105,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792894145 -->
+    <!-- v_detail_zoom_hd_fixed_1792894627 -->
 </body>
 </html>
