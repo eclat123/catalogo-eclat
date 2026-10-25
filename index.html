@@ -3104,7 +3104,7 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
                 const sourceCards = Array.from(document.querySelectorAll('.card'));
                 const pdfRoot = document.createElement('div');
                 pdfRoot.id = 'eclat-pdf-document';
-                pdfRoot.style.cssText = 'position:fixed;left:0;top:0;width:794px;background:#fff;color:#171717;font-family:Arial,Helvetica,sans-serif;z-index:2147483647;pointer-events:none;opacity:1;visibility:visible;';
+                pdfRoot.style.cssText = 'position:absolute;left:0;top:0;width:794px;min-height:1123px;background:#fff;color:#171717;font-family:Arial,Helvetica,sans-serif;z-index:2147483647;pointer-events:none;opacity:1;visibility:visible;display:block;overflow:visible;transform:none;';
 
                 const dateLabel = new Intl.DateTimeFormat('es-CO', { day:'2-digit', month:'long', year:'numeric' }).format(new Date());
                 const cover = document.createElement('section');
@@ -3192,6 +3192,12 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
                     jsPDF: { unit:'mm', format:'a4', orientation:'portrait', compress:true },
                     pagebreak: { mode:['css','legacy'], avoid:['.card'] }
                 };
+                // Fuerza una medición real del contenido antes de iniciar la captura.
+                await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+                const pdfBounds = pdfRoot.getBoundingClientRect();
+                if (!pdfRoot.firstElementChild || pdfBounds.width < 100 || pdfBounds.height < 100) {
+                    throw new Error('El contenido del catálogo no quedó listo para convertirlo en PDF. Vuelve a intentarlo.');
+                }
                 await html2pdf().set(options).from(pdfRoot).save();
                 pdfRoot.remove();
             } catch (error) {
@@ -3206,6 +3212,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792899414 -->
+    <!-- v_detail_zoom_hd_fixed_1792899598 -->
 </body>
 </html>
