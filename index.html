@@ -3104,7 +3104,7 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
                 const sourceCards = Array.from(document.querySelectorAll('.card'));
                 const pdfRoot = document.createElement('div');
                 pdfRoot.id = 'eclat-pdf-document';
-                pdfRoot.style.cssText = 'position:fixed;left:-100000px;top:0;width:794px;background:#fff;color:#171717;font-family:Arial,Helvetica,sans-serif;z-index:-1;';
+                pdfRoot.style.cssText = 'position:fixed;left:0;top:0;width:794px;background:#fff;color:#171717;font-family:Arial,Helvetica,sans-serif;z-index:2147483647;pointer-events:none;opacity:1;visibility:visible;';
 
                 const dateLabel = new Intl.DateTimeFormat('es-CO', { day:'2-digit', month:'long', year:'numeric' }).format(new Date());
                 const cover = document.createElement('section');
@@ -3200,10 +3200,12 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
                 console.error('Error al generar el PDF de ÉCLAT:', error);
                 alert('No pudimos descargar el PDF automáticamente. ' + (error.message || 'Inténtalo de nuevo con conexión a internet.'));
             } finally {
+                const leftover = document.getElementById('eclat-pdf-document');
+                if (leftover) leftover.remove();
                 if (button) { button.disabled = false; button.innerHTML = originalButtonHTML; }
             }
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792899188 -->
+    <!-- v_detail_zoom_hd_fixed_1792899414 -->
 </body>
 </html>
