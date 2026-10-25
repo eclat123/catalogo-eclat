@@ -2656,7 +2656,7 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" referrerpolicy="no-referrer"></script>
     <script>
         // Cursor de Lujo
         const cursor = document.getElementById('customCursor');
@@ -3089,129 +3089,100 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         async function generatePDF() {
             const button = document.querySelector('.hero-pdf-btn');
             const originalButtonHTML = button ? button.innerHTML : '';
-            if (button) {
-                button.disabled = true;
-                button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparando catálogo…';
-            }
-
+            if (button) { button.disabled = true; button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparando catálogo…'; }
             try {
-                if (typeof html2pdf === 'undefined') {
-                    throw new Error('No se pudo cargar el generador PDF. Revisa tu conexión a internet e inténtalo de nuevo.');
+                if (!window.jspdf || !window.jspdf.jsPDF) {
+                    throw new Error('No se pudo cargar el generador de PDF. Revisa tu conexión a internet e inténtalo de nuevo.');
                 }
-
-                // Construye un documento independiente para PDF: no altera los filtros
-                // ni el catálogo que el visitante está viendo.
-                const sourceCards = Array.from(document.querySelectorAll('.card'));
-                const pdfRoot = document.createElement('div');
-                pdfRoot.id = 'eclat-pdf-document';
-                pdfRoot.style.cssText = 'position:absolute;left:0;top:0;width:794px;min-height:1123px;background:#fff;color:#171717;font-family:Arial,Helvetica,sans-serif;z-index:2147483647;pointer-events:none;opacity:1;visibility:visible;display:block;overflow:visible;transform:none;';
-
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
+                const pageW = 210, pageH = 297, gold = [184, 145, 72], ink = [24, 24, 24];
                 const dateLabel = new Intl.DateTimeFormat('es-CO', { day:'2-digit', month:'long', year:'numeric' }).format(new Date());
-                const cover = document.createElement('section');
-                cover.className = 'pdf-cover';
-                cover.innerHTML = `
-                    <div style="height:8px;background:#c5a059;margin-bottom:34px"></div>
-                    <div style="text-align:center;padding:34px 38px 26px">
-                      <div style="font-size:13px;letter-spacing:7px;color:#9b793b;font-weight:700">SELECCIÓN EXCLUSIVA</div>
-                      <div style="font-family:Georgia,serif;font-size:54px;letter-spacing:12px;color:#111;margin:20px 0 8px">ÉCLAT</div>
-                      <div style="height:1px;width:130px;background:#c5a059;margin:0 auto 20px"></div>
-                      <div style="font-size:20px;letter-spacing:3px;text-transform:uppercase;color:#292929">Catálogo de productos</div>
-                      <div style="font-size:11px;color:#777;margin-top:14px">Edición ${dateLabel}</div>
-                    </div>
-                    <div style="margin:0 38px;border-top:1px solid #e8dfcf"></div>
-                    <div style="margin:24px 38px 0;padding:17px 20px;background:#111;color:#f6f0e5;display:flex;justify-content:space-between;align-items:center">
-                      <span style="font-size:11px;letter-spacing:1.5px">DESCUBRE LA SELECCIÓN ÉCLAT</span>
-                      <span style="font-size:11px;color:#d8b875">${sourceCards.length} referencias</span>
-                    </div>
-                    <div style="padding:18px 38px 30px;font-size:10px;line-height:1.6;color:#666">Una selección presentada con cuidado para facilitar la consulta de productos. Para confirmar disponibilidad y realizar consultas, contacta al equipo de ÉCLAT por WhatsApp desde el catálogo en línea.</div>
-                `;
-                cover.style.pageBreakAfter = 'always';
-                cover.style.breakAfter = 'page';
-                pdfRoot.appendChild(cover);
+                const cards = Array.from(document.querySelectorAll('.card')).filter(card => card.querySelector('.title'));
+                if (!cards.length) throw new Error('No se encontraron productos para incluir en el catálogo.');
 
-                const catalogPage = document.createElement('section');
-                catalogPage.style.cssText = 'padding:18px 28px 26px;background:#fff;';
-                catalogPage.innerHTML = `
-                    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #c5a059;padding:0 0 12px;margin-bottom:18px">
-                      <div style="font-family:Georgia,serif;font-size:23px;letter-spacing:5px;color:#111">ÉCLAT</div>
-                      <div style="font-size:9px;letter-spacing:2px;color:#8a6b32">CATÁLOGO DE PRODUCTOS</div>
-                    </div>
-                    <div class="pdf-product-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px"></div>
-                    <div style="margin-top:22px;border-top:1px solid #e7dcc8;padding-top:10px;text-align:center;font-size:9px;letter-spacing:1px;color:#8a6b32">ÉCLAT · CONSULTAS Y DISPONIBILIDAD POR WHATSAPP</div>
-                `;
-                const grid = catalogPage.querySelector('.pdf-product-grid');
+                // Portada editorial ÉCLAT
+                pdf.setFillColor(15, 15, 15); pdf.rect(0, 0, pageW, pageH, 'F');
+                pdf.setDrawColor(...gold); pdf.setLineWidth(1.2); pdf.rect(12, 12, pageW-24, pageH-24);
+                pdf.setDrawColor(100, 78, 42); pdf.setLineWidth(0.3); pdf.rect(16, 16, pageW-32, pageH-32);
+                pdf.setTextColor(...gold); pdf.setFont('times', 'normal'); pdf.setFontSize(13); pdf.text('SELECCIÓN EXCLUSIVA', pageW/2, 92, {align:'center', charSpace:3});
+                pdf.setTextColor(250, 246, 237); pdf.setFontSize(43); pdf.text('ÉCLAT', pageW/2, 119, {align:'center', charSpace:8});
+                pdf.setDrawColor(...gold); pdf.setLineWidth(0.5); pdf.line(66, 130, 144, 130);
+                pdf.setFont('helvetica', 'normal'); pdf.setFontSize(15); pdf.setTextColor(240, 235, 224); pdf.text('CATÁLOGO DE PRODUCTOS', pageW/2, 146, {align:'center', charSpace:1.6});
+                pdf.setFontSize(10); pdf.setTextColor(196, 185, 163); pdf.text('Edición ' + dateLabel, pageW/2, 157, {align:'center'});
+                pdf.setFillColor(...gold); pdf.rect(47, 183, 116, 0.7, 'F');
+                pdf.setFontSize(10); pdf.setTextColor(232, 222, 203); pdf.text(cards.length + ' REFERENCIAS SELECCIONADAS', pageW/2, 196, {align:'center', charSpace:1});
+                pdf.setFontSize(9); pdf.setTextColor(175, 169, 157);
+                pdf.text('Diseñado para descubrir cada detalle.', pageW/2, 242, {align:'center'});
+                pdf.text('Consultas y disponibilidad desde el catálogo ÉCLAT en línea.', pageW/2, 249, {align:'center'});
 
-                sourceCards.forEach((original) => {
-                    const card = original.cloneNode(true);
-                    card.classList.remove('hidden-card', 'fade-out');
-                    card.removeAttribute('onclick');
-                    card.style.cssText = 'display:flex;flex-direction:column;min-width:0;min-height:255px;border:1px solid #e8e0d2;background:#fff;border-radius:3px;overflow:hidden;box-shadow:none;opacity:1;transform:none;break-inside:avoid;page-break-inside:avoid;';
-                    card.querySelectorAll('button,.view-detail-hint,.select-product-btn,.footer-card i').forEach(el => el.remove());
-                    const imageBox = card.querySelector('.img-container');
-                    if (imageBox) {
-                        imageBox.removeAttribute('onclick');
-                        imageBox.style.cssText = 'height:145px;min-height:145px;background:#f8f6f1;display:flex;align-items:center;justify-content:center;padding:8px;overflow:hidden;';
-                        const img = imageBox.querySelector('img');
-                        if (img) { img.loading = 'eager'; img.removeAttribute('loading'); img.style.cssText = 'max-width:100%;max-height:135px;width:auto;height:auto;object-fit:contain;'; }
-                    }
-                    const body = card.querySelector('.card-body');
-                    if (body) body.style.cssText = 'display:flex;flex:1;flex-direction:column;justify-content:space-between;gap:8px;padding:10px 11px;background:#fff;';
-                    const brand = card.querySelector('.brand');
-                    if (brand) brand.style.cssText = 'font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#98783e;margin-bottom:4px;';
-                    const title = card.querySelector('.title');
-                    if (title) title.style.cssText = 'font-size:10px;line-height:1.35;font-weight:700;color:#202020;margin-bottom:5px;overflow-wrap:anywhere;';
-                    const presentation = card.querySelector('.presentation');
-                    if (presentation) presentation.style.cssText = 'font-size:8px;color:#777;margin-top:4px;';
-                    const badge = card.querySelector('.badge');
-                    if (badge) badge.style.cssText = 'display:inline-block;font-size:7px;letter-spacing:.5px;padding:3px 5px;margin-bottom:6px;border:1px solid #d7c39a;color:#765b2c;background:#fbf8f1;';
-                    const footer = card.querySelector('.footer-card');
-                    if (footer) footer.style.cssText = 'border-top:1px solid #eee7dc;padding-top:7px;margin-top:8px;';
-                    const price = card.querySelector('.price');
-                    if (price) price.style.cssText = 'font-size:12px;font-weight:700;color:#8b6b2e;display:block;';
-                    grid.appendChild(card);
-                });
-
-                document.body.appendChild(pdfRoot);
-                // Espera las imágenes para reducir el riesgo de tarjetas vacías.
-                const pdfImages = Array.from(pdfRoot.querySelectorAll('img'));
-                await Promise.all(pdfImages.map(img => {
-                    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
-                    return new Promise(resolve => {
-                        const done = () => resolve();
-                        img.addEventListener('load', done, { once:true });
-                        img.addEventListener('error', done, { once:true });
-                        setTimeout(done, 5000);
-                    });
-                }));
-
-                const options = {
-                    margin: [9, 8, 11, 8],
-                    filename: `ECLAT_Catalogo_${new Date().toISOString().slice(0,10)}.pdf`,
-                    image: { type:'jpeg', quality:0.96 },
-                    html2canvas: { scale:2, useCORS:true, allowTaint:false, backgroundColor:'#ffffff', logging:false, scrollY:0 },
-                    jsPDF: { unit:'mm', format:'a4', orientation:'portrait', compress:true },
-                    pagebreak: { mode:['css','legacy'], avoid:['.card'] }
+                // Páginas de productos: se dibujan directamente en jsPDF; no se crea popup ni vista de impresión.
+                pdf.addPage();
+                const marginX = 10, gapX = 5, cardW = (pageW - marginX*2 - gapX*2)/3;
+                const cardH = 78, topY = 28, gapY = 6;
+                let pageNo = 2, index = 0;
+                const drawHeader = () => {
+                    pdf.setFillColor(17,17,17); pdf.rect(0,0,pageW,18,'F');
+                    pdf.setTextColor(...gold); pdf.setFont('times','normal'); pdf.setFontSize(16); pdf.text('ÉCLAT', marginX, 12);
+                    pdf.setTextColor(238,232,219); pdf.setFont('helvetica','normal'); pdf.setFontSize(7); pdf.text('CATÁLOGO DE PRODUCTOS', pageW-marginX, 11, {align:'right', charSpace:1.2});
+                    pdf.setDrawColor(...gold); pdf.setLineWidth(0.6); pdf.line(marginX, 21, pageW-marginX, 21);
                 };
-                // Fuerza una medición real del contenido antes de iniciar la captura.
-                await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-                const pdfBounds = pdfRoot.getBoundingClientRect();
-                if (!pdfRoot.firstElementChild || pdfBounds.width < 100 || pdfBounds.height < 100) {
-                    throw new Error('El contenido del catálogo no quedó listo para convertirlo en PDF. Vuelve a intentarlo.');
+                const drawFooter = () => {
+                    pdf.setDrawColor(220,210,190); pdf.setLineWidth(0.25); pdf.line(marginX, pageH-13, pageW-marginX, pageH-13);
+                    pdf.setTextColor(130,111,77); pdf.setFont('helvetica','normal'); pdf.setFontSize(7);
+                    pdf.text('ÉCLAT · CONSULTAS Y DISPONIBILIDAD POR WHATSAPP', pageW/2, pageH-8, {align:'center'});
+                    pdf.text(String(pageNo), pageW-marginX, pageH-8, {align:'right'});
+                };
+                drawHeader();
+                for (let i=0; i<cards.length; i++) {
+                    const source = cards[i];
+                    const col = index % 3, row = Math.floor(index / 3) % 3;
+                    const x = marginX + col*(cardW+gapX), y = topY + row*(cardH+gapY);
+                    if (index > 0 && index % 9 === 0) { pdf.addPage(); pageNo++; drawHeader(); }
+                    const xx = marginX + col*(cardW+gapX), yy = topY + row*(cardH+gapY);
+                    pdf.setFillColor(255,255,255); pdf.setDrawColor(225,215,197); pdf.setLineWidth(0.3); pdf.roundedRect(xx, yy, cardW, cardH, 1.2, 1.2, 'FD');
+                    const img = source.querySelector('.img-container img');
+                    if (img && img.complete && img.naturalWidth > 0) {
+                        try {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+                            const ctx = canvas.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0);
+                            const data = canvas.toDataURL('image/jpeg', 0.88);
+                            const ratio = Math.min((cardW-8)/(canvas.width), 37/(canvas.height));
+                            const iw = canvas.width*ratio, ih=canvas.height*ratio;
+                            pdf.addImage(data, 'JPEG', xx+(cardW-iw)/2, yy+3+(37-ih)/2, iw, ih, undefined, 'FAST');
+                        } catch (imageError) { /* Si el servidor de la imagen bloquea CORS, el texto y el resto del catálogo se conservan. */ }
+                    }
+                    pdf.setDrawColor(232,222,204); pdf.line(xx+3, yy+42, xx+cardW-3, yy+42);
+                    const badge = (source.querySelector('.badge')?.innerText || '').trim();
+                    if (badge) { pdf.setFont('helvetica','bold'); pdf.setFontSize(5.5); pdf.setTextColor(130,99,42); pdf.text(badge.toUpperCase().slice(0,32), xx+4, yy+47); }
+                    const brand = (source.querySelector('.brand')?.innerText || '').trim();
+                    const title = (source.querySelector('.title')?.innerText || 'Producto').trim();
+                    pdf.setFont('helvetica','bold'); pdf.setFontSize(7.5); pdf.setTextColor(...ink);
+                    const titleLines = pdf.splitTextToSize(title, cardW-8).slice(0,3);
+                    pdf.text(titleLines, xx+4, yy+(badge ? 52 : 48));
+                    const presentation = (source.querySelector('.presentation')?.innerText || '').trim();
+                    let textY = yy+(badge ? 52 : 48) + titleLines.length*3.6;
+                    if (brand) { pdf.setFont('helvetica','normal'); pdf.setFontSize(5.8); pdf.setTextColor(125,117,104); pdf.text(pdf.splitTextToSize(brand, cardW-8).slice(0,1), xx+4, textY); textY += 3.3; }
+                    if (presentation && textY < yy+68) { pdf.setFont('helvetica','normal'); pdf.setFontSize(5.5); pdf.setTextColor(110,105,95); pdf.text(pdf.splitTextToSize(presentation, cardW-8).slice(0,1), xx+4, textY); }
+                    const price = (source.querySelector('.price')?.innerText || '').trim();
+                    pdf.setFont('helvetica','bold'); pdf.setFontSize(8.5); pdf.setTextColor(139,104,43);
+                    pdf.text(price || 'Consultar precio', xx+4, yy+73);
+                    index++;
                 }
-                await html2pdf().set(options).from(pdfRoot).save();
-                pdfRoot.remove();
+                drawFooter();
+                const filename = 'ECLAT_Catalogo_' + new Date().toISOString().slice(0,10) + '.pdf';
+                // jsPDF.save inicia la descarga directa, sin abrir diálogo de impresión o vista previa.
+                pdf.save(filename);
             } catch (error) {
-                const leftover = document.getElementById('eclat-pdf-document');
-                if (leftover) leftover.remove();
                 console.error('Error al generar el PDF de ÉCLAT:', error);
-                alert('No pudimos descargar el PDF automáticamente. ' + (error.message || 'Inténtalo de nuevo con conexión a internet.'));
+                alert('No pudimos generar el PDF. ' + (error.message || 'Revisa la conexión a internet e inténtalo de nuevo.'));
             } finally {
-                const leftover = document.getElementById('eclat-pdf-document');
-                if (leftover) leftover.remove();
                 if (button) { button.disabled = false; button.innerHTML = originalButtonHTML; }
             }
         }
+
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792899710 -->
+    <!-- v_detail_zoom_hd_fixed_1792899946 -->
 </body>
 </html>
