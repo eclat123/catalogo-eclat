@@ -3134,6 +3134,44 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
                     pdf.text(String(pageNo), pageW-marginX, pageH-8, {align:'right'});
                 };
                 drawHeader();
+
+                // Carga las imágenes originales antes de dibujar las tarjetas.
+                // crossOrigin debe configurarse ANTES de asignar src para permitir canvas/PDF.
+                const imageDataByCard = new Map();
+                await Promise.all(cards.map(async (card) => {
+                    const original = card.querySelector('.img-container img');
+                    if (!original) return;
+                    const imageUrl = original.currentSrc || original.src || original.getAttribute('src');
+                    if (!imageUrl || imageUrl.startsWith('data:')) {
+                        if (imageUrl && imageUrl.startsWith('data:')) imageDataByCard.set(card, imageUrl);
+                        return;
+                    }
+                    try {
+                        const pdfImage = new Image();
+                        pdfImage.crossOrigin = 'anonymous';
+                        pdfImage.referrerPolicy = 'no-referrer';
+                        const loaded = new Promise((resolve, reject) => {
+                            pdfImage.onload = () => resolve();
+                            pdfImage.onerror = () => reject(new Error('No se pudo cargar la imagen para PDF'));
+                            setTimeout(() => reject(new Error('Tiempo de espera agotado al cargar imagen')), 10000);
+                        });
+                        pdfImage.src = imageUrl;
+                        await loaded;
+                        if (pdfImage.naturalWidth > 0 && pdfImage.naturalHeight > 0) {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = pdfImage.naturalWidth;
+                            canvas.height = pdfImage.naturalHeight;
+                            const ctx = canvas.getContext('2d');
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            ctx.drawImage(pdfImage, 0, 0);
+                            imageDataByCard.set(card, canvas.toDataURL('image/jpeg', 0.9));
+                        }
+                    } catch (imageError) {
+                        console.warn('No se pudo incorporar una imagen al PDF. Puede estar bloqueada por CORS:', imageUrl, imageError);
+                    }
+                }));
+
                 for (let i=0; i<cards.length; i++) {
                     const source = cards[i];
                     const col = index % 3, row = Math.floor(index / 3) % 3;
@@ -3141,17 +3179,16 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
                     if (index > 0 && index % 9 === 0) { pdf.addPage(); pageNo++; drawHeader(); }
                     const xx = marginX + col*(cardW+gapX), yy = topY + row*(cardH+gapY);
                     pdf.setFillColor(255,255,255); pdf.setDrawColor(225,215,197); pdf.setLineWidth(0.3); pdf.roundedRect(xx, yy, cardW, cardH, 1.2, 1.2, 'FD');
-                    const img = source.querySelector('.img-container img');
-                    if (img && img.complete && img.naturalWidth > 0) {
+                    const imageData = imageDataByCard.get(source);
+                    if (imageData) {
                         try {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-                            const ctx = canvas.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0);
-                            const data = canvas.toDataURL('image/jpeg', 0.88);
-                            const ratio = Math.min((cardW-8)/(canvas.width), 37/(canvas.height));
-                            const iw = canvas.width*ratio, ih=canvas.height*ratio;
-                            pdf.addImage(data, 'JPEG', xx+(cardW-iw)/2, yy+3+(37-ih)/2, iw, ih, undefined, 'FAST');
-                        } catch (imageError) { /* Si el servidor de la imagen bloquea CORS, el texto y el resto del catálogo se conservan. */ }
+                            const props = pdf.getImageProperties(imageData);
+                            const ratio = Math.min((cardW-8)/props.width, 37/props.height);
+                            const iw = props.width*ratio, ih = props.height*ratio;
+                            pdf.addImage(imageData, 'JPEG', xx+(cardW-iw)/2, yy+3+(37-ih)/2, iw, ih, undefined, 'FAST');
+                        } catch (imageError) {
+                            console.warn('No se pudo insertar una imagen en el PDF:', imageError);
+                        }
                     }
                     pdf.setDrawColor(232,222,204); pdf.line(xx+3, yy+42, xx+cardW-3, yy+42);
                     const badge = (source.querySelector('.badge')?.innerText || '').trim();
@@ -3183,6 +3220,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         }
 
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792899946 -->
+    <!-- v_detail_zoom_hd_fixed_1792900238 -->
 </body>
 </html>
