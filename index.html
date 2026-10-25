@@ -652,6 +652,13 @@
         .selection-item-remove { flex: 0 0 auto; border: 1px solid rgba(197,160,89,.35); border-radius: 4px; background: transparent; color: #e8d8b2; padding: 3px 7px; cursor: pointer; font-size: 10px; }
         .selection-action { border: 0; border-radius: 6px; padding: 10px 12px; background: var(--accent-gold); color: #111; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .selection-clear { border: 0; padding: 5px; background: transparent; color: #aaa; font: inherit; font-size: 10px; cursor: pointer; }
+        @media (max-width: 768px) {
+            /* En móvil, la barra de selección tiene prioridad sobre "Arriba". */
+            .selection-bar { z-index: 1100; bottom: max(10px, env(safe-area-inset-bottom)); }
+            body.selection-bar-open .back-to-top.show { display: none !important; pointer-events: none !important; }
+            .selection-items { max-height: min(28vh, 170px); overscroll-behavior: contain; }
+            .selection-item-remove { min-height: 32px; padding: 6px 10px; touch-action: manipulation; position: relative; z-index: 1; }
+        }
         @media (max-width: 420px) { .selection-bar { gap: 7px; padding: 10px; } .selection-action { padding: 9px; font-size: 9px; } .selection-clear { font-size: 9px; } }
 
         /* MODAL 1: ZOOM DE IMAGEN */
@@ -2911,6 +2918,7 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             const count = selectedProducts.size;
             if (!bar || !summary) return;
             bar.classList.toggle('active', count > 0);
+            document.body.classList.toggle('selection-bar-open', count > 0);
             summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto seleccionado' : 'productos seleccionados'}</strong>Se enviarán juntos en una consulta por WhatsApp`;
             const itemsList = document.getElementById('selectionItems');
             if (itemsList) {
@@ -3105,6 +3113,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792894627 -->
+    <!-- v_detail_zoom_hd_fixed_1792895024 -->
 </body>
 </html>
