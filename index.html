@@ -655,16 +655,16 @@
         .selection-action { border: 0; border-radius: 6px; padding: 10px 12px; background: var(--accent-gold); color: #111; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .selection-clear { align-self: flex-end; border: 0; padding: 3px 5px; background: transparent; color: #aaa; font: inherit; font-size: 10px; cursor: pointer; }
         .selection-minimize { display: inline-flex; align-self: flex-end; align-items: center; justify-content: center; border: 1px solid rgba(197,160,89,.35); border-radius: 50%; width: 30px; height: 30px; background: transparent; color: #e8d8b2; font-size: 18px; cursor: pointer; }
-        .selection-bubble { position: fixed; left: 18px; bottom: 18px; z-index: 951; display: none; align-items: center; justify-content: center; gap: 8px; min-width: 58px; height: 58px; padding: 0 15px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; background: #c5a059; color: #111; box-shadow: 0 5px 22px rgba(0,0,0,.4); font-size: 14px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
+        .selection-bubble { position: fixed; left: 18px; bottom: 84px; z-index: 951; display: none; align-items: center; justify-content: center; gap: 8px; min-width: 58px; height: 58px; padding: 0 15px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; background: #c5a059; color: #111; box-shadow: 0 5px 22px rgba(0,0,0,.4); font-size: 14px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
         .selection-bubble.visible { display: inline-flex; }
         .selection-bubble-count { display: inline-flex; align-items: center; justify-content: center; min-width: 23px; height: 23px; padding: 0 5px; border-radius: 50%; background: #111; color: #f4dfad; font-size: 11px; }
         body.selection-panel-collapsed .selection-bar { display: none !important; }
         body.selection-panel-expanded .selection-bubble { display: none !important; }
         @media (max-width: 768px) {
             /* En móviles, consultas inicia como burbuja y se expande solo al tocarla. */
-            .selection-bar { left: auto; right: 12px; top: auto; bottom: 76px; transform: none; width: min(290px, calc(100vw - 24px)); max-height: min(65vh, 470px); padding: 12px; gap: 8px; z-index: 1100; }
+            .selection-bar { left: 12px; right: auto; top: auto; bottom: 76px; transform: none; width: min(290px, calc(100vw - 24px)); max-height: min(65vh, 470px); padding: 12px; gap: 8px; z-index: 1100; }
             .selection-bar.active { animation: consultPanelInMobile .2s ease-out both; }
-            .selection-bubble { left: auto; right: 14px; bottom: 18px; z-index: 1101; }
+            .selection-bubble { left: 14px; right: auto; bottom: 84px; z-index: 1101; }
             /* Los botones de las tarjetas conservan su distribución; solo cambia la ventanita de consultas. */
             .footer-card { flex-wrap: wrap; row-gap: 10px; }
             .footer-card > .price { flex: 0 0 100%; width: 100%; }
@@ -678,7 +678,7 @@
             .selection-items { max-height: min(32vh, 210px); overscroll-behavior: contain; }
             .selection-item-remove { min-height: 32px; padding: 6px 10px; touch-action: manipulation; position: relative; z-index: 1; }
         }
-        @media (max-width: 420px) { .selection-bar { right: 8px; bottom: 76px; width: min(280px, calc(100vw - 16px)); gap: 6px; padding: 9px; } .selection-action { padding: 9px; font-size: 9px; } .selection-clear { font-size: 9px; } }
+        @media (max-width: 420px) { .selection-bar { left: 8px; right: auto; bottom: 76px; width: min(280px, calc(100vw - 16px)); gap: 6px; padding: 9px; } .selection-action { padding: 9px; font-size: 9px; } .selection-clear { font-size: 9px; } }
 
         /* MODAL 1: ZOOM DE IMAGEN */
         .zoom-modal {
@@ -3252,6 +3252,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         }
 
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792943446 -->
+    <!-- v_detail_zoom_hd_fixed_1792943689 -->
 </body>
 </html>
