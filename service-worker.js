@@ -1,5 +1,5 @@
-const CACHE_NAME = 'eclat-shell-v1';
-const SHELL = ['./', './manifest.json', './eclat-icon.svg', './icon-192.png', './icon-512.png'];
+const CACHE_NAME = 'eclat-shell-v2';
+const SHELL = ['./', './manifest.json', './manifest-admin.json', './eclat-icon.svg', './eclat-admin-icon.svg', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
