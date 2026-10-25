@@ -653,6 +653,13 @@
         .selection-action { border: 0; border-radius: 6px; padding: 10px 12px; background: var(--accent-gold); color: #111; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap; }
         .selection-clear { border: 0; padding: 5px; background: transparent; color: #aaa; font: inherit; font-size: 10px; cursor: pointer; }
         @media (max-width: 768px) {
+            /* En móvil, los botones ocupan espacios definidos para que Añadir/Añadido nunca invada Detalles. */
+            .footer-card { flex-wrap: wrap; row-gap: 10px; }
+            .footer-card > .price { flex: 0 0 100%; width: 100%; }
+            .footer-card > div { display: flex !important; width: 100%; min-width: 0; flex-wrap: nowrap !important; gap: 8px !important; justify-content: stretch !important; }
+            .footer-card .select-product-btn,
+            .footer-card .view-detail-hint { box-sizing: border-box; flex: 1 1 0; min-width: 0; width: 0; max-width: 50%; justify-content: center; text-align: center; padding: 8px 4px; font-size: 9px; letter-spacing: 0; }
+            .footer-card .select-product-btn { overflow: hidden; }
             /* En móvil, la barra de selección tiene prioridad sobre "Arriba". */
             .selection-bar { z-index: 1100; bottom: max(10px, env(safe-area-inset-bottom)); }
             body.selection-bar-open .back-to-top.show { display: none !important; pointer-events: none !important; }
@@ -3113,6 +3120,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792895024 -->
+    <!-- v_detail_zoom_hd_fixed_1792895758 -->
 </body>
 </html>
