@@ -721,6 +721,19 @@
             display: block;
             transition: transform 0.2s ease-out;
             transform-origin: center center;
+            /* Evita el menú nativo de mantener pulsada la imagen en móviles. */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            touch-action: manipulation;
+        }
+        @media (hover: none), (pointer: coarse) {
+            .detail-left {
+                cursor: zoom-in;
+                touch-action: manipulation;
+            }
+            .detail-left.zoomed { cursor: zoom-out; }
         }
         .detail-right {
             padding: 45px 40px;
@@ -2679,6 +2692,9 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         function openDetailModal(imgUrl, title, brand, details) {
             if(!imgUrl) return;
             detailImg.src = imgUrl;
+            if (zoomContainer) zoomContainer.classList.remove('zoomed');
+            detailImg.style.transform = 'scale(1)';
+            detailImg.style.transformOrigin = 'center center';
             document.getElementById('detailTitle').textContent = title;
             document.getElementById('detailBrand').textContent = brand;
             const cleanDetails = details.split('**').join('').replace(/<br>/gi, String.fromCharCode(10));
@@ -2689,7 +2705,9 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         }
 
         if(zoomContainer && detailImg) {
+            // PC: conserva la lupa que sigue el movimiento del mouse.
             zoomContainer.addEventListener('mousemove', (e) => {
+                if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
                 const rect = zoomContainer.getBoundingClientRect();
                 const x = ((e.clientX - rect.left) / rect.width) * 100;
                 const y = ((e.clientY - rect.top) / rect.height) * 100;
@@ -2698,16 +2716,34 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             });
 
             zoomContainer.addEventListener('mouseleave', () => {
+                if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
                 detailImg.style.transformOrigin = 'center center';
                 detailImg.style.transform = 'scale(1)';
             });
+
+            // Móvil/tablet: un toque amplía; otro toque vuelve al tamaño normal.
+            // Se cancela la propagación para que tocar la foto no cierre la ficha.
+            zoomContainer.addEventListener('click', (e) => {
+                if (!window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+                e.preventDefault();
+                e.stopPropagation();
+                const isZoomed = zoomContainer.classList.toggle('zoomed');
+                detailImg.style.transformOrigin = 'center center';
+                detailImg.style.transform = isZoomed ? 'scale(2.1)' : 'scale(1)';
+            });
+
+            // Bloquea el menú del navegador que aparece al mantener pulsada la foto.
+            detailImg.addEventListener('contextmenu', (e) => e.preventDefault());
+            detailImg.addEventListener('dragstart', (e) => e.preventDefault());
         }
 
         function closeDetailModal() {
             document.getElementById('detailModal').classList.remove('active');
             if(detailImg) {
                 detailImg.style.transform = 'scale(1)';
+                detailImg.style.transformOrigin = 'center center';
             }
+            if(zoomContainer) zoomContainer.classList.remove('zoomed');
         }
 
         function generatePDF() {
@@ -2752,6 +2788,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792892991 -->
+    <!-- v_detail_zoom_hd_fixed_1792893306 -->
 </body>
 </html>
