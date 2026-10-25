@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c0c0c">
+    <meta name="description" content="Explora el catálogo exclusivo de ÉCLAT.">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/svg+xml" href="./eclat-icon.svg">
     <title>Éclat • Catálogo Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -3458,6 +3462,16 @@ nutrición profunda: piel saludable en todas las capas
         }
 
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792948337 -->
+    <!-- Instalación PWA de ÉCLAT -->
+    <script>
+      if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./service-worker.js')
+            .then(() => console.log('ÉCLAT: actualización web habilitada.'))
+            .catch((error) => console.warn('ÉCLAT: no se pudo registrar la actualización web.', error));
+        });
+      }
+    </script>
+    <!-- v_detail_zoom_hd_fixed_1792949126 -->
 </body>
 </html>
