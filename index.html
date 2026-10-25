@@ -1055,7 +1055,7 @@
         <h2>Tu esencia, <em>tu sello</em> personal.</h2>
         <p>Descubre una selección especial de productos y encuentra ese detalle que habla de ti. En ÉCLAT te acompañamos con asesoría personalizada.</p>
         <div class="hero-actions">
-            <a class="hero-cta" href="#productGrid"><i class="fa-solid fa-sparkles"></i> Explorar catálogo</a>
+            <a class="hero-cta" href="#catalogToolbar" onclick="scrollToCatalogStart(); return false;"><i class="fa-solid fa-sparkles"></i> Explorar catálogo</a>
             <button class="hero-pdf-btn" onclick="generatePDF()"><i class="fa-solid fa-file-pdf"></i> Descargar PDF</button>
         </div>
     </section>
@@ -2494,6 +2494,15 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             });
         }
 
+        function scrollToCatalogStart() {
+            // Al explorar, muestra primero el título del catálogo y los controles,
+            // evitando aterrizar demasiado abajo en la cuadrícula de productos.
+            const toolbar = document.getElementById('catalogToolbar');
+            if (!toolbar) return;
+            const top = toolbar.getBoundingClientRect().top + window.pageYOffset - 12;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -2744,6 +2753,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792889407 -->
+    <!-- v_detail_zoom_hd_fixed_1792889624 -->
 </body>
 </html>
