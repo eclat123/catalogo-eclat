@@ -808,13 +808,15 @@
             .detail-left.zoomed { cursor: zoom-out; touch-action: none; }
         }
         .detail-right {
-            padding: 45px 40px;
+            padding: 30px 34px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             box-sizing: border-box;
-            overflow-y: auto;
+            overflow: hidden;
             min-width: 0;
+            min-height: 0;
+            max-height: 90vh;
             cursor: default;
         }
         .detail-right * {
@@ -840,12 +842,38 @@
         .detail-text-box {
             font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.8;
-            letter-spacing: 0.5px;
+            line-height: 1.65;
+            letter-spacing: 0.35px;
             border-top: 1px solid var(--border-subtle);
             border-bottom: 1px solid var(--border-subtle);
-            padding: 20px 0;
+            padding: 14px 0;
             white-space: pre-line;
+            overflow-y: auto;
+            min-height: 0;
+            flex: 1 1 auto;
+            overflow-wrap: anywhere;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-gold) #222;
+        }
+        .detail-actions {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: stretch;
+            gap: 10px;
+            padding-top: 12px;
+            background: #141414;
+            position: relative;
+            z-index: 3;
+        }
+        .detail-actions .detail-whatsapp,
+        .detail-actions .detail-share {
+            flex: 1 1 0;
+            min-width: 0;
+            margin: 0;
+            padding: 12px 10px;
+            text-align: center;
+            white-space: normal;
+            line-height: 1.35;
         }
 
         .modal-close {
@@ -879,12 +907,16 @@
 
         @media (max-width: 768px) {
             .detail-modal { padding: 12px; }
-            .detail-box { grid-template-columns: minmax(0, 1fr); width: 100%; max-width: 520px; max-height: 95vh; overflow-y: auto; }
-            .detail-left { padding: 18px; height: 240px; min-height: 200px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
-            .detail-left img { max-height: 205px; }
-            .detail-right { padding: 22px; overflow: visible; }
-            .detail-title-text { font-size: 22px; margin-bottom: 14px; }
-            .detail-text-box { padding: 14px 0; }
+            .detail-box { grid-template-columns: minmax(0, 1fr); grid-template-rows: 220px minmax(0, 1fr); width: 100%; max-width: 520px; height: 95vh; max-height: 95vh; overflow: hidden; }
+            .detail-left { padding: 14px; height: 220px; min-height: 180px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+            .detail-left img { max-height: 190px; }
+            .detail-right { padding: 16px 20px 18px; overflow: hidden; max-height: none; min-height: 0; }
+            .detail-title-text { font-size: 21px; margin-bottom: 8px; }
+            .detail-category-tag { margin-bottom: 5px; }
+            .detail-price { margin: 4px 0 8px; font-size: 21px; }
+            .detail-text-box { padding: 10px 0; }
+            .detail-actions { gap: 8px; padding-top: 10px; }
+            .detail-actions .detail-whatsapp, .detail-actions .detail-share { font-size: 9px; padding: 11px 7px; letter-spacing: .5px; }
         }
 
         /* IDENTIDAD ÉCLAT: lujo negro y dorado, con mejor jerarquía visual */
@@ -934,13 +966,16 @@
         body.shared-product-mode footer { display: none !important; }
         body.shared-product-mode .detail-modal { display: flex !important; position: relative; inset: auto; width: 100%; min-height: 100vh; height: auto; padding: 28px 16px; background: #090909; backdrop-filter: none; z-index: 2; cursor: default; }
         body.shared-product-mode .detail-box { width: min(1000px, 100%); max-width: 100%; max-height: none; min-height: 420px; overflow: visible; cursor: default; }
-        body.shared-product-mode .detail-right { overflow: visible; }
+        body.shared-product-mode .detail-right { overflow: hidden; max-height: 90vh; }
+        body.shared-product-mode .detail-box { height: min(90vh, 760px); }
+        body.shared-product-mode .detail-text-box { min-height: 0; }
         body.shared-product-mode .detail-modal .modal-close { display: none; }
         body.shared-product-mode .shared-back-link { display: inline-flex; margin: 0 auto 20px; color: var(--accent-gold); text-decoration: none; font-size: 12px; letter-spacing: .5px; }
         @media (max-width: 700px) {
-            .detail-share { margin-left: 0; width: 100%; }
-            body.shared-product-mode .detail-box { grid-template-columns: minmax(0, 1fr); }
-            body.shared-product-mode .detail-left { height: 280px; min-height: 240px; }
+            .detail-share { margin-left: 0; width: auto; }
+            body.shared-product-mode .detail-box { grid-template-columns: minmax(0, 1fr); grid-template-rows: 220px minmax(0, 1fr); height: 95vh; max-height: 95vh; }
+            body.shared-product-mode .detail-left { height: 220px; min-height: 180px; }
+            body.shared-product-mode .detail-right { max-height: none; min-height: 0; padding: 16px 20px 18px; }
         }
         @media (max-width: 768px) {
             body { padding: 0 14px 70px; }
@@ -2771,8 +2806,10 @@ nutrición profunda: piel saludable en todas las capas
                 <div class="detail-title-text" id="detailTitle"></div>
                 <div class="detail-price" id="detailPrice"></div>
                 <div class="detail-text-box" id="detailDetails"></div>
-                <a href="https://wa.me/573118620589" target="_blank" rel="noopener noreferrer" class="detail-whatsapp" id="detailWhatsapp" onclick="event.stopPropagation()"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a>
-                <button type="button" class="detail-share" id="detailShare" onclick="event.stopPropagation(); shareCurrentProduct()"><i class="fa-solid fa-share-nodes"></i> Compartir ficha</button>
+                <div class="detail-actions" id="detailActions">
+                    <a href="https://wa.me/573118620589" target="_blank" rel="noopener noreferrer" class="detail-whatsapp" id="detailWhatsapp" onclick="event.stopPropagation()"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a>
+                    <button type="button" class="detail-share" id="detailShare" onclick="event.stopPropagation(); shareCurrentProduct()"><i class="fa-solid fa-share-nodes"></i> Compartir ficha</button>
+                </div>
             </div>
         </div>
     </div>
@@ -3421,6 +3458,6 @@ nutrición profunda: piel saludable en todas las capas
         }
 
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792948027 -->
+    <!-- v_detail_zoom_hd_fixed_1792948337 -->
 </body>
 </html>
