@@ -257,9 +257,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 8px;
             border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
         .sidebar-title {
             font-family: 'Playfair Display', serif;
@@ -278,28 +278,29 @@
         }
         .sidebar-search {
             width: 100%;
-            padding: 14px 20px;
-            font-size: 13px;
+            padding: 10px 14px;
+            font-size: 12px;
             border: 1px solid var(--border-subtle);
             border-radius: 4px;
             outline: none;
             background: #1a1a1a;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             box-sizing: border-box;
         }
         .availability-filters {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 16px;
         }
         .avail-btn {
             flex: 1;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-subtle);
-            padding: 8px 10px;
+            padding: 6px 8px;
+            min-height: 32px;
             border-radius: 4px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -318,18 +319,18 @@
             letter-spacing: 2px;
             color: var(--accent-gold);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 7px;
             font-weight: 600;
-            margin-top: 15px;
+            margin-top: 11px;
         }
         
         /* BARRITA SLIDER DELGADA Y ELEGANTE */
         .price-slider-container {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-subtle);
-            padding: 12px 14px;
+            padding: 9px 12px;
             border-radius: 6px;
-            margin-bottom: 25px;
+            margin-bottom: 16px;
         }
         .price-slider {
             -webkit-appearance: none;
@@ -416,9 +417,10 @@
             position: relative;
             background: linear-gradient(110deg, rgba(255,255,255,.018), transparent);
             border: 1px solid rgba(255,255,255,.055);
-            padding: 11px 14px;
+            padding: 8px 12px;
+            min-height: 34px;
             border-radius: 7px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -453,8 +455,9 @@
         .filter-chip button { border: 0; background: none; color: inherit; padding: 0; cursor: pointer; font-size: 13px; line-height: 1; }
         .clear-filters { margin-left: auto; border: 0; background: transparent; color: #aaa; text-decoration: underline; text-underline-offset: 3px; font: inherit; font-size: 10px; cursor: pointer; }
         .clear-filters:hover { color: var(--accent-gold); }
-        .sidebar-clear { width: 100%; margin-top: 20px; padding: 11px; border: 1px solid rgba(197,160,89,.3); border-radius: 6px; background: transparent; color: var(--accent-gold); font: inherit; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
-        .sidebar-clear:hover { background: rgba(197,160,89,.1); }
+        .sidebar-clear { align-self: flex-end; display: inline-flex; align-items: center; gap: 6px; margin: 0 0 10px; padding: 4px 2px; border: 0; border-radius: 0; background: transparent; color: #a99a78; font: inherit; font-size: 9px; letter-spacing: .5px; text-transform: none; cursor: pointer; opacity: .82; transition: color .2s ease, opacity .2s ease; }
+        .sidebar-clear:hover { background: transparent; color: var(--accent-gold); opacity: 1; }
+        .sidebar-clear i { font-size: 9px; }
         @media (max-width: 600px) {
             .catalog-controls { grid-template-columns: minmax(0,1fr) auto; gap: 8px; }
             .quick-search-wrap { grid-column: 1 / -1; height: 40px; }
@@ -990,6 +993,7 @@
             <h3 class="sidebar-title">Filtros</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">×</button>
         </div>
+        <button class="sidebar-clear" onclick="clearAllFilters()" aria-label="Limpiar todos los filtros"><i class="fa-solid fa-rotate-left"></i> Limpiar</button>
         <input type="text" id="searchInput" class="sidebar-search" oninput="syncSearch(this.value)" placeholder="Buscar creación...">
         
         <div class="sidebar-section-title">Disponibilidad</div>
@@ -1036,7 +1040,6 @@
             <button class="cat-btn-sidebar" onclick="filterByCategory('SPLASH LINOS', this)">SPLASH LINOS</button>
 
         </div>
-        <button class="sidebar-clear" onclick="clearAllFilters()"><i class="fa-solid fa-rotate-left"></i> Limpiar todos los filtros</button>
     </div>
     
     <header>
@@ -2738,6 +2741,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792887813 -->
+    <!-- v_detail_zoom_hd_fixed_1792888669 -->
 </body>
 </html>
