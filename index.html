@@ -2918,12 +2918,7 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
         function sendSelectionToWhatsApp() {
             if (!selectedProducts.size) return;
             const lines = Array.from(selectedProducts.values(), (item, index) => `${index + 1}. ${item.title}${item.brand ? ' — ' + item.brand : ''}${item.price ? ' — ' + item.price : ''}`);
-            const message = 'Hola, quisiera información y disponibilidad de estos productos del catálogo ÉCLAT:
-
-' + lines.join('
-') + '
-
-¿Me pueden asesorar, por favor?';
+            const message = 'Hola, quisiera información y disponibilidad de estos productos del catálogo ÉCLAT:\n\n' + lines.join('\n') + '\n\n¿Me pueden asesorar, por favor?';
             window.open('https://wa.me/573118620589?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
         }
 
@@ -3072,6 +3067,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792893920 -->
+    <!-- v_detail_zoom_hd_fixed_1792894145 -->
 </body>
 </html>
