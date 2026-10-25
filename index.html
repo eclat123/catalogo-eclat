@@ -7,6 +7,14 @@
     <meta name="description" content="Explora el catálogo exclusivo de ÉCLAT.">
     <link rel="manifest" href="./manifest.json">
     <link rel="icon" type="image/svg+xml" href="./eclat-icon.svg">
+    <!-- Google Analytics 4: solo en la versión pública ÉCLAT -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZN1D7KQ02"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PZN1D7KQ02');
+    </script>
     <title>Éclat • Catálogo Exclusivo</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -2863,18 +2871,11 @@ nutrición profunda: piel saludable en todas las capas
         let currentAvailability = 'TODOS';
         let maxPriceLimit = 500000;
 
-        const eclatLoaderStartedAt = performance.now();
         window.addEventListener('load', () => {
             filterCatalog();
             const loader = document.getElementById('page-loader');
-            // Mantener la portada visible al menos 1 segundo, sin añadir espera extra si la carga ya tardó más.
-            const eclatMinVisibleMs = 1000;
-            const eclatElapsedMs = performance.now() - eclatLoaderStartedAt;
-            const eclatWaitMs = Math.max(0, eclatMinVisibleMs - eclatElapsedMs);
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 600);
-            }, eclatWaitMs);
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 600);
 
             document.querySelectorAll('.view-detail-hint').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -3479,6 +3480,6 @@ nutrición profunda: piel saludable en todas las capas
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792954447 -->
+    <!-- v_detail_zoom_hd_fixed_1792957541 -->
 </body>
 </html>
