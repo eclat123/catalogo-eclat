@@ -1114,9 +1114,21 @@
             img { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
+<style id="eclat-admin-native-cursor">
+  *, *:hover, body, button, input, a, .card, .zoom-modal, .detail-modal, img { cursor: auto !important; }
+  button, a, [role="button"] { cursor: pointer !important; }
+  input, textarea, [contenteditable="true"] { cursor: text !important; }
+  .custom-cursor, .custom-cursor-dot { display: none !important; }
+  </style>
 </head>
 <body>
-<div id="eclat-admin-login" style="position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:#080808;color:#f5f5f5;padding:24px;font-family:Arial,sans-serif;">
+<style>
+  /* Durante el inicio de sesión se usa el cursor nativo, visible y funcional. */
+  #eclat-admin-login, #eclat-admin-login * { cursor: auto !important; }
+  #eclat-admin-login input { cursor: text !important; pointer-events: auto !important; user-select: text !important; }
+  #eclat-admin-login button { cursor: pointer !important; pointer-events: auto !important; }
+</style>
+<div id="eclat-admin-login" style="position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:#080808;color:#f5f5f5;padding:24px;font-family:Arial,sans-serif;cursor:auto;">
   <form id="eclat-admin-form" style="width:min(100%,380px);background:#141414;border:1px solid #c5a059;border-radius:18px;padding:28px;box-sizing:border-box;text-align:center;box-shadow:0 20px 70px #000;">
     <div style="font-size:44px;color:#c5a059;font-family:Georgia,serif;">É</div>
     <h1 style="margin:8px 0;color:#c5a059;font-size:24px;letter-spacing:2px;">ÉCLAT ADMIN</h1>
@@ -1148,6 +1160,14 @@
     } catch (e) { error.textContent = 'No fue posible validar la contraseña en este navegador.'; }
   });
   if (sessionStorage.getItem('eclat_admin_authenticated') === '1') { overlay.remove(); document.body.style.overflow = ''; }
+  else {
+    // Deja el campo listo para escribir y mantiene visible el cursor del sistema.
+    input.focus();
+    const customCursor = document.getElementById('customCursor');
+    const customCursorDot = document.getElementById('customCursorDot');
+    if (customCursor) customCursor.style.display = 'none';
+    if (customCursorDot) customCursorDot.style.display = 'none';
+  }
 })();
 </script>
 
@@ -3507,6 +3527,6 @@ nutrición profunda: piel saludable en todas las capas
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792957541 -->
+    <!-- v_detail_zoom_hd_fixed_1792958032 -->
 </body>
 </html>
