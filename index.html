@@ -635,25 +635,27 @@
         }
         .select-product-btn:hover, .card.is-selected .select-product-btn { background: var(--accent-gold); color: #111; border-color: var(--accent-gold); }
         .card.is-selected { outline: 1px solid rgba(197,160,89,.8); outline-offset: 2px; }
+        /* VENTANITA DE CONSULTAS INDEPENDIENTE: no reutiliza ni modifica el panel de filtros. */
         .selection-bar {
-            position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%);
-            z-index: 950; display: none; align-items: center; gap: 12px; width: min(620px, calc(100vw - 24px));
-            padding: 12px 14px; border: 1px solid rgba(197,160,89,.55); border-radius: 10px;
-            background: rgba(15,15,15,.97); box-shadow: 0 12px 35px rgba(0,0,0,.5); backdrop-filter: blur(14px);
-            flex-wrap: wrap;
+            position: fixed; left: 14px; top: 50%; bottom: auto; transform: translateY(-50%);
+            z-index: 950; display: none; align-items: stretch; flex-direction: column; gap: 9px;
+            width: min(290px, calc(100vw - 34px)); max-height: min(70vh, 560px); overflow: hidden;
+            padding: 13px; border: 1px solid rgba(197,160,89,.58); border-radius: 10px;
+            background: rgba(15,15,15,.97); box-shadow: 0 12px 35px rgba(0,0,0,.48); backdrop-filter: blur(14px);
         }
-        .selection-bar.active { display: flex; }
-        .selection-summary { flex: 1; min-width: 140px; color: #e8d8b2; font-size: 11px; line-height: 1.4; }
+        .selection-bar.active { display: flex; animation: consultPanelIn .22s ease-out both; }
+        @keyframes consultPanelIn { from { opacity: 0; transform: translate(-12px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
+        .selection-summary { flex: 0 0 auto; min-width: 0; color: #e8d8b2; font-size: 11px; line-height: 1.4; }
         .selection-summary strong { display: block; color: #fff; font-size: 12px; }
-        .selection-items { display: none; flex: 0 0 100%; max-height: 150px; overflow-y: auto; border-top: 1px solid rgba(197,160,89,.22); padding-top: 6px; }
+        .selection-items { display: none; flex: 1 1 auto; min-height: 0; max-height: 40vh; overflow-y: auto; overscroll-behavior: contain; border-top: 1px solid rgba(197,160,89,.22); padding-top: 6px; }
         .selection-items.has-items { display: block; }
-        .selection-item { display: flex; align-items: center; gap: 8px; padding: 5px 0; color: #eee; font-size: 11px; }
+        .selection-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #eee; font-size: 11px; }
         .selection-item-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
-        .selection-item-remove { flex: 0 0 auto; border: 1px solid rgba(197,160,89,.35); border-radius: 4px; background: transparent; color: #e8d8b2; padding: 3px 7px; cursor: pointer; font-size: 10px; }
+        .selection-item-remove { flex: 0 0 auto; border: 1px solid rgba(197,160,89,.35); border-radius: 4px; background: transparent; color: #e8d8b2; padding: 4px 8px; cursor: pointer; font-size: 10px; }
         .selection-action { border: 0; border-radius: 6px; padding: 10px 12px; background: var(--accent-gold); color: #111; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-        .selection-clear { border: 0; padding: 5px; background: transparent; color: #aaa; font: inherit; font-size: 10px; cursor: pointer; }
+        .selection-clear { align-self: flex-end; border: 0; padding: 3px 5px; background: transparent; color: #aaa; font: inherit; font-size: 10px; cursor: pointer; }
         @media (max-width: 768px) {
-            /* En móvil, los botones ocupan espacios definidos para que Añadir/Añadido nunca invada Detalles. */
+            /* Los botones de las tarjetas conservan su distribución; solo cambia la ventanita de consultas. */
             .footer-card { flex-wrap: wrap; row-gap: 10px; }
             .footer-card > .price { flex: 0 0 100%; width: 100%; }
             .footer-card > div { display: flex !important; width: 100%; min-width: 0; flex-wrap: nowrap !important; gap: 8px !important; justify-content: stretch !important; }
@@ -661,13 +663,14 @@
             .footer-card .view-detail-hint { box-sizing: border-box; flex: 1 1 0; min-width: 0; width: 0; max-width: 50%; justify-content: center; text-align: center; padding: 8px 3px; font-size: 9px; letter-spacing: 0; }
             .footer-card .select-product-btn { overflow: hidden; text-overflow: ellipsis; }
             .footer-card .select-product-btn i { flex: 0 0 auto; }
-            /* En móvil, la barra de selección tiene prioridad sobre "Arriba". */
-            .selection-bar { z-index: 1100; bottom: max(10px, env(safe-area-inset-bottom)); }
+            .selection-bar { left: 8px; top: 50%; bottom: auto; transform: translateY(-50%); width: min(250px, calc(100vw - 70px)); max-height: min(62vh, 440px); padding: 10px; gap: 7px; z-index: 1100; }
+            .selection-bar.active { animation: consultPanelInMobile .22s ease-out both; }
+            @keyframes consultPanelInMobile { from { opacity: 0; transform: translate(-10px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
             body.selection-bar-open .back-to-top.show { display: none !important; pointer-events: none !important; }
-            .selection-items { max-height: min(28vh, 170px); overscroll-behavior: contain; }
+            .selection-items { max-height: min(32vh, 210px); overscroll-behavior: contain; }
             .selection-item-remove { min-height: 32px; padding: 6px 10px; touch-action: manipulation; position: relative; z-index: 1; }
         }
-        @media (max-width: 420px) { .selection-bar { gap: 7px; padding: 10px; } .selection-action { padding: 9px; font-size: 9px; } .selection-clear { font-size: 9px; } }
+        @media (max-width: 420px) { .selection-bar { left: 6px; width: min(226px, calc(100vw - 62px)); gap: 6px; padding: 9px; } .selection-action { padding: 9px; font-size: 9px; } .selection-clear { font-size: 9px; } }
 
         /* MODAL 1: ZOOM DE IMAGEN */
         .zoom-modal {
@@ -3124,6 +3127,6 @@ fórmula con bioproteína triple acción + activo dermoactivador" data-category=
             }, 2000);
         }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1792896114 -->
+    <!-- v_detail_zoom_hd_fixed_1792896529 -->
 </body>
 </html>
