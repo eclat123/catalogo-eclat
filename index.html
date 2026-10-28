@@ -2966,7 +2966,13 @@ deja tu piel equilibrada, matificada y con aspecto más limpio." data-category="
         <div class="card" data-search="accesorios bolso tipo cartera color miel natura un bolso tipo cartera color miel." data-category="ACCESORIOS" data-availability="DISPONIBLE" data-price="45000.0">
             
             <div class="img-container" onclick="openZoomModalFromCard(event, 'ACCESORIOS BOLSO TIPO CARTERA COLOR MIEL')">
-                <img src="https://lh3.googleusercontent.com/d/1iXLuLQ2Px1BFQg4s-wT4XUv1Lr6vHdia" alt="BOLSO TIPO CARTERA COLOR MIEL" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.innerText='Imagen no disponible'">
+                <div class="product-carousel" data-images="[&quot;https://lh3.googleusercontent.com/d/1iXLuLQ2Px1BFQg4s-wT4XUv1Lr6vHdia&quot;, &quot;https://lh3.googleusercontent.com/d/1paX9_2CCCZWz22cxzvY9gdpqb-qCzy0Z&quot;]" data-index="0" ontouchstart="carouselTouchStart(event)" ontouchend="carouselTouchEnd(event,this)">
+          <img src="https://lh3.googleusercontent.com/d/1iXLuLQ2Px1BFQg4s-wT4XUv1Lr6vHdia" alt="BOLSO TIPO CARTERA COLOR MIEL" loading="lazy" decoding="async" onerror="this.style.opacity='.25'">
+          <button type="button" class="carousel-arrow prev" onclick="event.stopPropagation(); moveProductImage(this,-1)" aria-label="Foto anterior">‹</button>
+          <button type="button" class="carousel-arrow next" onclick="event.stopPropagation(); moveProductImage(this,1)" aria-label="Foto siguiente">›</button>
+          <span class="carousel-count">1 / 2</span>
+          <div class="carousel-dots"><button type="button" class="carousel-dot active" onclick="event.stopPropagation(); setProductImage(this,0)" aria-label="Ver foto 1"></button><button type="button" class="carousel-dot " onclick="event.stopPropagation(); setProductImage(this,1)" aria-label="Ver foto 2"></button></div>
+        </div>
             </div>
             <div class="card-body">
                 <div>
@@ -3722,6 +3728,6 @@ deja tu piel equilibrada, matificada y con aspecto más limpio." data-category="
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793153750 -->
+    <!-- v_detail_zoom_hd_fixed_1793154071 -->
 </body>
 </html>
