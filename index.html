@@ -3479,7 +3479,7 @@ nutrición profunda: piel saludable en todas las capas
             document.getElementById('detailPrice').textContent = price || '';
             currentSharedProduct = { imgUrl, title, brand, details, shareId, price, images: detailImages.slice() };
             const cleanDetails = details.split('**').join('').replace(/<br>/gi, String.fromCharCode(10));
-            document.getElementById('detailDetails').textContent = cleanDetails.includes(String.fromCharCode(10)) ? ('• ' + cleanDetails.split(String.fromCharCode(10)).join(String.fromCharCode(10) + '• ')) : cleanDetails;
+            document.getElementById('detailDetails').textContent = cleanDetails;
             const waText = `Hola, quisiera más información sobre: ${title}${brand ? ' - ' + brand : ''}. ¿Me pueden asesorar?`;
             document.getElementById('detailWhatsapp').href = 'https://wa.me/573118620589?text=' + encodeURIComponent(waText);
             document.getElementById('detailModal').classList.add('active');
@@ -3753,6 +3753,6 @@ nutrición profunda: piel saludable en todas las capas
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793154933 -->
+    <!-- v_detail_zoom_hd_fixed_1793155210 -->
 </body>
 </html>
