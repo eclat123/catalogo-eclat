@@ -1121,6 +1121,61 @@
             body.shared-product-mode .detail-left { height: 220px; min-height: 180px; }
             body.shared-product-mode .detail-right { max-height: none; min-height: 0; padding: 16px 20px 18px; }
         }
+
+        /* V14.8: ficha adaptable: descripción completa sin scroll interno */
+        .detail-modal {
+            overflow-y: auto;
+            overflow-x: hidden;
+            align-items: flex-start;
+            overscroll-behavior: contain;
+        }
+        .detail-box {
+            width: min(1100px, 95vw);
+            max-height: none;
+            height: auto;
+            margin: auto;
+            overflow: visible;
+            align-self: flex-start;
+        }
+        .detail-left { min-height: 360px; }
+        .detail-left img { max-height: 62vh; }
+        .detail-right {
+            overflow: visible;
+            max-height: none;
+            min-height: 0;
+        }
+        .detail-text-box {
+            flex: 0 0 auto;
+            min-height: 0;
+            max-height: none;
+            overflow: visible;
+            overflow-y: visible;
+            white-space: pre-line;
+        }
+        body.shared-product-mode .detail-modal { overflow: visible; }
+        body.shared-product-mode .detail-box { height: auto; max-height: none; overflow: visible; }
+        body.shared-product-mode .detail-right { overflow: visible; max-height: none; }
+        body.shared-product-mode .detail-text-box { overflow: visible; max-height: none; }
+        @media (max-width: 768px) {
+            .detail-modal { padding: 10px; }
+            .detail-box {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-rows: 155px auto;
+                width: 100%;
+                max-width: 520px;
+                height: auto;
+                max-height: none;
+                margin: 0 auto;
+                overflow: visible;
+            }
+            .detail-left { height: 155px; min-height: 155px; padding: 10px; }
+            .detail-left img { max-height: 135px; }
+            .detail-right { padding: 14px 17px 16px; overflow: visible; max-height: none; }
+            .detail-text-box { flex: 0 0 auto; overflow: visible; padding: 9px 0; }
+            body.shared-product-mode .detail-box { grid-template-rows: 155px auto; height: auto; max-height: none; }
+            body.shared-product-mode .detail-left { height: 155px; min-height: 155px; }
+            body.shared-product-mode .detail-right { overflow: visible; max-height: none; }
+        }
         @media (max-width: 768px) {
             body { padding: 0 14px 70px; }
             .runway-ticker { margin-bottom: 20px; font-size: 9px; letter-spacing: 1.2px; }
@@ -4227,6 +4282,6 @@ nutrición profunda: piel saludable en todas las capas
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793917529 -->
+    <!-- v_detail_zoom_hd_fixed_1793917760 -->
 </body>
 </html>
