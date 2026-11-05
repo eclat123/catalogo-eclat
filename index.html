@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0c0c0c">
     <meta name="description" content="Explora el catálogo exclusivo de ÉCLAT.">
@@ -665,10 +668,10 @@
         .price.offer-price { color: var(--accent-gold); }
         /* COMPARACIÓN CON REVISTA (columna L): beneficio independiente de las ofertas ÉCLAT (columna J). */
         .price-block { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; min-width: 0; }
-        .magazine-comparison { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; color: #96928a; font-size: 9px; line-height: 1.35; letter-spacing: .25px; text-transform: none; }
+        .magazine-comparison { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: 3px; padding-top: 4px; border-top: 1px solid rgba(197,160,89,.16); color: #b4aea3; font-size: 10px; line-height: 1.4; letter-spacing: .2px; text-transform: none; max-width: 100%; }
         .magazine-label { color: #aaa49a; font-weight: 500; }
         .magazine-old-price { color: #aaa49a; text-decoration: line-through; text-decoration-color: rgba(197,160,89,.65); }
-        .magazine-saving { color: #d5bb80; font-size: 9px; font-weight: 600; letter-spacing: .25px; }
+        .magazine-saving { display: inline-block; color: #e2c98f; font-size: 9px; font-weight: 700; letter-spacing: .2px; white-space: normal; }
         @media (max-width: 520px) {
             .offer-badge { top: 7px; right: 7px; padding: 4px 6px; font-size: 8px; }
             .price-group { gap: 5px; }
@@ -737,7 +740,7 @@
             /* Los botones de las tarjetas conservan su distribución; solo cambia la ventanita de consultas. */
             .footer-card { flex-wrap: wrap; row-gap: 10px; }
             .footer-card > .price { flex: 0 0 100%; width: 100%; }
-            .footer-card > .price-block { flex-direction: column !important; align-items: flex-start !important; justify-content: center !important; gap: 4px !important; }
+            .footer-card > .price-block { display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: center !important; gap: 4px !important; flex: 0 0 100% !important; width: 100% !important; min-width: 0 !important; }
             .footer-card > div { display: flex !important; width: 100%; min-width: 0; flex-wrap: nowrap !important; gap: 8px !important; justify-content: stretch !important; }
             .footer-card .select-product-btn,
             .footer-card .view-detail-hint { box-sizing: border-box; flex: 1 1 0; min-width: 0; width: 0; max-width: 50%; justify-content: center; text-align: center; padding: 8px 3px; font-size: 9px; letter-spacing: 0; }
@@ -1369,34 +1372,6 @@
                     <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
                         <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
                         <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO" data-images="[&quot;https://lh3.googleusercontent.com/d/1ZqdGOVOBJRz_DGUewVIS0fjf2HApi9rO&quot;]" data-title="PERFUME BLACK SUEDE CHARM" data-brand="AVON" data-details="Fragancia diseñada para el hombre moderno que aprecia la elegancia y el carácter. Con notas de cardamomo, pimienta negra y haba tonka, este perfume ofrece una experiencia olfativa intensa y cautivadora, ideal para cualquier ocasión." data-share-id="avon-perfume-black-suede-charm" data-price="$35.000">
-                            <i class="fa-regular fa-eye"></i> Detalles
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card" data-search="perfume blue femenino lbel 50ml exclusiva frescura. intensa como el mar. aroma floral frutal: delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar." data-category="PERFUME" data-availability="NO" data-price="60000.0">
-            
-            <div class="img-container" onclick="openZoomModalFromCard(event, 'PERFUME BLUE FEMENINO')">
-                <img src="https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7" alt="BLUE FEMENINO" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.innerText='Imagen no disponible'">
-            </div>
-            <div class="card-body">
-                <div>
-                    <span class="badge no-disponible">AGOTADO</span>
-                    <div class="brand">L'BEL</div>
-                    <span class="product-type">PERFUME</span>
-                    <div class="title">BLUE FEMENINO</div>
-                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
-                </div>
-                <div class="footer-card">
-                    <div class="price-block">
-                        <span class="price">$60.000</span>
-                        <div class="magazine-comparison"><span class="magazine-label">En revista:</span><span class="magazine-old-price">$100.000</span><span class="magazine-saving">· Ahorras 40% en ÉCLAT</span></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
-                        <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
-                        <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7" data-images="[&quot;https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7&quot;]" data-title="PERFUME BLUE FEMENINO" data-brand="L'BEL" data-details="Exclusiva frescura. Intensa como el mar. Aroma Floral Frutal: Delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar." data-share-id="l-bel-perfume-blue-femenino" data-price="$60.000">
                             <i class="fa-regular fa-eye"></i> Detalles
                         </span>
                     </div>
@@ -2523,34 +2498,6 @@ este sérum es perfecto para quienes buscan restaurar el cabello dañado." data-
             </div>
         </div>
         
-        <div class="card" data-search="cuidado del cabello serum tratamiento dream liso loreal 100ml el sérum capilar elvive dream liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados." data-category="CUIDADO DEL CABELLO" data-availability="NO" data-price="40000.0">
-            
-            <div class="img-container" onclick="openZoomModalFromCard(event, 'CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO')">
-                <img src="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" alt="SERUM TRATAMIENTO DREAM LISO" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.innerText='Imagen no disponible'">
-            </div>
-            <div class="card-body">
-                <div>
-                    <span class="badge no-disponible">AGOTADO</span>
-                    <div class="brand">L'OREAL</div>
-                    <span class="product-type">CUIDADO DEL CABELLO</span>
-                    <div class="title">SERUM TRATAMIENTO DREAM LISO</div>
-                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
-                </div>
-                <div class="footer-card">
-                    <div class="price-block">
-                        <span class="price">$40.000</span>
-                        <div class="magazine-comparison"><span class="magazine-label">En revista:</span><span class="magazine-old-price">$100.000</span><span class="magazine-saving">· Ahorras 60% en ÉCLAT</span></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
-                        <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
-                        <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" data-images="[&quot;https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv&quot;]" data-title="CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO" data-brand="L'OREAL" data-details="El Sérum Capilar Elvive Dream Liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. Su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. Está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. Es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados." data-share-id="l-oreal-cuidado-del-cabello-serum-tratamiento-dream-liso" data-price="$40.000">
-                            <i class="fa-regular fa-eye"></i> Detalles
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="card" data-search="skincare serum vitamina c avon 30ml la mejor manera de darle un saludable ‘vaso de jugo de naranja’ a la piel es por medio de un sérum, ya que la alta concentración y textura líquida favorecen una rápida y más profunda absorción de los componentes." data-category="SKINCARE" data-availability="DISPONIBLE" data-price="35000.0">
             
             <div class="img-container" onclick="openZoomModalFromCard(event, 'SKINCARE SERUM VITAMINA C')">
@@ -3115,6 +3062,62 @@ deja tu piel equilibrada, matificada y con aspecto más limpio." data-category="
                     <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
                         <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
                         <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1iXLuLQ2Px1BFQg4s-wT4XUv1Lr6vHdia" data-images="[&quot;https://lh3.googleusercontent.com/d/1iXLuLQ2Px1BFQg4s-wT4XUv1Lr6vHdia&quot;]" data-title="ACCESORIOS BOLSO TIPO CARTERA COLOR MIEL" data-brand="NATURA" data-details="Bolso tipo cartera color miel." data-share-id="natura-accesorios-bolso-tipo-cartera-color-miel" data-price="$45.000">
+                            <i class="fa-regular fa-eye"></i> Detalles
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-search="perfume blue femenino lbel 50ml exclusiva frescura. intensa como el mar. aroma floral frutal: delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar." data-category="PERFUME" data-availability="NO" data-price="60000.0">
+            
+            <div class="img-container" onclick="openZoomModalFromCard(event, 'PERFUME BLUE FEMENINO')">
+                <img src="https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7" alt="BLUE FEMENINO" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.innerText='Imagen no disponible'">
+            </div>
+            <div class="card-body">
+                <div>
+                    <span class="badge no-disponible">AGOTADO</span>
+                    <div class="brand">L'BEL</div>
+                    <span class="product-type">PERFUME</span>
+                    <div class="title">BLUE FEMENINO</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 50ML</div>
+                </div>
+                <div class="footer-card">
+                    <div class="price-block">
+                        <span class="price">$60.000</span>
+                        <div class="magazine-comparison"><span class="magazine-label">En revista:</span><span class="magazine-old-price">$100.000</span><span class="magazine-saving">· Ahorras 40% en ÉCLAT</span></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+                        <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
+                        <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7" data-images="[&quot;https://lh3.googleusercontent.com/d/14Hf6STqz9SIB-N11kiRP5acWCgV4h0f7&quot;]" data-title="PERFUME BLUE FEMENINO" data-brand="L'BEL" data-details="Exclusiva frescura. Intensa como el mar. Aroma Floral Frutal: Delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar." data-share-id="l-bel-perfume-blue-femenino" data-price="$60.000">
+                            <i class="fa-regular fa-eye"></i> Detalles
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" data-search="cuidado del cabello serum tratamiento dream liso loreal 100ml el sérum capilar elvive dream liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados." data-category="CUIDADO DEL CABELLO" data-availability="NO" data-price="40000.0">
+            
+            <div class="img-container" onclick="openZoomModalFromCard(event, 'CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO')">
+                <img src="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" alt="SERUM TRATAMIENTO DREAM LISO" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.innerText='Imagen no disponible'">
+            </div>
+            <div class="card-body">
+                <div>
+                    <span class="badge no-disponible">AGOTADO</span>
+                    <div class="brand">L'OREAL</div>
+                    <span class="product-type">CUIDADO DEL CABELLO</span>
+                    <div class="title">SERUM TRATAMIENTO DREAM LISO</div>
+                    <div class="presentation"><i class="fa-solid fa-gem"></i> 100ML</div>
+                </div>
+                <div class="footer-card">
+                    <div class="price-block">
+                        <span class="price">$40.000</span>
+                        <div class="magazine-comparison"><span class="magazine-label">En revista:</span><span class="magazine-old-price">$100.000</span><span class="magazine-saving">· Ahorras 60% en ÉCLAT</span></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+                        <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
+                        <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv" data-images="[&quot;https://lh3.googleusercontent.com/d/1IWpVlevqflyEJRajDJY2p2FbXIT1k-Mv&quot;]" data-title="CUIDADO DEL CABELLO SERUM TRATAMIENTO DREAM LISO" data-brand="L'OREAL" data-details="El Sérum Capilar Elvive Dream Liso es un tratamiento de alisado para el cabello que ayuda a dejarlo más liso hasta por 7 días, con efecto antihumedad y aporte de keratina. Su fórmula protege la hebra capilar y contribuye a evitar el frizz, favoreciendo un cabello más manejable. Está pensado para integrarse a la rutina capilar semanal, activándose con el calor de la plancha o secador para potenciar el efecto alisador. Es una opción para quienes buscan reducir el encrespamiento y mantener un aspecto liso por más tiempo entre lavados." data-share-id="l-oreal-cuidado-del-cabello-serum-tratamiento-dream-liso" data-price="$40.000">
                             <i class="fa-regular fa-eye"></i> Detalles
                         </span>
                     </div>
@@ -4054,12 +4057,12 @@ nutrición profunda: piel saludable en todas las capas
     <script>
       if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./service-worker.js')
-            .then(() => console.log('ÉCLAT: actualización web habilitada.'))
+          navigator.serviceWorker.register('./service-worker.js', { updateViaCache: 'none' })
+            .then((registration) => { registration.update(); console.log('ÉCLAT: actualización web habilitada.'); })
             .catch((error) => console.warn('ÉCLAT: no se pudo registrar la actualización web.', error));
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793914881 -->
+    <!-- v_detail_zoom_hd_fixed_1793915934 -->
 </body>
 </html>
