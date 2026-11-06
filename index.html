@@ -720,6 +720,9 @@
         @keyframes consultPanelIn { from { opacity: 0; transform: translate(-12px,-50%); } to { opacity: 1; transform: translate(0,-50%); } }
         .selection-summary { flex: 0 0 auto; min-width: 0; color: #e8d8b2; font-size: 11px; line-height: 1.4; }
         .selection-summary strong { display: block; color: #fff; font-size: 12px; }
+        .selection-total-card { display: flex; flex-direction: column; gap: 3px; margin-top: 9px; padding: 10px 12px; border: 1px solid rgba(197,160,89,.78); border-left: 4px solid #c5a059; border-radius: 7px; background: linear-gradient(135deg, rgba(197,160,89,.19), rgba(197,160,89,.06)); box-shadow: 0 3px 13px rgba(0,0,0,.22); }
+        .selection-total-label { color: #e8d8b2; font-size: 9px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; }
+        .selection-total-value { color: #f3d58f; font-size: 21px; line-height: 1.15; font-weight: 900; letter-spacing: .2px; text-shadow: 0 1px 10px rgba(197,160,89,.22); }
         .selection-items { display: none; flex: 1 1 auto; min-height: 0; max-height: 40vh; overflow-y: auto; overscroll-behavior: contain; border-top: 1px solid rgba(197,160,89,.22); padding-top: 6px; }
         .selection-items.has-items { display: block; }
         .selection-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #eee; font-size: 11px; }
@@ -3755,7 +3758,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                 bubble.setAttribute('aria-label', `${count} productos seleccionados. Abrir consulta`);
                 bubble.title = `Abrir ventana de consulta (${count} productos)`;
             }
-            summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto seleccionado' : 'productos seleccionados'}</strong>Total de la consulta: <strong>${formatCurrency(totalValue)}</strong>`;
+            summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto seleccionado' : 'productos seleccionados'}</strong><div class="selection-total-card"><span class="selection-total-label">Total de tu consulta</span><span class="selection-total-value">${formatCurrency(totalValue)}</span></div>`;
             const itemsList = document.getElementById('selectionItems');
             if (itemsList) {
                 itemsList.replaceChildren();
@@ -4293,6 +4296,6 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793931093 -->
+    <!-- v_detail_zoom_hd_fixed_1793931335 -->
 </body>
 </html>
