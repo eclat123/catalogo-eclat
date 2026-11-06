@@ -731,7 +731,6 @@
         .selection-bubble { position: fixed; left: 18px; bottom: 84px; z-index: 951; display: none; align-items: center; justify-content: center; gap: 8px; min-width: 58px; height: 58px; padding: 0 15px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; background: #c5a059; color: #111; box-shadow: 0 5px 22px rgba(0,0,0,.4); font-size: 14px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
         .selection-bubble.visible { display: inline-flex; }
         .selection-bubble-count { display: inline-flex; align-items: center; justify-content: center; min-width: 23px; height: 23px; padding: 0 5px; border-radius: 50%; background: #111; color: #f4dfad; font-size: 11px; }
-        .selection-bubble-total { display: inline-block; color: #111; font-size: 12px; font-weight: 800; white-space: nowrap; }
         body.selection-panel-collapsed .selection-bar { display: none !important; }
         body.selection-panel-expanded .selection-bubble { display: none !important; }
         @media (max-width: 768px) {
@@ -3411,7 +3410,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         <button type="button" class="selection-action" onclick="sendSelectionToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
         <div class="selection-items" id="selectionItems" aria-label="Detalle de productos seleccionados"></div>
     </div>
-    <button type="button" class="selection-bubble" id="selectionBubble" onclick="expandSelectionPanel()" aria-label="Abrir productos añadidos" title="Ver productos añadidos"><i class="fa-brands fa-whatsapp"></i><span class="selection-bubble-count" id="selectionBubbleCount">0</span><span class="selection-bubble-total" id="selectionBubbleTotal">$0</span></button>
+    <button type="button" class="selection-bubble" id="selectionBubble" onclick="expandSelectionPanel()" aria-label="Abrir productos añadidos" title="Ver productos añadidos"><i class="fa-brands fa-whatsapp"></i><span class="selection-bubble-count" id="selectionBubbleCount">0</span></button>
 
     <!-- MODAL 1: ZOOM DE IMAGEN -->
     <div class="zoom-modal" id="zoomModal" onclick="closeZoomModal()">
@@ -3752,11 +3751,9 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
             if (bubble) bubble.classList.toggle('visible', count > 0 && !selectionPanelExpanded);
             if (bubbleCount) bubbleCount.textContent = String(count);
             const totalValue = Array.from(selectedProducts.values()).reduce((sum, item) => sum + (item.numericPrice || 0), 0);
-            const bubbleTotal = document.getElementById('selectionBubbleTotal');
-            if (bubbleTotal) bubbleTotal.textContent = formatCurrency(totalValue);
             if (bubble) {
-                bubble.setAttribute('aria-label', `${count} productos seleccionados. Total ${formatCurrency(totalValue)}. Abrir consulta`);
-                bubble.title = `Total de la consulta: ${formatCurrency(totalValue)}`;
+                bubble.setAttribute('aria-label', `${count} productos seleccionados. Abrir consulta`);
+                bubble.title = `Abrir ventana de consulta (${count} productos)`;
             }
             summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto seleccionado' : 'productos seleccionados'}</strong>Total de la consulta: <strong>${formatCurrency(totalValue)}</strong>`;
             const itemsList = document.getElementById('selectionItems');
@@ -4296,6 +4293,6 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793930911 -->
+    <!-- v_detail_zoom_hd_fixed_1793931093 -->
 </body>
 </html>
