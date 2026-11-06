@@ -30,8 +30,11 @@
         setTimeout(() => { loader.style.display = 'none'; }, 650);
       };
       document.addEventListener('DOMContentLoaded', window.eclatHidePageLoader, { once: true });
-      // Respaldo: nunca mantener la pantalla de inicio indefinidamente.
-      setTimeout(window.eclatHidePageLoader, 4500);
+      document.addEventListener('readystatechange', function() {
+        if (document.readyState !== 'loading') window.eclatHidePageLoader();
+      });
+      // Respaldo JS adicional; el respaldo principal también está en CSS.
+      setTimeout(window.eclatHidePageLoader, 2200);
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -130,6 +133,12 @@
             align-items: center;
             justify-content: center;
             transition: opacity 0.6s ease, visibility 0.6s ease;
+            /* Respaldo CSS: oculta la portada aunque falle o no se ejecute JavaScript. */
+            animation: eclatLoaderAutoHide 0.6s ease 1.4s forwards;
+            pointer-events: none;
+        }
+        @keyframes eclatLoaderAutoHide {
+            to { opacity: 0; visibility: hidden; }
         }
         .loader-monogram {
             width: 70px; height: 70px; border: 1px solid var(--accent-gold);
@@ -4327,6 +4336,6 @@ El valor y la disponibilidad están sujetos a confirmación por ÉCLAT. ¿Me pue
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_loader_failsafe_1793929756 -->
+    <!-- v14_12_css_loader_failsafe_1793930031 -->
 </body>
 </html>
