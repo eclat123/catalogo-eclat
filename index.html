@@ -19,6 +19,20 @@
       gtag('config', 'G-PZN1D7KQ02');
     </script>
     <title>Éclat • Catálogo Exclusivo</title>
+    <script>
+      // Evita que la pantalla de inicio quede visible si una fuente o recurso externo tarda en cargar.
+      window.eclatHidePageLoader = function() {
+        const loader = document.getElementById('page-loader');
+        if (!loader || loader.dataset.dismissed === '1') return;
+        loader.dataset.dismissed = '1';
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        setTimeout(() => { loader.style.display = 'none'; }, 650);
+      };
+      document.addEventListener('DOMContentLoaded', window.eclatHidePageLoader, { once: true });
+      // Respaldo: nunca mantener la pantalla de inicio indefinidamente.
+      setTimeout(window.eclatHidePageLoader, 4500);
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -3498,11 +3512,9 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         let currentAvailability = 'TODOS';
         let maxPriceLimit = 500000;
 
-        window.addEventListener('load', () => {
+        function initializeEclatCatalogPage() {
             filterCatalog();
-            const loader = document.getElementById('page-loader');
-            loader.style.opacity = '0';
-            setTimeout(() => loader.style.display = 'none', 600);
+            if (window.eclatHidePageLoader) window.eclatHidePageLoader();
 
             document.querySelectorAll('.view-detail-hint').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -3518,7 +3530,12 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                 });
             });
             openSharedProductFromUrl();
-        });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeEclatCatalogPage, { once: true });
+        } else {
+            initializeEclatCatalogPage();
+        }
 
         // CONTROL DEL BOTÓN FLOTANTE "VOLVER ARRIBA"
         window.addEventListener('scroll', () => {
@@ -4310,6 +4327,6 @@ El valor y la disponibilidad están sujetos a confirmación por ÉCLAT. ¿Me pue
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793929096 -->
+    <!-- v_detail_zoom_hd_fixed_loader_failsafe_1793929756 -->
 </body>
 </html>
