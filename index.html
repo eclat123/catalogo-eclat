@@ -57,9 +57,12 @@
             letter-spacing: 0.02em;
         }
 
-        /* CURSOR DE LUJO EXCLUSIVO (SÓLO ESCRITORIO) */
+        /* CURSOR DORADO ÉCLAT: se oculta el cursor del sistema sólo cuando
+           el cursor personalizado está activo; si JavaScript falla, hay respaldo. */
         @media (min-width: 769px) {
-            *, *:hover, body, button, input, a, .card, .zoom-modal, .detail-modal, img {
+            body.custom-cursor-active,
+            body.custom-cursor-active *,
+            body.custom-cursor-active *:hover {
                 cursor: none !important;
             }
             .custom-cursor {
@@ -3478,11 +3481,12 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" referrerpolicy="no-referrer"></script>
     <script>
-        // Cursor de Lujo
+        // Cursor dorado ÉCLAT: sólo activa cursor:none si existen ambos elementos.
         const cursor = document.getElementById('customCursor');
         const cursorDot = document.getElementById('customCursorDot');
         
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 768 && cursor && cursorDot) {
+            document.body.classList.add('custom-cursor-active');
             let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
             let cursorX = mouseX, cursorY = mouseY;
             let initialized = false;
@@ -4336,6 +4340,6 @@ El valor y la disponibilidad están sujetos a confirmación por ÉCLAT. ¿Me pue
         });
       }
     </script>
-    <!-- v14_12_css_loader_failsafe_1793930031 -->
+    <!-- v14_14_cursor_dorado_failsafe_1793930551 -->
 </body>
 </html>
