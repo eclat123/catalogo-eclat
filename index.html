@@ -3839,15 +3839,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
             const total = items.reduce((sum, item) => sum + item.priceValue * item.quantity, 0);
             const hasUnknownPrice = items.some(item => !item.priceValue);
             const totalText = formatCartMoney(total) + (hasUnknownPrice ? ' + productos con precio por confirmar' : '');
-            const message = 'Hola, quisiera solicitar estos productos del catálogo ÉCLAT:
-
-' + lines.join('
-
-') + '
-
-TOTAL ESTIMADO: ' + totalText + '
-
-Entiendo que la disponibilidad y el precio final deben ser confirmados por ÉCLAT. ¿Me pueden asesorar, por favor?';
+            const message = 'Hola, quisiera solicitar estos productos del catálogo ÉCLAT:\n\n' + lines.join('\n\n') + '\n\nTOTAL ESTIMADO: ' + totalText + '\n\nEntiendo que la disponibilidad y el precio final deben ser confirmados por ÉCLAT. ¿Me pueden asesorar, por favor?';
             window.open('https://wa.me/573118620589?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
         }
 
@@ -4335,6 +4327,6 @@ Entiendo que la disponibilidad y el precio final deben ser confirmados por ÉCLA
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793928049 -->
+    <!-- v_detail_zoom_hd_fixed_1793928595 -->
 </body>
 </html>
