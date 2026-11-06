@@ -724,9 +724,6 @@
         .selection-items.has-items { display: block; }
         .selection-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #eee; font-size: 11px; }
         .selection-item-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
-        .selection-item-controls { display:flex; align-items:center; gap:5px; flex:0 0 auto; }
-        .selection-qty-btn { width:25px; height:25px; border:1px solid rgba(197,160,89,.48); border-radius:5px; background:#171717; color:#e8d8b2; font-size:15px; cursor:pointer; }
-        .selection-qty { min-width:18px; text-align:center; color:#fff; font-size:11px; font-weight:700; }
         .selection-item-remove { flex: 0 0 auto; border: 1px solid rgba(197,160,89,.35); border-radius: 4px; background: transparent; color: #e8d8b2; padding: 4px 8px; cursor: pointer; font-size: 10px; }
         .selection-total { display:flex; justify-content:space-between; gap:10px; padding:9px 0 2px; border-top:1px solid rgba(197,160,89,.35); color:#e8d8b2; font-size:11px; }
         .selection-total strong { color:#f1d69b; font-size:15px; white-space:nowrap; }
@@ -3413,12 +3410,12 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         <button type="button" class="selection-minimize" onclick="minimizeSelectionPanel()" aria-label="Minimizar consultas" title="Minimizar">−</button>
         <div class="selection-summary" id="selectionSummary"><strong>0 productos</strong>Selecciona artículos para consultar</div>
         <div class="selection-total"><span>Total estimado</span><strong id="selectionTotal">$0</strong></div>
-        <div class="selection-note">Valor de referencia sujeto a confirmación de disponibilidad y precio por ÉCLAT.</div>
+        <div class="selection-note">* Si algún producto no tiene precio publicado, se confirmará por WhatsApp. Total sujeto a validación de ÉCLAT.</div>
         <button type="button" class="selection-clear" onclick="clearProductSelection()">Vaciar</button>
         <button type="button" class="selection-action" onclick="sendSelectionToWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
         <div class="selection-items" id="selectionItems" aria-label="Detalle de productos seleccionados"></div>
     </div>
-    <button type="button" class="selection-bubble" id="selectionBubble" onclick="expandSelectionPanel()" aria-label="Abrir productos añadidos" title="Ver productos añadidos"><i class="fa-brands fa-whatsapp"></i><span class="selection-bubble-count" id="selectionBubbleCount">0</span></button>
+    <button type="button" class="selection-bubble" id="selectionBubble" onclick="expandSelectionPanel()" aria-label="Ver productos seleccionados para consultar" title="Ver consulta"><i class="fa-brands fa-whatsapp"></i><span class="selection-bubble-count" id="selectionBubbleCount">0</span></button>
 
     <!-- MODAL 1: ZOOM DE IMAGEN -->
     <div class="zoom-modal" id="zoomModal" onclick="closeZoomModal()">
@@ -3722,7 +3719,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
             document.body.classList.remove('selection-panel-expanded');
             updateSelectionBar();
         }
-        function formatCartMoney(value) {
+        function formatSelectionMoney(value) {
             return '$' + Math.round(Number(value) || 0).toLocaleString('es-CO');
         }
         function toggleProductSelection(button) {
@@ -3739,18 +3736,12 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                 button.setAttribute('aria-label', 'Añadir producto a la consulta por WhatsApp');
                 button.title = 'Añadir este producto a tu consulta por WhatsApp';
             } else {
-                selectedProducts.set(card, { title, brand, priceLabel, priceValue, quantity: 1 });
+                selectedProducts.set(card, { title, brand, priceLabel, priceValue });
                 card.classList.add('is-selected');
                 button.innerHTML = '<i class="fa-solid fa-check"></i> En consulta';
                 button.setAttribute('aria-label', 'Quitar producto de la consulta por WhatsApp');
-                button.title = 'Este producto está incluido en tu carrito de consulta';
+                button.title = 'Este producto está incluido en tu consulta por WhatsApp';
             }
-            updateSelectionBar();
-        }
-        function updateCartQuantity(card, change) {
-            const item = selectedProducts.get(card);
-            if (!item) return;
-            item.quantity = Math.max(1, Math.min(99, item.quantity + change));
             updateSelectionBar();
         }
         function updateSelectionBar() {
@@ -3766,11 +3757,12 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
             const bubbleCount = document.getElementById('selectionBubbleCount');
             const totalNode = document.getElementById('selectionTotal');
             if (bubble) bubble.classList.toggle('visible', count > 0 && !selectionPanelExpanded);
-            const totalUnits = Array.from(selectedProducts.values()).reduce((sum, item) => sum + item.quantity, 0);
-            const totalValue = Array.from(selectedProducts.values()).reduce((sum, item) => sum + item.priceValue * item.quantity, 0);
-            if (bubbleCount) bubbleCount.textContent = String(totalUnits);
-            summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto' : 'productos'} · ${totalUnits} ${totalUnits === 1 ? 'unidad' : 'unidades'}</strong>Modifica cantidades y envía tu solicitud por WhatsApp`;
-            if (totalNode) totalNode.textContent = formatCartMoney(totalValue);
+            if (bubbleCount) bubbleCount.textContent = String(count);
+            const items = Array.from(selectedProducts.values());
+            const totalValue = items.reduce((sum, item) => sum + item.priceValue, 0);
+            const hasUnknownPrice = items.some(item => !item.priceValue);
+            summary.innerHTML = `<strong>${count} ${count === 1 ? 'producto seleccionado' : 'productos seleccionados'}</strong>Se enviarán juntos en una consulta por WhatsApp`;
+            if (totalNode) totalNode.textContent = formatSelectionMoney(totalValue) + (hasUnknownPrice ? ' *' : '');
             const itemsList = document.getElementById('selectionItems');
             if (itemsList) {
                 itemsList.replaceChildren();
@@ -3780,26 +3772,15 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                     row.className = 'selection-item';
                     const name = document.createElement('span');
                     name.className = 'selection-item-name';
-                    name.textContent = item.title + (item.brand ? ' — ' + item.brand : '') + ' · ' + (item.priceValue ? formatCartMoney(item.priceValue * item.quantity) : (item.priceLabel || 'Consultar precio'));
-                    const controls = document.createElement('div');
-                    controls.className = 'selection-item-controls';
-                    const minus = document.createElement('button');
-                    minus.type = 'button'; minus.className = 'selection-qty-btn'; minus.textContent = '−';
-                    minus.setAttribute('aria-label', 'Disminuir cantidad de ' + item.title);
-                    minus.disabled = item.quantity <= 1;
-                    minus.addEventListener('click', () => updateCartQuantity(card, -1));
-                    const qty = document.createElement('span'); qty.className = 'selection-qty'; qty.textContent = String(item.quantity);
-                    const plus = document.createElement('button');
-                    plus.type = 'button'; plus.className = 'selection-qty-btn'; plus.textContent = '+';
-                    plus.setAttribute('aria-label', 'Aumentar cantidad de ' + item.title);
-                    plus.disabled = item.quantity >= 99;
-                    plus.addEventListener('click', () => updateCartQuantity(card, 1));
-                    controls.append(minus, qty, plus);
+                    const priceText = item.priceValue ? formatSelectionMoney(item.priceValue) : (item.priceLabel || 'Precio por confirmar');
+                    name.textContent = item.title + (item.brand ? ' — ' + item.brand : '') + ' · ' + priceText;
                     const remove = document.createElement('button');
-                    remove.type = 'button'; remove.className = 'selection-item-remove'; remove.textContent = 'Quitar';
-                    remove.setAttribute('aria-label', 'Quitar ' + item.title + ' del carrito');
+                    remove.type = 'button';
+                    remove.className = 'selection-item-remove';
+                    remove.textContent = 'Quitar';
+                    remove.setAttribute('aria-label', 'Quitar ' + item.title + ' de la consulta');
                     remove.addEventListener('click', () => removeProductFromSelection(card));
-                    row.append(name, controls, remove);
+                    row.append(name, remove);
                     itemsList.appendChild(row);
                 });
             }
@@ -3830,16 +3811,18 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         function sendSelectionToWhatsApp() {
             if (!selectedProducts.size) return;
             const items = Array.from(selectedProducts.values());
-            const lines = items.map((item, index) => {
-                const subtotal = item.priceValue ? formatCartMoney(item.priceValue * item.quantity) : 'Precio por confirmar';
-                const unit = item.priceValue ? formatCartMoney(item.priceValue) : (item.priceLabel || 'Consultar precio');
-                return `${index + 1}. ${item.title}${item.brand ? ' — ' + item.brand : ''}
-   Cantidad: ${item.quantity} · Unitario: ${unit} · Subtotal: ${subtotal}`;
-            });
-            const total = items.reduce((sum, item) => sum + item.priceValue * item.quantity, 0);
+            const lines = items.map((item, index) => `${index + 1}. ${item.title}${item.brand ? ' — ' + item.brand : ''} — ${item.priceValue ? formatSelectionMoney(item.priceValue) : (item.priceLabel || 'Precio por confirmar')}`);
+            const total = items.reduce((sum, item) => sum + item.priceValue, 0);
             const hasUnknownPrice = items.some(item => !item.priceValue);
-            const totalText = formatCartMoney(total) + (hasUnknownPrice ? ' + productos con precio por confirmar' : '');
-            const message = 'Hola, quisiera solicitar estos productos del catálogo ÉCLAT:\n\n' + lines.join('\n\n') + '\n\nTOTAL ESTIMADO: ' + totalText + '\n\nEntiendo que la disponibilidad y el precio final deben ser confirmados por ÉCLAT. ¿Me pueden asesorar, por favor?';
+            const totalText = formatSelectionMoney(total) + (hasUnknownPrice ? ' + productos con precio por confirmar' : '');
+            const message = 'Hola, quisiera información y disponibilidad de estos productos del catálogo ÉCLAT:
+
+' + lines.join('
+') + '
+
+TOTAL ESTIMADO: ' + totalText + '
+
+El valor y la disponibilidad están sujetos a confirmación por ÉCLAT. ¿Me pueden asesorar, por favor?';
             window.open('https://wa.me/573118620589?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
         }
 
@@ -4327,6 +4310,6 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
         });
       }
     </script>
-    <!-- v_detail_zoom_hd_fixed_1793928595 -->
+    <!-- v_detail_zoom_hd_fixed_1793929096 -->
 </body>
 </html>
