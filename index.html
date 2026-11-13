@@ -339,46 +339,53 @@
                           margin-top: 11px;
                       }
         
-                      /* RANGO DE PRECIOS: CAMPOS DOBLES, LIMPIOS Y ELEGANTES */
+                      /* BARRITA SLIDER DELGADA Y ELEGANTE */
                       .price-slider-container {
                           background: rgba(255, 255, 255, 0.02);
                           border: 1px solid var(--border-subtle);
-                          padding: 11px 12px;
+                          padding: 9px 12px;
                           border-radius: 6px;
                           margin-bottom: 16px;
                       }
-                      .price-range-fields {
-                          display: grid;
-                          grid-template-columns: 1fr 1fr;
-                          gap: 9px;
+                      .price-slider {
+                          -webkit-appearance: none;
+                          appearance: none;
+                          width: 100%;
+                          height: 3px;
+                          background: #333;
+                          outline: none;
+                          border-radius: 2px;
+                          margin: 10px 0;
+                          accent-color: var(--accent-gold);
                       }
-                      .price-field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-                      .price-field label {
-                          color: var(--text-secondary); font-size: 9px; letter-spacing: 1px;
-                          text-transform: uppercase; font-weight: 600;
+                      .price-slider::-webkit-slider-thumb {
+                          -webkit-appearance: none;
+                          appearance: none;
+                          width: 14px;
+                          height: 14px;
+                          border-radius: 50%;
+                          background: var(--accent-gold);
+                          cursor: pointer;
+                          transition: transform 0.2s;
                       }
-                      .price-field input {
-                          width: 100%; min-width: 0; box-sizing: border-box;
-                          background: rgba(255,255,255,.045); color: var(--text-primary);
-                          border: 1px solid var(--border-subtle); border-radius: 5px;
-                          padding: 9px 8px; font: inherit; font-size: 12px;
-                          outline: none; transition: border-color .2s, box-shadow .2s;
+                      .price-slider::-webkit-slider-thumb:hover {
+                          transform: scale(1.3);
+                          background: #ffffff;
                       }
-                      .price-field input:focus {
-                          border-color: var(--accent-gold);
-                          box-shadow: 0 0 0 2px rgba(197,160,89,.10);
+                      .price-output-box {
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          font-size: 11px;
+                          color: var(--text-secondary);
+                          letter-spacing: 1px;
+                          text-transform: uppercase;
                       }
-                      .price-field input::placeholder { color: var(--text-secondary); opacity: .7; }
-                      .price-range-hint {
-                          color: var(--text-secondary); font-size: 9px; line-height: 1.45;
-                          margin-top: 8px; opacity: .8;
+                      .price-output-box span:last-child {
+                          color: var(--accent-gold);
+                          font-weight: 600;
+                          font-size: 12px;
                       }
-                      .price-range-clear {
-                          display: block; margin: 8px 0 0 auto; padding: 3px 0;
-                          border: 0; background: transparent; color: var(--text-secondary);
-                          font: inherit; font-size: 10px; cursor: pointer; opacity: .8;
-                      }
-                      .price-range-clear:hover { color: var(--accent-gold); opacity: 1; }
 
                       /* BOTÓN FLOTANTE "VOLVER ARRIBA" - SUTIL Y TRANSPARENTE */
                       .back-to-top {
@@ -1296,21 +1303,13 @@
                           <button class="avail-btn" onclick="filterByAvailability('NO', this)">Agotados</button>
                       </div>
 
-                      <div class="sidebar-section-title">Rango de precios</div>
+                      <div class="sidebar-section-title">Precio Máximo</div>
                       <div class="price-slider-container">
-                          <div class="price-range-fields">
-                              <div class="price-field">
-                                  <label for="priceMinInput">Desde</label>
-                                  <input type="number" id="priceMinInput" min="0" step="1000" inputmode="numeric" placeholder="Sin mínimo" oninput="updatePriceFilter()" aria-label="Precio mínimo">
-                              </div>
-                              <div class="price-field">
-                                  <label for="priceMaxInput">Hasta</label>
-                                  <input type="number" id="priceMaxInput" min="0" step="1000" inputmode="numeric" placeholder="Sin máximo" oninput="updatePriceFilter()" aria-label="Precio máximo">
-                              </div>
+                          <div class="price-output-box">
+                              <span>Hasta:</span>
+                              <span id="priceValText">$500.000</span>
                           </div>
-                          <div class="price-range-hint">Deja un campo vacío si no deseas limitar ese extremo.</div>
-                          <div id="priceRangeError" class="price-range-hint" role="alert" style="display:none;color:#d8a36a;">El precio mínimo no puede superar el máximo.</div>
-                          <button type="button" class="price-range-clear" onclick="clearPriceRange()">Limpiar rango</button>
+                          <input type="range" id="priceRange" class="price-slider" min="0" max="500000" step="10000" value="500000" oninput="updatePriceFilter(this.value)">
                       </div>
 
                       <div class="sidebar-section-title">Categorías</div>
@@ -1844,14 +1843,14 @@ tecnología prebiótica que se adapta a los cambios de tu piel." data-category="
 nutre y ayuda en la recuperación de la uniformidad de la piel
 textura cremosa y fácil de aplicar, con rápida absorción
 enriquecido con niacinamida, pantenol y aceite de sésamo
-tecnología prebiótica que se adapta a los cambios de tu piel." data-category="CREMA CORPORAL" data-availability="DISPONIBLE" data-price="40000.0">
+tecnología prebiótica que se adapta a los cambios de tu piel." data-category="CREMA CORPORAL" data-availability="NO" data-price="40000.0">
                           
                           <div class="img-container" onclick="openZoomModalFromCard(event, 'CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)')">
                               <img src="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" alt="TODO DIA PERA Y FLOR DE LOTO (REFIL)" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.innerText='Imagen no disponible'">
                           </div>
                           <div class="card-body">
                               <div>
-                                  <span class="badge disponible">DISPONIBLE</span>
+                                  <span class="badge no-disponible">AGOTADO</span>
                                   <div class="brand">NATURA</div>
                                   <span class="product-type">CREMA CORPORAL</span>
                                   <div class="title">TODO DIA PERA Y FLOR DE LOTO (REFIL)</div>
@@ -1864,7 +1863,7 @@ tecnología prebiótica que se adapta a los cambios de tu piel." data-category="
                                   </div>
                                   <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end">
                                       <button type="button" class="select-product-btn" onclick="toggleProductSelection(this)" aria-label="Añadir producto a la consulta por WhatsApp" title="Añadir este producto a tu consulta por WhatsApp"><i class="fa-brands fa-whatsapp"></i> Consultar</button>
-                                      <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" data-images="[&quot;https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2&quot;]" data-title="CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)" data-display-title="TODO DIA PERA Y FLOR DE LOTO (REFIL)" data-brand="NATURA" data-details="Piel 4 veces más hidratada.<br>Nutre y ayuda en la recuperación de la uniformidad de la piel<br>Textura cremosa y fácil de aplicar, con rápida absorción<br>Enriquecido con niacinamida, pantenol y aceite de sésamo<br>Tecnología Prebiótica que se adapta a los cambios de tu piel." data-share-id="natura-crema-corporal-todo-dia-pera-y-flor-de-loto-refil" data-price="$40.000" data-category="CREMA CORPORAL" data-availability="DISPONIBLE">
+                                      <span class="view-detail-hint" data-img="https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2" data-images="[&quot;https://lh3.googleusercontent.com/d/1234SW7xGimA32md2rLuAMjlUFgvplaM2&quot;]" data-title="CREMA CORPORAL TODO DIA PERA Y FLOR DE LOTO (REFIL)" data-display-title="TODO DIA PERA Y FLOR DE LOTO (REFIL)" data-brand="NATURA" data-details="Piel 4 veces más hidratada.<br>Nutre y ayuda en la recuperación de la uniformidad de la piel<br>Textura cremosa y fácil de aplicar, con rápida absorción<br>Enriquecido con niacinamida, pantenol y aceite de sésamo<br>Tecnología Prebiótica que se adapta a los cambios de tu piel." data-share-id="natura-crema-corporal-todo-dia-pera-y-flor-de-loto-refil" data-price="$40.000" data-category="CREMA CORPORAL" data-availability="NO">
                                           <i class="fa-regular fa-eye"></i> Detalles
                                       </span>
                                   </div>
@@ -3495,8 +3494,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
 
                       let currentCategory = 'TODOS';
                       let currentAvailability = 'TODOS';
-                      let minPriceLimit = null;
-                      let maxPriceLimit = null;
+                      let maxPriceLimit = 500000;
 
                       window.addEventListener('load', () => {
                           filterCatalog();
@@ -3565,31 +3563,9 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                           return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                       }
 
-                      function updatePriceFilter() {
-                          const minInput = document.getElementById('priceMinInput');
-                          const maxInput = document.getElementById('priceMaxInput');
-                          const minRaw = minInput ? minInput.value.trim() : '';
-                          const maxRaw = maxInput ? maxInput.value.trim() : '';
-                          minPriceLimit = minRaw === '' ? null : Math.max(0, Number(minRaw));
-                          maxPriceLimit = maxRaw === '' ? null : Math.max(0, Number(maxRaw));
-
-                          // Evita un rango imposible sin cambiar silenciosamente el valor escrito.
-                          const invalidRange = minPriceLimit !== null && maxPriceLimit !== null && minPriceLimit > maxPriceLimit;
-                          if (maxInput) maxInput.setCustomValidity(invalidRange ? 'El precio máximo debe ser igual o superior al mínimo.' : '');
-                          const errorNode = document.getElementById('priceRangeError');
-                          if (errorNode) errorNode.style.display = invalidRange ? 'block' : 'none';
-                          filterCatalog();
-                      }
-
-                      function clearPriceRange() {
-                          const minInput = document.getElementById('priceMinInput');
-                          const maxInput = document.getElementById('priceMaxInput');
-                          if (minInput) minInput.value = '';
-                          if (maxInput) { maxInput.value = ''; maxInput.setCustomValidity(''); }
-                          const errorNode = document.getElementById('priceRangeError');
-                          if (errorNode) errorNode.style.display = 'none';
-                          minPriceLimit = null;
-                          maxPriceLimit = null;
+                      function updatePriceFilter(val) {
+                          maxPriceLimit = parseInt(val);
+                          document.getElementById('priceValText').innerText = formatCurrency(maxPriceLimit);
                           filterCatalog();
                       }
 
@@ -3634,18 +3610,15 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                       function clearAllFilters() {
                           currentCategory = 'TODOS';
                           currentAvailability = 'TODOS';
-                          minPriceLimit = null;
-                          maxPriceLimit = null;
+                          maxPriceLimit = 500000;
                           const sidebarSearch = document.getElementById('searchInput');
                           const quickSearch = document.getElementById('quickSearchInput');
                           if (sidebarSearch) sidebarSearch.value = '';
                           if (quickSearch) quickSearch.value = '';
-                          const minInput = document.getElementById('priceMinInput');
-                          const maxInput = document.getElementById('priceMaxInput');
-                          if (minInput) minInput.value = '';
-                          if (maxInput) { maxInput.value = ''; maxInput.setCustomValidity(''); }
-                          const rangeError = document.getElementById('priceRangeError');
-                          if (rangeError) rangeError.style.display = 'none';
+                          const range = document.getElementById('priceRange');
+                          if (range) range.value = '500000';
+                          const priceText = document.getElementById('priceValText');
+                          if (priceText) priceText.innerText = formatCurrency(500000);
                           const sort = document.getElementById('sortSelect');
                           if (sort) sort.value = 'default';
                           document.querySelectorAll('#catFilterContainer .cat-btn-sidebar').forEach((b, i) => b.classList.toggle('active', i === 0));
@@ -3662,8 +3635,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                           if (query) active.push({label: 'Búsqueda: ' + query, action: () => { const a=document.getElementById('searchInput'); if(a) a.value=''; const b=document.getElementById('quickSearchInput'); if(b) b.value=''; filterCatalog(); }});
                           if (currentCategory !== 'TODOS') active.push({label: currentCategory, action: () => { currentCategory='TODOS'; document.querySelectorAll('#catFilterContainer .cat-btn-sidebar').forEach((b,i)=>b.classList.toggle('active',i===0)); filterCatalog(); }});
                           if (currentAvailability !== 'TODOS') active.push({label: currentAvailability === 'DISPONIBLE' ? 'Disponibles' : 'Agotados', action: () => { currentAvailability='TODOS'; document.querySelectorAll('.avail-btn').forEach((b,i)=>b.classList.toggle('active',i===0)); filterCatalog(); }});
-                          if (minPriceLimit !== null) active.push({label: 'Desde ' + formatCurrency(minPriceLimit), action: () => { const el=document.getElementById('priceMinInput'); if(el) el.value=''; minPriceLimit=null; filterCatalog(); }});
-                          if (maxPriceLimit !== null) active.push({label: 'Hasta ' + formatCurrency(maxPriceLimit), action: () => { const el=document.getElementById('priceMaxInput'); if(el) { el.value=''; el.setCustomValidity(''); } maxPriceLimit=null; filterCatalog(); }});
+                          if (maxPriceLimit < 500000) active.push({label: 'Hasta ' + formatCurrency(maxPriceLimit), action: () => { maxPriceLimit=500000; document.getElementById('priceRange').value='500000'; document.getElementById('priceValText').innerText=formatCurrency(500000); filterCatalog(); }});
                           countNode.textContent = active.length;
                           row.innerHTML = '';
                           active.forEach(item => {
@@ -3692,8 +3664,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                               let matchSearch = text.includes(query);
                               let matchCat = (currentCategory === 'TODOS' || cat === currentCategory);
                               let matchAvail = (currentAvailability === 'TODOS' || avail === currentAvailability);
-                              const validPriceRange = !(minPriceLimit !== null && maxPriceLimit !== null && minPriceLimit > maxPriceLimit);
-                              let matchPrice = validPriceRange && (minPriceLimit === null || price >= minPriceLimit) && (maxPriceLimit === null || price <= maxPriceLimit);
+                              let matchPrice = (price <= maxPriceLimit);
 
                               if (matchSearch && matchCat && matchAvail && matchPrice) {
                                   visibleCount++;
@@ -4325,7 +4296,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                       });
                     }
                   </script>
-                  <!-- v_detail_zoom_hd_fixed_1794170637 -->
+                  <!-- v_detail_zoom_hd_fixed_1794529581 -->
                 </body>
                 </html>
                 
