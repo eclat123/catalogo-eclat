@@ -339,53 +339,69 @@
                           margin-top: 11px;
                       }
         
-                      /* BARRITA SLIDER DELGADA Y ELEGANTE */
+                      /* RANGO DE PRECIOS: DOBLE DESLIZADOR NEGRO Y DORADO */
                       .price-slider-container {
                           background: rgba(255, 255, 255, 0.02);
                           border: 1px solid var(--border-subtle);
-                          padding: 9px 12px;
+                          padding: 13px 12px 10px;
                           border-radius: 6px;
                           margin-bottom: 16px;
                       }
-                      .price-slider {
-                          -webkit-appearance: none;
-                          appearance: none;
-                          width: 100%;
-                          height: 3px;
-                          background: #333;
-                          outline: none;
-                          border-radius: 2px;
-                          margin: 10px 0;
-                          accent-color: var(--accent-gold);
+                      .price-range-values {
+                          display: flex; justify-content: space-between; gap: 12px;
+                          margin-bottom: 15px; align-items: center;
                       }
-                      .price-slider::-webkit-slider-thumb {
-                          -webkit-appearance: none;
-                          appearance: none;
-                          width: 14px;
-                          height: 14px;
-                          border-radius: 50%;
-                          background: var(--accent-gold);
-                          cursor: pointer;
-                          transition: transform 0.2s;
+                      .price-range-value { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+                      .price-range-value:last-child { text-align: right; }
+                      .price-range-value label {
+                          color: var(--text-secondary); font-size: 9px; letter-spacing: 1px;
+                          text-transform: uppercase; font-weight: 600;
                       }
-                      .price-slider::-webkit-slider-thumb:hover {
-                          transform: scale(1.3);
-                          background: #ffffff;
+                      .price-range-value span {
+                          color: var(--accent-gold); font-size: 12px; font-weight: 600;
+                          white-space: nowrap; font-variant-numeric: tabular-nums;
                       }
-                      .price-output-box {
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                          font-size: 11px;
-                          color: var(--text-secondary);
-                          letter-spacing: 1px;
-                          text-transform: uppercase;
+                      .price-dual-track { position: relative; height: 25px; margin: 0 3px 2px; }
+                      .price-track, .price-track-selected {
+                          position: absolute; height: 3px; top: 11px; border-radius: 5px;
                       }
-                      .price-output-box span:last-child {
-                          color: var(--accent-gold);
-                          font-weight: 600;
-                          font-size: 12px;
+                      .price-track { left: 0; right: 0; background: rgba(255,255,255,.18); }
+                      .price-track-selected { background: var(--accent-gold); left: 0; width: 100%; }
+                      .price-dual-track input[type="range"] {
+                          position: absolute; inset: 0; width: 100%; height: 25px; margin: 0;
+                          background: transparent; pointer-events: none; appearance: none;
+                          -webkit-appearance: none; outline: none;
                       }
+                      .price-dual-track input[type="range"]::-webkit-slider-runnable-track {
+                          height: 3px; background: transparent;
+                      }
+                      .price-dual-track input[type="range"]::-moz-range-track {
+                          height: 3px; background: transparent;
+                      }
+                      .price-dual-track input[type="range"]::-webkit-slider-thumb {
+                          pointer-events: auto; appearance: none; -webkit-appearance: none;
+                          width: 15px; height: 15px; margin-top: -6px; border-radius: 50%;
+                          background: var(--accent-gold); border: 2px solid #171717;
+                          box-shadow: 0 0 0 1px var(--accent-gold), 0 1px 5px rgba(0,0,0,.45);
+                          cursor: grab;
+                      }
+                      .price-dual-track input[type="range"]::-moz-range-thumb {
+                          pointer-events: auto; width: 11px; height: 11px; border-radius: 50%;
+                          background: var(--accent-gold); border: 2px solid #171717;
+                          box-shadow: 0 0 0 1px var(--accent-gold), 0 1px 5px rgba(0,0,0,.45);
+                          cursor: grab;
+                      }
+                      .price-dual-track input[type="range"]:active::-webkit-slider-thumb { cursor: grabbing; }
+                      .price-range-hint {
+                          color: var(--text-secondary); font-size: 9px; line-height: 1.45;
+                          margin-top: 7px; opacity: .8;
+                      }
+                      .price-range-clear {
+                          display: block; margin: 8px 0 0 auto; padding: 3px 0;
+                          border: 0; background: transparent; color: var(--text-secondary);
+                          font: inherit; font-size: 10px; cursor: pointer; opacity: .8;
+                      }
+                      .price-range-clear:hover { color: var(--accent-gold); opacity: 1; }
 
                       /* BOTÓN FLOTANTE "VOLVER ARRIBA" - SUTIL Y TRANSPARENTE */
                       .back-to-top {
@@ -1303,13 +1319,26 @@
                           <button class="avail-btn" onclick="filterByAvailability('NO', this)">Agotados</button>
                       </div>
 
-                      <div class="sidebar-section-title">Precio Máximo</div>
+                      <div class="sidebar-section-title">Rango de precios</div>
                       <div class="price-slider-container">
-                          <div class="price-output-box">
-                              <span>Hasta:</span>
-                              <span id="priceValText">$500.000</span>
+                          <div class="price-range-values">
+                              <div class="price-range-value">
+                                  <label for="priceMinInput">Desde</label>
+                                  <span id="priceMinLabel">Sin mínimo</span>
+                              </div>
+                              <div class="price-range-value">
+                                  <label for="priceMaxInput">Hasta</label>
+                                  <span id="priceMaxLabel">Sin máximo</span>
+                              </div>
                           </div>
-                          <input type="range" id="priceRange" class="price-slider" min="0" max="500000" step="10000" value="500000" oninput="updatePriceFilter(this.value)">
+                          <div class="price-dual-track">
+                              <div class="price-track"></div>
+                              <div class="price-track-selected" id="priceTrackSelected"></div>
+                              <input type="range" id="priceMinInput" min="0" max="1000000" step="1000" value="0" oninput="updatePriceFilter('min')" aria-label="Precio mínimo">
+                              <input type="range" id="priceMaxInput" min="0" max="1000000" step="1000" value="1000000" oninput="updatePriceFilter('max')" aria-label="Precio máximo">
+                          </div>
+                          <div class="price-range-hint">Desliza los círculos para ajustar el rango de precios.</div>
+                          <button type="button" class="price-range-clear" onclick="clearPriceRange()">Limpiar rango</button>
                       </div>
 
                       <div class="sidebar-section-title">Categorías</div>
@@ -3494,9 +3523,11 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
 
                       let currentCategory = 'TODOS';
                       let currentAvailability = 'TODOS';
-                      let maxPriceLimit = 500000;
+                      let minPriceLimit = null;
+                      let maxPriceLimit = null;
 
                       window.addEventListener('load', () => {
+                          initializePriceSlider();
                           filterCatalog();
                           const loader = document.getElementById('page-loader');
                           loader.style.opacity = '0';
@@ -3563,9 +3594,65 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                           return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                       }
 
-                      function updatePriceFilter(val) {
-                          maxPriceLimit = parseInt(val);
-                          document.getElementById('priceValText').innerText = formatCurrency(maxPriceLimit);
+                      let priceSliderMin = 0;
+                      let priceSliderMax = 1000000;
+                      function initializePriceSlider() {
+                          const cards = Array.from(document.querySelectorAll('#productGrid .card'));
+                          const prices = cards.map(card => parseFloat(card.getAttribute('data-price')) || 0).filter(price => price > 0);
+                          const actualMax = prices.length ? Math.max(...prices) : 1000000;
+                          priceSliderMax = Math.max(1000, Math.ceil(actualMax / 1000) * 1000);
+                          const step = Math.max(1000, Math.round(priceSliderMax / 500 / 1000) * 1000);
+                          const minInput = document.getElementById('priceMinInput');
+                          const maxInput = document.getElementById('priceMaxInput');
+                          if (minInput && maxInput) {
+                              minInput.min = '0'; minInput.max = String(priceSliderMax); minInput.step = String(step); minInput.value = '0';
+                              maxInput.min = '0'; maxInput.max = String(priceSliderMax); maxInput.step = String(step); maxInput.value = String(priceSliderMax);
+                          }
+                          updatePriceSliderDisplay();
+                      }
+
+                      function updatePriceSliderDisplay() {
+                          const minInput = document.getElementById('priceMinInput');
+                          const maxInput = document.getElementById('priceMaxInput');
+                          if (!minInput || !maxInput) return;
+                          const minValue = Number(minInput.value);
+                          const maxValue = Number(maxInput.value);
+                          const minLabel = document.getElementById('priceMinLabel');
+                          const maxLabel = document.getElementById('priceMaxLabel');
+                          const track = document.getElementById('priceTrackSelected');
+                          if (minLabel) minLabel.textContent = minValue <= 0 ? 'Sin mínimo' : formatCurrency(minValue);
+                          if (maxLabel) maxLabel.textContent = maxValue >= priceSliderMax ? 'Sin máximo' : formatCurrency(maxValue);
+                          const left = priceSliderMax ? (minValue / priceSliderMax) * 100 : 0;
+                          const right = priceSliderMax ? (maxValue / priceSliderMax) * 100 : 100;
+                          if (track) { track.style.left = left + '%'; track.style.width = Math.max(0, right - left) + '%'; }
+                      }
+
+                      function updatePriceFilter(changed) {
+                          const minInput = document.getElementById('priceMinInput');
+                          const maxInput = document.getElementById('priceMaxInput');
+                          if (!minInput || !maxInput) return;
+                          let minValue = Number(minInput.value);
+                          let maxValue = Number(maxInput.value);
+                          if (minValue > maxValue) {
+                              if (changed === 'min') minValue = maxValue;
+                              else maxValue = minValue;
+                          }
+                          minInput.value = String(minValue);
+                          maxInput.value = String(maxValue);
+                          minPriceLimit = minValue > 0 ? minValue : null;
+                          maxPriceLimit = maxValue < priceSliderMax ? maxValue : null;
+                          updatePriceSliderDisplay();
+                          filterCatalog();
+                      }
+
+                      function clearPriceRange() {
+                          const minInput = document.getElementById('priceMinInput');
+                          const maxInput = document.getElementById('priceMaxInput');
+                          if (minInput) minInput.value = '0';
+                          if (maxInput) maxInput.value = String(priceSliderMax);
+                          minPriceLimit = null;
+                          maxPriceLimit = null;
+                          updatePriceSliderDisplay();
                           filterCatalog();
                       }
 
@@ -3610,15 +3697,17 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                       function clearAllFilters() {
                           currentCategory = 'TODOS';
                           currentAvailability = 'TODOS';
-                          maxPriceLimit = 500000;
+                          minPriceLimit = null;
+                          maxPriceLimit = null;
                           const sidebarSearch = document.getElementById('searchInput');
                           const quickSearch = document.getElementById('quickSearchInput');
                           if (sidebarSearch) sidebarSearch.value = '';
                           if (quickSearch) quickSearch.value = '';
-                          const range = document.getElementById('priceRange');
-                          if (range) range.value = '500000';
-                          const priceText = document.getElementById('priceValText');
-                          if (priceText) priceText.innerText = formatCurrency(500000);
+                          const minInput = document.getElementById('priceMinInput');
+                          const maxInput = document.getElementById('priceMaxInput');
+                          if (minInput) minInput.value = '0';
+                          if (maxInput) maxInput.value = String(priceSliderMax);
+                          updatePriceSliderDisplay();
                           const sort = document.getElementById('sortSelect');
                           if (sort) sort.value = 'default';
                           document.querySelectorAll('#catFilterContainer .cat-btn-sidebar').forEach((b, i) => b.classList.toggle('active', i === 0));
@@ -3635,7 +3724,8 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                           if (query) active.push({label: 'Búsqueda: ' + query, action: () => { const a=document.getElementById('searchInput'); if(a) a.value=''; const b=document.getElementById('quickSearchInput'); if(b) b.value=''; filterCatalog(); }});
                           if (currentCategory !== 'TODOS') active.push({label: currentCategory, action: () => { currentCategory='TODOS'; document.querySelectorAll('#catFilterContainer .cat-btn-sidebar').forEach((b,i)=>b.classList.toggle('active',i===0)); filterCatalog(); }});
                           if (currentAvailability !== 'TODOS') active.push({label: currentAvailability === 'DISPONIBLE' ? 'Disponibles' : 'Agotados', action: () => { currentAvailability='TODOS'; document.querySelectorAll('.avail-btn').forEach((b,i)=>b.classList.toggle('active',i===0)); filterCatalog(); }});
-                          if (maxPriceLimit < 500000) active.push({label: 'Hasta ' + formatCurrency(maxPriceLimit), action: () => { maxPriceLimit=500000; document.getElementById('priceRange').value='500000'; document.getElementById('priceValText').innerText=formatCurrency(500000); filterCatalog(); }});
+                          if (minPriceLimit !== null) active.push({label: 'Desde ' + formatCurrency(minPriceLimit), action: () => { const el=document.getElementById('priceMinInput'); if(el) el.value='0'; minPriceLimit=null; updatePriceSliderDisplay(); filterCatalog(); }});
+                          if (maxPriceLimit !== null) active.push({label: 'Hasta ' + formatCurrency(maxPriceLimit), action: () => { const el=document.getElementById('priceMaxInput'); if(el) el.value=String(priceSliderMax); maxPriceLimit=null; updatePriceSliderDisplay(); filterCatalog(); }});
                           countNode.textContent = active.length;
                           row.innerHTML = '';
                           active.forEach(item => {
@@ -3664,7 +3754,8 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                               let matchSearch = text.includes(query);
                               let matchCat = (currentCategory === 'TODOS' || cat === currentCategory);
                               let matchAvail = (currentAvailability === 'TODOS' || avail === currentAvailability);
-                              let matchPrice = (price <= maxPriceLimit);
+                              const validPriceRange = !(minPriceLimit !== null && maxPriceLimit !== null && minPriceLimit > maxPriceLimit);
+                              let matchPrice = validPriceRange && (minPriceLimit === null || price >= minPriceLimit) && (maxPriceLimit === null || price <= maxPriceLimit);
 
                               if (matchSearch && matchCat && matchAvail && matchPrice) {
                                   visibleCount++;
@@ -4296,7 +4387,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                       });
                     }
                   </script>
-                  <!-- v_detail_zoom_hd_fixed_1794529581 -->
+                  <!-- v_detail_zoom_hd_fixed_1794529988 -->
                 </body>
                 </html>
                 
