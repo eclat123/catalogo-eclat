@@ -1272,7 +1272,29 @@
                           img { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
                       }
                   </style>
-                </head>
+                
+                <style id="eclat-navidad-lujo">
+                  :root { --navidad-vino: #6c1f32; --navidad-pino: #153b32; }
+                  body { background-image: radial-gradient(ellipse at 50% 0%, rgba(112,73,26,.13), transparent 48%); }
+                  .navidad-hero { position:relative; isolation:isolate; overflow:hidden; text-align:center; padding:30px 18px 27px; margin:0 auto 26px; max-width:1120px; border:1px solid rgba(197,160,89,.33); background:linear-gradient(120deg,rgba(18,42,35,.68),rgba(15,15,15,.98) 42%,rgba(67,23,36,.42)); box-shadow:0 16px 55px rgba(0,0,0,.22),inset 0 0 35px rgba(197,160,89,.04); }
+                  .navidad-hero:before,.navidad-hero:after { content:'✦'; position:absolute; top:12px; color:#d9bb79; font-size:20px; opacity:.7; }
+                  .navidad-hero:before { left:18px; } .navidad-hero:after { right:18px; }
+                  .navidad-kicker { color:#d4b574; text-transform:uppercase; font-size:10px; font-weight:600; letter-spacing:4px; }
+                  .navidad-title { margin:12px 0 8px; color:#f5ead7; font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:clamp(26px,4.5vw,45px); letter-spacing:1px; }
+                  .navidad-title em { color:#d6b574; font-style:italic; }
+                  .navidad-subtitle { margin:0; color:#c5c0b8; font-size:12px; line-height:1.8; letter-spacing:.5px; }
+                  .navidad-line { width:84px; height:1px; margin:18px auto 0; background:linear-gradient(90deg,transparent,#d6b574,transparent); }
+                  .navidad-guirnalda { position:absolute; left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,#143b31 0%,#b89451 26%,#76263b 50%,#b89451 74%,#143b31 100%);opacity:.85; }
+                  .navidad-nieve { position:fixed; inset:0; pointer-events:none; z-index:100; overflow:hidden; }
+                  .navidad-copo { position:absolute; top:-30px; color:#f7eddb; opacity:0; font-size:var(--tam); left:var(--x); animation:navidadCaer var(--dur) linear infinite; animation-delay:var(--delay); text-shadow:0 0 7px rgba(240,213,165,.3); }
+                  @keyframes navidadCaer { 0%{transform:translate3d(0,-30px,0) rotate(0deg);opacity:0} 12%{opacity:.48} 85%{opacity:.38} 100%{transform:translate3d(var(--drift),105vh,0) rotate(110deg);opacity:0} }
+                  .runway-ticker { background:linear-gradient(90deg,#b48c4c,#d8b977,#b48c4c); }
+                  @media(max-width:600px) { .navidad-hero { padding:25px 12px 23px; margin-bottom:20px; } .navidad-kicker{letter-spacing:2.4px;} .navidad-subtitle{font-size:11px;} .navidad-nieve .navidad-copo:nth-child(n+11){display:none;} }
+                  @media(prefers-reduced-motion:reduce) { .navidad-copo{animation:none;display:none;} }
+                  @media print { .navidad-nieve,.navidad-hero { display:none!important; } body{background-image:none!important;} }
+                </style>
+                
+</head>
                 <body>
                   <!-- CURSOR DE LUJO EXCLUSIVO -->
                   <div class="custom-cursor" id="customCursor"></div>
@@ -1294,7 +1316,31 @@
                       </div>
                   </div>
 
-                  <div class="top-actions pdf-action-lower">
+                  
+                <!-- EDICIÓN NAVIDEÑA ÉCLAT: decoración accesible, no interfiere con filtros ni productos -->
+                <div class="navidad-nieve" aria-hidden="true">
+                  <span class="navidad-copo" style="--x:5%;--tam:10px;--dur:21s;--delay:-3s;--drift:24px">✧</span>
+                  <span class="navidad-copo" style="--x:14%;--tam:8px;--dur:25s;--delay:-17s;--drift:-30px">✦</span>
+                  <span class="navidad-copo" style="--x:23%;--tam:12px;--dur:28s;--delay:-8s;--drift:18px">❄</span>
+                  <span class="navidad-copo" style="--x:32%;--tam:8px;--dur:23s;--delay:-13s;--drift:-16px">✧</span>
+                  <span class="navidad-copo" style="--x:42%;--tam:9px;--dur:30s;--delay:-6s;--drift:30px">✦</span>
+                  <span class="navidad-copo" style="--x:53%;--tam:11px;--dur:26s;--delay:-19s;--drift:-22px">❄</span>
+                  <span class="navidad-copo" style="--x:62%;--tam:8px;--dur:24s;--delay:-2s;--drift:20px">✧</span>
+                  <span class="navidad-copo" style="--x:72%;--tam:9px;--dur:29s;--delay:-12s;--drift:-28px">✦</span>
+                  <span class="navidad-copo" style="--x:81%;--tam:11px;--dur:27s;--delay:-20s;--drift:15px">❄</span>
+                  <span class="navidad-copo" style="--x:93%;--tam:8px;--dur:22s;--delay:-10s;--drift:-19px">✧</span>
+                  <span class="navidad-copo" style="--x:38%;--tam:7px;--dur:32s;--delay:-23s;--drift:26px">✧</span>
+                  <span class="navidad-copo" style="--x:87%;--tam:7px;--dur:31s;--delay:-15s;--drift:-20px">✦</span>
+                </div>
+                <section class="navidad-hero" aria-label="Colección especial de Navidad">
+                  <div class="navidad-guirnalda" aria-hidden="true"></div>
+                  <div class="navidad-kicker">✦ ÉCLAT · Edición especial ✦</div>
+                  <h2 class="navidad-title">La magia de <em>regalar</em></h2>
+                  <p class="navidad-subtitle">Esta Navidad, cada detalle merece ser extraordinario.</p>
+                  <div class="navidad-line" aria-hidden="true"></div>
+                </section>
+                
+<div class="top-actions pdf-action-lower">
                       <button class="action-btn pdf-btn" onclick="generatePDF()"><span>📥</span> Catálogo PDF</button>
                   </div>
 
@@ -4387,7 +4433,7 @@ baño vigorizante con deliciosa sensación de suavidad en la piel
                       });
                     }
                   </script>
-                  <!-- v_detail_zoom_hd_fixed_1794529988 -->
+                  <!-- v_detail_zoom_hd_fixed_1794530296 -->
                 </body>
                 </html>
                 
